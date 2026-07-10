@@ -43,7 +43,7 @@
       const related = XLYData.related(r, 3);
 
       const toc = [
-        { id: "sec-ai", label: "AI 速看" },
+        { id: "sec-ai", label: "摘要" },
         { id: "sec-overview", label: "路线概述" },
         { id: "sec-schedule", label: "行程安排" },
         { id: "sec-dining", label: "饮食推荐" },
@@ -53,81 +53,86 @@
       ];
 
       const tocHTML = toc
-        .map((t) => `<a href="#${t.id}" data-toc="${t.id}">${t.label}</a>`)
+        .map(
+          (t, i) =>
+            `<a href="#${t.id}" data-toc="${t.id}"><span class="toc-num">${String(i + 1).padStart(2, "0")}</span><span class="toc-label">${t.label}</span></a>`
+        )
         .join("");
 
       box.innerHTML = `
         <div class="toc-mobile" id="tocMobile">${tocHTML}</div>
         <div class="detail-layout">
+          <article class="detail-shell">
+            <div class="detail-paper">
+              <header class="detail-hero">
+                <img src="${r.image}" alt="" />
+                <div class="detail-hero__meta">
+                  ${XLYIcons.tagsHTML(r)}
+                  <h1>${r.keyword}</h1>
+                  <p class="meta-line">${r.region}</p>
+                  ${XLYIcons.statsHTML(r)}
+                </div>
+              </header>
+
+              <aside class="ai-summary" id="sec-ai" aria-label="摘要">
+                <div class="ai-summary__head">
+                  <span class="ai-summary__badge">摘要</span>
+                </div>
+                <p>${r.ai_summary || r.route_details}</p>
+              </aside>
+
+              <section class="doc-section doc-prose" id="sec-overview">
+                ${XLYMd.render(r.body_md || `## 路线概述\n\n${r.route_details}`)}
+              </section>
+
+              <section class="doc-section" id="sec-schedule">
+                <h2 class="section-label doc-h">行程安排</h2>
+                <ol class="timeline">
+                  ${r.daily_schedule
+                    .map(
+                      (s) => `<li>
+                      <time>D${s.day} · ${s.time}</time>
+                      <div><strong>${s.title}</strong><p>${s.desc}</p></div>
+                    </li>`
+                    )
+                    .join("")}
+                </ol>
+              </section>
+
+              <section class="doc-section doc-prose" id="sec-dining">
+                ${XLYMd.render(r.dining_md || `## 饮食推荐\n\n${r.dining || ""}`)}
+              </section>
+
+              <section class="doc-section doc-prose" id="sec-stay">
+                ${XLYMd.render(r.stay_md || `## 住宿建议\n\n${r.accommodation || ""}`)}
+              </section>
+
+              <section class="doc-section doc-prose" id="sec-cost">
+                ${XLYMd.render(r.cost_md || `## 费用估算\n\n${r.cost_estimation || ""}`)}
+              </section>
+
+              ${
+                related.length
+                  ? `<section class="doc-section" id="sec-related">
+                <h2 class="section-label doc-h">相关推荐</h2>
+                <div class="related">
+                  ${related
+                    .map(
+                      (x) =>
+                        `<a href="route-detail.html?id=${encodeURIComponent(x.id)}">${x.keyword}<span>${x.region_tag || ""} · ${x.rating} 分 · ${(x.hot_tags || []).slice(0, 2).join(" / ")}</span></a>`
+                    )
+                    .join("")}
+                </div>
+              </section>`
+                  : ""
+              }
+            </div>
+          </article>
+
           <aside class="detail-toc" aria-label="文章目录">
-            <p class="detail-toc__title">目录</p>
+            <p class="detail-toc__title">本页</p>
             <nav id="tocNav">${tocHTML}</nav>
           </aside>
-
-          <div class="detail-shell">
-            <aside class="ai-summary" id="sec-ai" aria-label="AI 速看">
-              <div class="ai-summary__head">
-                <span class="ai-summary__badge"><span class="ai-summary__badge-dot"></span>AI 速看</span>
-              </div>
-              <p>${r.ai_summary || r.route_details}</p>
-            </aside>
-
-            <figure class="detail-hero">
-              <img src="${r.image}" alt="" />
-              <figcaption class="detail-hero__veil">
-                ${XLYIcons.tagsHTML(r)}
-                <h1>${r.keyword}</h1>
-                ${XLYIcons.statsHTML(r)}
-              </figcaption>
-            </figure>
-
-            <article class="doc-prose" id="sec-overview">
-              ${XLYMd.render(r.body_md || `## 路线概述\n\n${r.route_details}`)}
-              <p style="color:var(--ink-faint);font-size:0.88rem;margin-top:0.25rem">${r.region}</p>
-            </article>
-
-            <section class="doc-prose" id="sec-schedule">
-              <h2>详细行程安排</h2>
-              <ol class="timeline">
-                ${r.daily_schedule
-                  .map(
-                    (s) => `<li>
-                    <time>第${s.day}天<br>${s.time}</time>
-                    <div><strong>${s.title}</strong><p>${s.desc}</p></div>
-                  </li>`
-                  )
-                  .join("")}
-              </ol>
-            </section>
-
-            <article class="doc-prose" id="sec-dining">
-              ${XLYMd.render(r.dining_md || `## 饮食推荐\n\n${r.dining || ""}`)}
-            </article>
-
-            <article class="doc-prose" id="sec-stay">
-              ${XLYMd.render(r.stay_md || `## 住宿建议\n\n${r.accommodation || ""}`)}
-            </article>
-
-            <article class="doc-prose" id="sec-cost">
-              ${XLYMd.render(r.cost_md || `## 费用估算\n\n${r.cost_estimation || ""}`)}
-            </article>
-
-            ${
-              related.length
-                ? `<section id="sec-related">
-              <h2 class="section-label">其他 ${r.day_range} 天热门路线</h2>
-              <div class="related">
-                ${related
-                  .map(
-                    (x) =>
-                      `<a href="route-detail.html?id=${encodeURIComponent(x.id)}">${x.keyword}<span>${x.region_tag || ""} · 评分 ${x.rating} · ${(x.hot_tags || []).slice(0, 2).join(" / ")}</span></a>`
-                  )
-                  .join("")}
-              </div>
-            </section>`
-                : ""
-            }
-          </div>
         </div>`;
 
       // TOC active state on scroll

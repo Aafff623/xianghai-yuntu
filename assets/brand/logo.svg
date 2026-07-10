@@ -1,5 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 64" role="img" aria-labelledby="title desc">
-<title id="title">乡海云途</title><desc id="desc">海浪与灯塔意象品牌标识</desc>
-<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b4f78"/><stop offset="1" stop-color="#1688a8"/></linearGradient></defs>
-<g transform="translate(2 4)"><circle cx="28" cy="28" r="26" fill="#f4eee2"/><path d="M7 33c8-18 25-27 43-22-13 2-22 9-27 20 8-7 18-8 29-3-9 0-15 4-20 10-7 8-17 10-25 5 8 1 15-2 20-8-8 4-14 4-20-2z" fill="url(#g)"/><path d="M10 44c13 8 27 7 42-4-7 13-22 19-35 13-4-2-7-5-7-9z" fill="#c8a86d"/></g>
-<g fill="#0b3d62"><text x="68" y="31" font-size="25" font-family="STKaiti,KaiTi,serif" font-weight="700">乡海云途</text><text x="70" y="49" font-size="10.5" font-family="Arial,'Microsoft YaHei',sans-serif" letter-spacing="1.2">AI 定制化海洋乡村旅游</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 248 56" role="img" aria-labelledby="title desc">
+  <title id="title">乡旅e模式</title>
+  <desc id="desc">三角形网络节点、海浪与乡居意象的品牌标识</desc>
+  <defs>
+    <linearGradient id="waveGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a8fc4"/>
+      <stop offset="100%" stop-color="#0a6eae"/>
+    </linearGradient>
+  </defs>
+  <!-- mark -->
+  <g transform="translate(2 2)">
+    <path d="M26 2 L50 46 H2 Z" fill="#12202b"/>
+    <path d="M26 6.5 L45.8 44 H6.2 Z" fill="#fff"/>
+    <!-- network -->
+    <g stroke="#1a8fc4" stroke-width="1.35" fill="none" stroke-linecap="round">
+      <path d="M17 22 L26 12 L35 20 L40 16"/>
+      <path d="M17 22 L26 28 L35 20"/>
+      <path d="M17 22 L14 30"/>
+      <path d="M26 28 L20 34"/>
+      <path d="M26 28 L33 34"/>
+      <path d="M35 20 L33 34"/>
+    </g>
+    <g fill="#1a8fc4">
+      <circle cx="26" cy="12" r="2"/>
+      <circle cx="17" cy="22" r="2"/>
+      <circle cx="35" cy="20" r="2"/>
+      <circle cx="40" cy="16" r="1.6"/>
+      <circle cx="14" cy="30" r="1.6"/>
+      <circle cx="20" cy="34" r="1.6"/>
+      <circle cx="33" cy="34" r="1.6"/>
+      <circle cx="26" cy="28" r="1.8"/>
+    </g>
+    <!-- e letter -->
+    <text x="26" y="31" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="15" font-style="italic" font-weight="700" fill="#0a6eae">e</text>
+    <!-- waves -->
+    <path d="M8 36.5c4.5-2.2 8.5-2.2 13 0s8.5 2.2 13 0 8.5-2.2 13 0v2.2c-4.5-2.2-8.5-2.2-13 0s-8.5 2.2-13 0-8.5-2.2-13 0z" fill="url(#waveGrad)" opacity="0.95"/>
+    <path d="M8 40.2c4.5-2.2 8.5-2.2 13 0s8.5 2.2 13 0 8.5-2.2 13 0v2.1c-4.5-2.2-8.5-2.2-13 0s-8.5 2.2-13 0-8.5-2.2-13 0z" fill="#0a6eae"/>
+    <!-- house -->
+    <path d="M20 46.5 V40.2 l6-4.2 6 4.2 V46.5 H28.2 V42.8 H23.8 V46.5 Z" fill="#12202b"/>
+    <path d="M22.4 46.5 H29.6 V48 H22.4 Z" fill="#12202b"/>
+  </g>
+  <!-- wordmark -->
+  <g fill="#12202b">
+    <text x="64" y="28" font-size="20" font-family="'Noto Serif SC','Songti SC','STSong',serif" font-weight="700" letter-spacing="0.04em">乡旅e模式</text>
+    <text x="65" y="44" font-size="9.5" font-family="'PingFang SC','Microsoft YaHei',sans-serif" fill="#5e7482" letter-spacing="0.14em">乡村短途 · 智能路线</text>
+  </g>
+</svg>

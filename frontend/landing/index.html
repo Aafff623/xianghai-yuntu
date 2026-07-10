@@ -8,13 +8,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=3" />
 </head>
 <body>
   <div class="nav-wrap">
     <header class="nav" id="nav">
       <a class="nav__brand" href="#top">
-        <img class="nav__logo" src="../../assets/brand/logo.svg" alt="乡旅e模式" />
+        <img class="nav__logo" src="../../assets/brand/logo.svg?v=2" alt="乡旅e模式" width="168" height="38" />
       </a>
       <nav class="nav__links" aria-label="主导航">
         <a href="#cities">主题场景</a>
@@ -61,20 +61,29 @@
           <a class="btn btn--outline btn--lg" href="#routes">看示例路线</a>
         </div>
         <ul class="hero__stats" aria-label="调研摘要">
-          <li>
-            <span class="hero__stats-label">定制意愿</span>
-            <strong>80%</strong>
-            <span>用户愿意使用智能定制行程</span>
+          <li class="hero__stat">
+            <span class="hero__stat-index">01</span>
+            <div class="hero__stat-body">
+              <span class="hero__stats-label">定制意愿</span>
+              <strong>80%</strong>
+              <span class="hero__stat-desc">用户愿意使用智能定制行程</span>
+            </div>
           </li>
-          <li>
-            <span class="hero__stats-label">覆盖范围</span>
-            <strong>全国</strong>
-            <span>乡村 · 自然 · 文化场景</span>
+          <li class="hero__stat">
+            <span class="hero__stat-index">02</span>
+            <div class="hero__stat-body">
+              <span class="hero__stats-label">覆盖范围</span>
+              <strong>全国</strong>
+              <span class="hero__stat-desc">乡村 · 自然 · 文化场景</span>
+            </div>
           </li>
-          <li>
-            <span class="hero__stats-label">筛选维度</span>
-            <strong>三维</strong>
-            <span>天数 · 主题 · 风格</span>
+          <li class="hero__stat">
+            <span class="hero__stat-index">03</span>
+            <div class="hero__stat-body">
+              <span class="hero__stats-label">筛选维度</span>
+              <strong>三维</strong>
+              <span class="hero__stat-desc">天数 · 主题 · 风格</span>
+            </div>
           </li>
         </ul>
       </div>
@@ -535,60 +544,93 @@
     <section class="roadmap" id="roadmap">
       <div class="section-head reveal">
         <h2>产品节奏</h2>
-        <p>点击下方阶段，查看对应规划重点。Wave 1 为当前交付，后续阶段不在演示承诺范围。</p>
+        <p>点击下方阶段按钮，切换查看对应规划重点。Week 1 为当前交付，后续阶段不在演示承诺范围。</p>
       </div>
-      <div class="roadmap__tabs reveal" role="tablist" aria-label="产品阶段">
-        <button type="button" class="roadmap__tab is-active" role="tab" aria-selected="true" data-wave="1">Wave 1 · MVP</button>
-        <button type="button" class="roadmap__tab" role="tab" aria-selected="false" data-wave="2">Wave 2 · AI + SEO</button>
-        <button type="button" class="roadmap__tab" role="tab" aria-selected="false" data-wave="3">Wave 3 · 远景</button>
-      </div>
-      <div class="roadmap__panels reveal">
-        <article class="roadmap__panel is-active" id="wave-panel-1" role="tabpanel" data-wave="1">
-          <h3>Wave 1 · 当前交付</h3>
-          <p>对齐任务书可演示闭环，规则匹配保底，全国区域类型种子数据。</p>
-          <ul>
-            <li>注册 / 登录 / 登出</li>
-            <li>智能推荐与相关推荐</li>
-            <li>关键词搜索与路线详情</li>
-            <li>反馈提交 · 全国主题路线数据</li>
-          </ul>
-        </article>
-        <article class="roadmap__panel" id="wave-panel-2" role="tabpanel" data-wave="2" hidden>
-          <h3>Wave 2 · AI 与增长</h3>
-          <p>在 MVP 稳定后接入智能能力与搜索可见性，不阻塞当前演示。</p>
-          <ul>
-            <li>文心一言对话推荐</li>
-            <li>路线摘要与反馈情感分析</li>
-            <li>语义 URL、sitemap、JSON-LD</li>
-          </ul>
-        </article>
-        <article class="roadmap__panel" id="wave-panel-3" role="tabpanel" data-wave="3" hidden>
-          <h3>Wave 3 · 竞赛远景</h3>
-          <p>商业与平台叙事能力，明确标注为远期，不作为本期验收。</p>
-          <ul>
-            <li>票务住宿特产一站预订</li>
-            <li>AR/VR 导览、政府端监管</li>
-            <li>竞赛叙事能力，非近期开发</li>
-          </ul>
-        </article>
+      <div class="roadmap__shell reveal">
+        <div class="roadmap__tabs" id="roadmapTabs" role="tablist" aria-label="产品阶段">
+          <button type="button" class="roadmap__tab is-active" role="tab" id="tab-wave-1" aria-controls="wave-panel-1" aria-selected="true" data-wave="1">
+            <span class="roadmap__tab-week">Week 1</span>
+            <span class="roadmap__tab-label">MVP 交付</span>
+          </button>
+          <button type="button" class="roadmap__tab" role="tab" id="tab-wave-2" aria-controls="wave-panel-2" aria-selected="false" data-wave="2" tabindex="-1">
+            <span class="roadmap__tab-week">Week 2</span>
+            <span class="roadmap__tab-label">AI + SEO</span>
+          </button>
+          <button type="button" class="roadmap__tab" role="tab" id="tab-wave-3" aria-controls="wave-panel-3" aria-selected="false" data-wave="3" tabindex="-1">
+            <span class="roadmap__tab-week">Week 3</span>
+            <span class="roadmap__tab-label">竞赛远景</span>
+          </button>
+        </div>
+        <div class="roadmap__panels">
+          <article class="roadmap__panel is-active" id="wave-panel-1" role="tabpanel" aria-labelledby="tab-wave-1" data-wave="1">
+            <p class="roadmap__badge">当前交付</p>
+            <h3>Week 1 · MVP 可演示闭环</h3>
+            <p>对齐任务书可演示闭环，规则匹配保底，全国区域类型种子数据。</p>
+            <ul>
+              <li>注册 / 登录 / 登出</li>
+              <li>智能推荐与相关推荐</li>
+              <li>关键词搜索与路线详情</li>
+              <li>反馈提交 · 全国主题路线数据</li>
+            </ul>
+          </article>
+          <article class="roadmap__panel" id="wave-panel-2" role="tabpanel" aria-labelledby="tab-wave-2" data-wave="2" hidden>
+            <p class="roadmap__badge roadmap__badge--soft">规划中</p>
+            <h3>Week 2 · AI 与增长</h3>
+            <p>在 MVP 稳定后接入智能能力与搜索可见性，不阻塞当前演示。</p>
+            <ul>
+              <li>文心一言对话推荐</li>
+              <li>路线摘要与反馈情感分析</li>
+              <li>语义 URL、sitemap、JSON-LD</li>
+              <li>内容运营与外链建设</li>
+            </ul>
+          </article>
+          <article class="roadmap__panel" id="wave-panel-3" role="tabpanel" aria-labelledby="tab-wave-3" data-wave="3" hidden>
+            <p class="roadmap__badge roadmap__badge--soft">远期叙事</p>
+            <h3>Week 3 · 竞赛远景</h3>
+            <p>商业与平台叙事能力，明确标注为远期，不作为本期验收。</p>
+            <ul>
+              <li>票务住宿特产一站预订</li>
+              <li>AR/VR 导览、政府端监管</li>
+              <li>竞赛叙事能力，非近期开发</li>
+              <li>开放平台与生态合作</li>
+            </ul>
+          </article>
+        </div>
       </div>
     </section>
 
     <!-- Feedback -->
     <section class="feedback" id="feedback">
-      <div class="feedback__layout reveal">
-        <div class="feedback__main">
+      <div class="feedback__layout">
+        <div class="feedback__main reveal">
           <p class="feedback__eyebrow">Voice of Traveler</p>
           <h2>意见反馈</h2>
           <p class="feedback__lead">告诉我们你的体验与建议。落地页演示提交后仅本地提示，不会上传服务器。</p>
           <form class="feedback__card" id="feedbackForm">
+            <div class="feedback__meta">
+              <span>演示模式</span>
+              <span>最长 500 字</span>
+            </div>
             <label for="feedbackText">你的建议</label>
             <textarea id="feedbackText" rows="6" placeholder="请描述你的想法、遇到的问题，或希望增加的功能…" required maxlength="500"></textarea>
-            <button type="submit" class="btn btn--primary btn--lg feedback__submit">提交反馈</button>
+            <div class="feedback__actions">
+              <button type="submit" class="btn btn--primary btn--lg feedback__submit">提交反馈</button>
+              <a class="btn btn--outline" href="../app/feedback.html">功能页反馈</a>
+            </div>
             <p class="feedback__msg" id="feedbackMsg" role="status" hidden>反馈已记录（演示）。感谢你的建议。</p>
           </form>
         </div>
-        <aside class="feedback__visual" aria-hidden="true"></aside>
+        <aside class="feedback__visual reveal" aria-hidden="true">
+          <div class="feedback__visual-card">
+            <p class="feedback__visual-kicker">Why it matters</p>
+            <p class="feedback__visual-quote">「真正有用的行程，来自真实用户走过的弯路。」</p>
+            <ul class="feedback__visual-list">
+              <li>路线匹配是否准确</li>
+              <li>详情信息是否够用</li>
+              <li>还有哪些场景想覆盖</li>
+            </ul>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -599,17 +641,38 @@
           <div class="cta__copy">
             <p class="cta__eyebrow">Start Planning</p>
             <h2>下一次乡村短途，从条件筛选开始。</h2>
-            <p>进入功能页完成注册登录，按天数、主题与风格获取智能推荐，查看完整行程文档。</p>
+            <p>进入功能页完成注册登录，按天数、主题与风格获取智能推荐，展开完整行程文档。</p>
             <div class="cta__actions">
               <a class="btn btn--primary btn--lg" href="../app/index.html">开始规划</a>
-              <a class="btn btn--outline btn--lg" href="#routes">看示例路线</a>
+              <a class="btn btn--ghost-on-dark btn--lg" href="#routes">看示例路线</a>
             </div>
           </div>
-          <ul class="cta__points">
-            <li><strong>三维筛选</strong><span>天数 · 主题 · 风格</span></li>
-            <li><strong>全国模板</strong><span>多区域类型种子</span></li>
-            <li><strong>行程文档</strong><span>饮食 · 住宿 · 费用</span></li>
-          </ul>
+          <div class="cta__side">
+            <p class="cta__side-title">三步进入可走行程</p>
+            <ol class="cta__steps">
+              <li>
+                <span class="cta__step-num">01</span>
+                <div>
+                  <strong>三维筛选</strong>
+                  <span>天数 · 主题 · 风格</span>
+                </div>
+              </li>
+              <li>
+                <span class="cta__step-num">02</span>
+                <div>
+                  <strong>全国模板</strong>
+                  <span>多区域类型种子数据</span>
+                </div>
+              </li>
+              <li>
+                <span class="cta__step-num">03</span>
+                <div>
+                  <strong>行程文档</strong>
+                  <span>饮食 · 住宿 · 费用</span>
+                </div>
+              </li>
+            </ol>
+          </div>
         </div>
       </div>
     </section>
@@ -617,33 +680,40 @@
 
   <footer class="footer">
     <div class="footer__inner">
-      <div class="footer__grid">
+      <div class="footer__top">
         <div class="footer__brand-block">
           <a class="footer__logo" href="#top">
-            <img src="../../assets/brand/logo.svg" alt="乡旅e模式" />
+            <img src="../../assets/brand/logo.svg?v=2" alt="乡旅e模式" width="160" height="36" />
           </a>
-          <p class="footer__desc">轻量化乡村旅游路线规划 Web 系统。按天数、主题与风格收敛可执行行程。</p>
+          <p class="footer__desc">轻量化乡村旅游路线规划 Web 系统。面向全国场景，按天数、主题与风格收敛可执行行程。</p>
+          <div class="footer__chips">
+            <span>全国覆盖</span>
+            <span>智能推荐</span>
+            <span>行程文档</span>
+          </div>
         </div>
-        <div class="footer__col">
-          <h4>产品</h4>
-          <a href="#features">智能推荐</a>
-          <a href="#routes">示例路线</a>
-          <a href="#demo">推荐演示</a>
-          <a href="../app/index.html">功能首页</a>
-        </div>
-        <div class="footer__col">
-          <h4>探索</h4>
-          <a href="#cities">主题场景</a>
-          <a href="#scenes">体验类型</a>
-          <a href="#how">使用方式</a>
-          <a href="#roadmap">产品节奏</a>
-        </div>
-        <div class="footer__col">
-          <h4>支持</h4>
-          <a href="#feedback">意见反馈</a>
-          <a href="../app/login.html">登录</a>
-          <a href="../app/register.html">注册</a>
-          <a href="../app/feedback.html">功能页反馈</a>
+        <div class="footer__cols">
+          <div class="footer__col">
+            <h4>产品</h4>
+            <a href="#features">智能推荐</a>
+            <a href="#routes">示例路线</a>
+            <a href="#demo">推荐演示</a>
+            <a href="../app/index.html">功能首页</a>
+          </div>
+          <div class="footer__col">
+            <h4>探索</h4>
+            <a href="#cities">主题场景</a>
+            <a href="#scenes">体验类型</a>
+            <a href="#how">使用方式</a>
+            <a href="#roadmap">产品节奏</a>
+          </div>
+          <div class="footer__col">
+            <h4>支持</h4>
+            <a href="#feedback">意见反馈</a>
+            <a href="../app/login.html">登录</a>
+            <a href="../app/register.html">注册</a>
+            <a href="../app/feedback.html">功能页反馈</a>
+          </div>
         </div>
       </div>
       <div class="footer__bottom">
@@ -654,6 +724,6 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="main.js"></script>
+  <script src="main.js?v=2"></script>
 </body>
 </html>

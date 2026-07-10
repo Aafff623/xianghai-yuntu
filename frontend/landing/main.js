@@ -367,25 +367,59 @@
     });
   }
 
-  /* ---------- Product roadmap tabs ---------- */
-  const roadmapTabs = document.querySelectorAll(".roadmap__tab");
-  const roadmapPanels = document.querySelectorAll(".roadmap__panel");
-  if (roadmapTabs.length && roadmapPanels.length) {
-    roadmapTabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        const wave = tab.getAttribute("data-wave");
-        roadmapTabs.forEach((t) => {
-          const on = t === tab;
-          t.classList.toggle("is-active", on);
-          t.setAttribute("aria-selected", on ? "true" : "false");
-        });
-        roadmapPanels.forEach((panel) => {
-          const on = panel.getAttribute("data-wave") === wave;
-          panel.classList.toggle("is-active", on);
-          if (on) panel.removeAttribute("hidden");
-          else panel.setAttribute("hidden", "");
-        });
-      });
+  /* ---------- Product roadmap tabs (Week 1/2/3) ---------- */
+  const roadmapTablist = document.getElementById("roadmapTabs");
+  const roadmapTabs = Array.from(document.querySelectorAll(".roadmap__tab"));
+  const roadmapPanels = Array.from(document.querySelectorAll(".roadmap__panel"));
+
+  const activateRoadmapWave = (wave) => {
+    if (!wave) return;
+    roadmapTabs.forEach((t) => {
+      const on = t.getAttribute("data-wave") === wave;
+      t.classList.toggle("is-active", on);
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.tabIndex = on ? 0 : -1;
     });
+    roadmapPanels.forEach((panel) => {
+      const on = panel.getAttribute("data-wave") === wave;
+      panel.classList.toggle("is-active", on);
+      if (on) {
+        panel.hidden = false;
+        panel.removeAttribute("hidden");
+      } else {
+        panel.hidden = true;
+        panel.setAttribute("hidden", "");
+      }
+    });
+  };
+
+  if (roadmapTablist && roadmapTabs.length && roadmapPanels.length) {
+    roadmapTablist.addEventListener("click", (e) => {
+      const tab = e.target.closest(".roadmap__tab");
+      if (!tab || !roadmapTablist.contains(tab)) return;
+      e.preventDefault();
+      activateRoadmapWave(tab.getAttribute("data-wave"));
+    });
+
+    roadmapTablist.addEventListener("keydown", (e) => {
+      const current = e.target.closest(".roadmap__tab");
+      if (!current) return;
+      const idx = roadmapTabs.indexOf(current);
+      if (idx < 0) return;
+      let next = -1;
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") next = (idx + 1) % roadmapTabs.length;
+      if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = (idx - 1 + roadmapTabs.length) % roadmapTabs.length;
+      if (e.key === "Home") next = 0;
+      if (e.key === "End") next = roadmapTabs.length - 1;
+      if (next < 0) return;
+      e.preventDefault();
+      activateRoadmapWave(roadmapTabs[next].getAttribute("data-wave"));
+      roadmapTabs[next].focus();
+    });
+
+    // Ensure initial state is consistent
+    const initial =
+      roadmapTabs.find((t) => t.classList.contains("is-active")) || roadmapTabs[0];
+    activateRoadmapWave(initial.getAttribute("data-wave"));
   }
 })();

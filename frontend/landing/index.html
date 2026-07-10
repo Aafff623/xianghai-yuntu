@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="styles.css?v=4" />
 </head>
 <body>
   <div class="nav-wrap">
@@ -22,13 +22,14 @@
         <a href="#features">智能推荐</a>
         <a href="#demo">推荐演示</a>
         <a href="#routes">示例路线</a>
-        <a href="#detail">行程详情</a>
-        <a href="#audience">适用人群</a>
+        <a href="#insights">风光笔记</a>
+        <a href="#feedback">意见反馈</a>
         <a href="#how">使用方式</a>
       </nav>
       <div class="nav__actions">
         <a class="btn btn--ghost" href="#feedback">意见反馈</a>
-        <a class="btn btn--primary" href="../app/index.html">开始规划</a>
+        <a class="btn btn--ghost" href="../app/login.html">登录</a>
+        <a class="btn btn--primary" href="../app/register.html">注册</a>
       </div>
       <button class="nav__menu" type="button" aria-label="打开菜单" aria-expanded="false" id="menuBtn">
         <span></span><span></span>
@@ -42,10 +43,11 @@
     <a href="#features">智能推荐</a>
     <a href="#demo">推荐演示</a>
     <a href="#routes">示例路线</a>
-    <a href="#detail">行程详情</a>
-    <a href="#audience">适用人群</a>
+    <a href="#insights">风光笔记</a>
     <a href="#how">使用方式</a>
     <a href="#feedback">意见反馈</a>
+    <a href="../app/login.html">登录</a>
+    <a href="../app/register.html">注册</a>
     <a class="btn btn--primary" href="../app/index.html">开始规划</a>
   </div>
 
@@ -599,38 +601,126 @@
       </div>
     </section>
 
+    <!-- Insights / regional notes -->
+    <section class="insights" id="insights">
+      <div class="section-head reveal">
+        <h2>全国风光笔记</h2>
+        <p>整合公开游记与攻略要点，填充区域认知；正文为演示摘要，文末附检索与原文链接。</p>
+      </div>
+      <div class="insights__grid">
+        <article class="insight-card reveal">
+          <div class="insight-card__media">
+            <img src="../../assets/landing/dest-culture.jpg" alt="江南水乡示意" loading="lazy" />
+            <span class="insight-card__tag">江南水乡</span>
+          </div>
+          <div class="insight-card__body">
+            <h3>水巷一日：古镇节奏怎么走才不赶</h3>
+            <p>周庄、乌镇、南浔一类水乡，适合「上午水巷—中午老街—下午手作/市集」的一日结构。乘船、石板路与雨天防滑是共性提醒；预算可压在人均百元级餐饮与可选体验内。</p>
+            <ul class="insight-card__bullets">
+              <li>优先步行与短途船线，少跨镇赶场</li>
+              <li>雨天石板路湿滑，备防滑鞋</li>
+              <li>茶歇点心可作节奏缓冲</li>
+            </ul>
+            <div class="insight-card__links">
+              <a href="https://zhuanlan.zhihu.com/p/653569054" target="_blank" rel="noopener noreferrer">知乎 · 周庄攻略</a>
+              <a href="https://www.google.com/search?q=%E6%B1%9F%E5%8D%97%E6%B0%B4%E4%B9%A1%E5%8F%A4%E9%95%87%E6%97%85%E6%B8%B8%E6%94%BB%E7%95%A5" target="_blank" rel="noopener noreferrer">Google 检索</a>
+            </div>
+          </div>
+        </article>
+        <article class="insight-card reveal">
+          <div class="insight-card__media">
+            <img src="../../assets/landing/dest-nature.jpg" alt="西南梯田示意" loading="lazy" />
+            <span class="insight-card__tag">西南梯田</span>
+          </div>
+          <div class="insight-card__body">
+            <h3>梯田慢行：观景与村落对半开</h3>
+            <p>以元阳等哈尼梯田为代表的西南山乡，宜「上午观景台—农家午餐—下午村落」的轻强度节奏。灌水季（约 12 月至次年 4 月）倒影更好；注意温差、防晒与山路补给。</p>
+            <ul class="insight-card__bullets">
+              <li>观景高峰常在 10:00 前后，可错峰</li>
+              <li>穿薄外套应对早晚温差</li>
+              <li>村落人文与梯田景观搭配更完整</li>
+            </ul>
+            <div class="insight-card__links">
+              <a href="https://zhuanlan.zhihu.com/p/606005238" target="_blank" rel="noopener noreferrer">知乎 · 元阳环线</a>
+              <a href="https://www.google.com/search?q=%E5%85%83%E9%98%B3%E6%A2%AF%E7%94%B0%E6%85%A2%E8%A1%8C%E6%94%BB%E7%95%A5" target="_blank" rel="noopener noreferrer">Google 检索</a>
+            </div>
+          </div>
+        </article>
+        <article class="insight-card reveal">
+          <div class="insight-card__media">
+            <img src="../../assets/landing/slide-mountain.jpg" alt="徽州山地示意" loading="lazy" />
+            <span class="insight-card__tag">徽州山地</span>
+          </div>
+          <div class="insight-card__body">
+            <h3>古村两日：先住下来，再上山径</h3>
+            <p>徽州及同类山地古村（西递、宏村一类意象）更适合「第一天沉浸村落、第二天近村山径」的慢住结构，而不是景点清单打卡。村内精品民宿与巷内安静房源更适合过夜。</p>
+            <ul class="insight-card__bullets">
+              <li>石板巷与民居外观可半日漫步</li>
+              <li>山径选近村缓坡，控强度</li>
+              <li>节假日提前订房</li>
+            </ul>
+            <div class="insight-card__links">
+              <a href="https://www.google.com/search?q=%E5%BE%BD%E5%B7%9E%E5%8F%A4%E6%9D%91%E8%A5%BF%E9%80%92%E5%AE%8F%E6%9D%91%E7%9F%AD%E9%80%94%E6%94%BB%E7%95%A5" target="_blank" rel="noopener noreferrer">Google · 徽州短途</a>
+              <a href="https://www.mafengwo.cn/search/q.php?q=%E5%BE%BD%E5%B7%9E" target="_blank" rel="noopener noreferrer">马蜂窝检索</a>
+            </div>
+          </div>
+        </article>
+        <article class="insight-card reveal">
+          <div class="insight-card__media">
+            <img src="../../assets/landing/dest-family.jpg" alt="华北河谷示意" loading="lazy" />
+            <span class="insight-card__tag">华北河谷</span>
+          </div>
+          <div class="insight-card__body">
+            <h3>亲子过夜：河谷步道与家庭房优先</h3>
+            <p>京津冀等近郊 1.5–3 小时车程的河谷乡野，适合「白天轻探索 + 晚上家庭房」的两日一夜。研学强度宜低，餐饮分餐、热水与取暖是秋冬关键项。</p>
+            <ul class="insight-card__bullets">
+              <li>步道选平整、有补给的段落</li>
+              <li>家庭房 / 亲子房优先于景观大床</li>
+              <li>第二天留缓冲，避免赶点返程</li>
+            </ul>
+            <div class="insight-card__links">
+              <a href="https://www.google.com/search?q=%E4%BA%AC%E6%B4%A5%E5%86%80%E4%BA%B2%E5%AD%90%E4%B9%A1%E6%9D%91%E7%A0%94%E5%AD%A6%E7%9F%AD%E9%80%94" target="_blank" rel="noopener noreferrer">Google · 亲子短途</a>
+              <a href="https://zhuanlan.zhihu.com/search?type=content&q=%E4%BA%B2%E5%AD%90%E4%B9%A1%E6%9D%91%E7%A0%94%E5%AD%A6" target="_blank" rel="noopener noreferrer">知乎检索</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <!-- Feedback -->
     <section class="feedback" id="feedback">
-      <div class="feedback__layout">
-        <div class="feedback__main reveal">
-          <p class="feedback__eyebrow">Voice of Traveler</p>
-          <h2>意见反馈</h2>
-          <p class="feedback__lead">告诉我们你的体验与建议。落地页演示提交后仅本地提示，不会上传服务器。</p>
-          <form class="feedback__card" id="feedbackForm">
-            <div class="feedback__meta">
-              <span>演示模式</span>
-              <span>最长 500 字</span>
-            </div>
-            <label for="feedbackText">你的建议</label>
-            <textarea id="feedbackText" rows="6" placeholder="请描述你的想法、遇到的问题，或希望增加的功能…" required maxlength="500"></textarea>
-            <div class="feedback__actions">
-              <button type="submit" class="btn btn--primary btn--lg feedback__submit">提交反馈</button>
-              <a class="btn btn--outline" href="../app/feedback.html">功能页反馈</a>
-            </div>
-            <p class="feedback__msg" id="feedbackMsg" role="status" hidden>反馈已记录（演示）。感谢你的建议。</p>
-          </form>
-        </div>
-        <aside class="feedback__visual reveal" aria-hidden="true">
-          <div class="feedback__visual-card">
-            <p class="feedback__visual-kicker">Why it matters</p>
-            <p class="feedback__visual-quote">「真正有用的行程，来自真实用户走过的弯路。」</p>
-            <ul class="feedback__visual-list">
-              <li>路线匹配是否准确</li>
-              <li>详情信息是否够用</li>
-              <li>还有哪些场景想覆盖</li>
-            </ul>
+      <div class="feedback__inner reveal">
+        <div class="feedback__layout">
+          <div class="feedback__main">
+            <p class="feedback__eyebrow">Voice of Traveler</p>
+            <h2>意见反馈</h2>
+            <p class="feedback__lead">告诉我们你的体验与建议。落地页演示提交后仅本地提示，不会上传服务器。</p>
+            <form class="feedback__card" id="feedbackForm">
+              <div class="feedback__meta">
+                <span>演示模式</span>
+                <span>最长 500 字</span>
+              </div>
+              <label for="feedbackText">你的建议</label>
+              <textarea id="feedbackText" rows="5" placeholder="请描述你的想法、遇到的问题，或希望增加的功能…" required maxlength="500"></textarea>
+              <div class="feedback__actions">
+                <button type="submit" class="btn btn--primary btn--lg feedback__submit">提交反馈</button>
+                <a class="btn btn--outline" href="../app/feedback.html">功能页反馈</a>
+              </div>
+              <p class="feedback__msg" id="feedbackMsg" role="status" hidden>反馈已记录（演示）。感谢你的建议。</p>
+            </form>
           </div>
-        </aside>
+          <aside class="feedback__visual" aria-hidden="true">
+            <div class="feedback__visual-card">
+              <p class="feedback__visual-kicker">Why it matters</p>
+              <p class="feedback__visual-quote">「真正有用的行程，来自真实用户走过的弯路。」</p>
+              <ul class="feedback__visual-list">
+                <li>路线匹配是否准确</li>
+                <li>详情信息是否够用</li>
+                <li>还有哪些场景想覆盖</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
 
@@ -644,7 +734,7 @@
             <p>进入功能页完成注册登录，按天数、主题与风格获取智能推荐，展开完整行程文档。</p>
             <div class="cta__actions">
               <a class="btn btn--primary btn--lg" href="../app/index.html">开始规划</a>
-              <a class="btn btn--ghost-on-dark btn--lg" href="#routes">看示例路线</a>
+              <a class="btn btn--outline btn--lg" href="#routes">看示例路线</a>
             </div>
           </div>
           <div class="cta__side">
@@ -703,7 +793,7 @@
           <div class="footer__col">
             <h4>探索</h4>
             <a href="#cities">主题场景</a>
-            <a href="#scenes">体验类型</a>
+            <a href="#insights">风光笔记</a>
             <a href="#how">使用方式</a>
             <a href="#roadmap">产品节奏</a>
           </div>
@@ -712,7 +802,7 @@
             <a href="#feedback">意见反馈</a>
             <a href="../app/login.html">登录</a>
             <a href="../app/register.html">注册</a>
-            <a href="../app/feedback.html">功能页反馈</a>
+            <a href="../app/profile.html">个人资料</a>
           </div>
         </div>
       </div>

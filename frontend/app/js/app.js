@@ -1,6 +1,6 @@
 /** 全局壳：顶栏用户态、Flash、搜索跳转、受保护页检查 */
 (() => {
-  const AUTH_PAGES = ["smart-search.html", "search.html", "route-detail.html"];
+  const AUTH_PAGES = ["smart-search.html", "search.html", "route-detail.html", "profile.html"];
 
   function pageName() {
     const p = location.pathname.split("/").pop() || "index.html";
@@ -37,11 +37,13 @@
     if (!slot || !window.XLYAuth) return;
     const user = XLYAuth.current();
     if (user) {
-      const initial = escapeHtml((user.username || "?").slice(0, 1));
-      slot.innerHTML = `<div class="user-chip" style="display:flex;align-items:center;gap:10px">
+      const label = user.displayName || user.username || "?";
+      const initial = escapeHtml(String(label).slice(0, 1));
+      slot.innerHTML = `<a class="user-chip" href="profile.html" title="个人资料" style="display:flex;align-items:center;gap:10px;text-decoration:none">
           <span class="avatar" style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#e6c897,#0a5a82);display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px">${initial}</span>
-          <span class="nav-user">欢迎，${escapeHtml(user.username)}</span>
-        </div>
+          <span class="nav-user">欢迎，${escapeHtml(label)}</span>
+        </a>
+        <a class="btn btn--ghost btn--sm" href="profile.html">资料</a>
         <button type="button" class="btn btn--ghost btn--sm" id="logoutBtn">退出</button>`;
       document.getElementById("logoutBtn")?.addEventListener("click", () => {
         XLYAuth.logout();

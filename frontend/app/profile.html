@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>个人资料 · 乡旅e模式</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/app.css" />
+  <link rel="stylesheet" href="css/shell.css" />
+  <style>
+    .profile-page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 28px 20px 64px;
+    }
+    .profile-hero {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 24px 26px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #fff 0%, #f3f8fa 100%);
+      border: 1px solid #dce5e9;
+      box-shadow: 0 14px 36px rgba(10, 53, 83, 0.06);
+      margin-bottom: 22px;
+    }
+    .profile-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, #e6c897, #0a5a82);
+    }
+    .profile-hero h1 {
+      margin: 0 0 6px;
+      font-size: 1.55rem;
+      font-family: "Noto Serif SC", "Songti SC", serif;
+      color: #0a3553;
+    }
+    .profile-hero p {
+      margin: 0;
+      color: #718391;
+      font-size: 0.92rem;
+    }
+    .profile-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .profile-meta span {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #0a5279;
+      background: #eef6f9;
+      border-radius: 999px;
+      padding: 4px 10px;
+    }
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+    }
+    .profile-card {
+      background: #fff;
+      border: 1px solid #dce5e9;
+      border-radius: 16px;
+      padding: 20px 22px 22px;
+      box-shadow: 0 10px 28px rgba(10, 53, 83, 0.04);
+    }
+    .profile-card h2 {
+      margin: 0 0 14px;
+      font-size: 1.05rem;
+      color: #0a3553;
+    }
+    .profile-card .field {
+      margin-bottom: 12px;
+    }
+    .profile-card label {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #3d5160;
+      margin-bottom: 6px;
+    }
+    .profile-card input,
+    .profile-card textarea,
+    .profile-card select {
+      width: 100%;
+      border: 1px solid #d8e2e7;
+      border-radius: 12px;
+      padding: 11px 14px;
+      font: inherit;
+      background: #fbfcfd;
+      color: #0a3553;
+    }
+    .profile-card textarea {
+      min-height: 96px;
+      resize: vertical;
+      line-height: 1.55;
+    }
+    .profile-card input:focus,
+    .profile-card textarea:focus,
+    .profile-card select:focus {
+      outline: none;
+      border-color: rgba(11, 84, 126, 0.4);
+      box-shadow: 0 0 0 3px rgba(11, 84, 126, 0.1);
+      background: #fff;
+    }
+    .profile-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .profile-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .profile-stat {
+      padding: 12px 10px;
+      border-radius: 12px;
+      background: #f6fafb;
+      border: 1px solid #e6eef2;
+      text-align: center;
+    }
+    .profile-stat strong {
+      display: block;
+      font-size: 1.15rem;
+      color: #0a3553;
+      font-family: "Noto Serif SC", "Songti SC", serif;
+    }
+    .profile-stat span {
+      font-size: 0.72rem;
+      color: #718391;
+    }
+    .profile-links {
+      display: grid;
+      gap: 8px;
+    }
+    .profile-links a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid #e4eaed;
+      background: #fbfcfd;
+      color: #0a3553;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    .profile-links a:hover {
+      border-color: #b8c9d3;
+      color: #0a6eae;
+    }
+    .profile-links a span {
+      color: #8a9eab;
+      font-weight: 500;
+      font-size: 0.8rem;
+    }
+    @media (max-width: 860px) {
+      .profile-hero {
+        grid-template-columns: auto 1fr;
+      }
+      .profile-hero .btn {
+        grid-column: 1 / -1;
+        width: 100%;
+      }
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="page-home">
+  <div id="flash" class="flash" role="status"></div>
+  <header class="app-nav">
+    <a class="app-nav__brand" href="index.html">
+      <img src="../../assets/brand/logo.svg" alt="乡旅e模式" />
+      <span>乡旅e模式</span>
+    </a>
+    <form class="app-nav__search" id="headerSearch">
+      <input type="search" name="q" placeholder="搜索目的地 / 玩法 / 攻略" />
+      <button class="btn btn--sm" type="submit">搜索</button>
+    </form>
+    <div class="app-nav__actions" id="authSlot"></div>
+  </header>
+
+  <main class="profile-page">
+    <section class="profile-hero">
+      <div class="profile-avatar" id="profileAvatar">A</div>
+      <div>
+        <h1 id="profileTitle">个人资料</h1>
+        <p id="profileSub">登录后管理偏好与演示信息</p>
+        <div class="profile-meta" id="profileMeta"></div>
+      </div>
+      <a class="btn" href="index.html">开始规划</a>
+    </section>
+
+    <div class="profile-grid">
+      <section class="profile-card">
+        <h2>基本信息</h2>
+        <form id="profileForm">
+          <div class="field">
+            <label for="displayName">显示名称</label>
+            <input id="displayName" name="displayName" maxlength="40" required />
+          </div>
+          <div class="field">
+            <label for="city">常住 / 偏好城市</label>
+            <input id="city" name="city" maxlength="40" placeholder="例如：全国 / 上海 / 昆明" />
+          </div>
+          <div class="field">
+            <label for="email">联系邮箱（演示）</label>
+            <input id="email" name="email" type="email" maxlength="80" placeholder="可选" />
+          </div>
+          <div class="field">
+            <label for="bio">个人简介</label>
+            <textarea id="bio" name="bio" maxlength="200" placeholder="一句话介绍你的旅行偏好"></textarea>
+          </div>
+          <h2 style="margin-top:8px">默认筛选偏好</h2>
+          <div class="field">
+            <label for="day_range">计划天数</label>
+            <select id="day_range" name="day_range">
+              <option value="">未设置</option>
+              <option value="1-2">1-2天</option>
+              <option value="3-5">3-5天</option>
+              <option value="6-7">6-7天</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="route_type">兴趣主题</label>
+            <select id="route_type" name="route_type">
+              <option value="">未设置</option>
+              <option value="文化体验">文化体验</option>
+              <option value="自然观光">自然观光</option>
+              <option value="亲子休闲">亲子休闲</option>
+              <option value="乡村旅游">乡村旅游</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="budget_level">规划风格</label>
+            <select id="budget_level" name="budget_level">
+              <option value="">未设置</option>
+              <option value="经济型">经济型</option>
+              <option value="舒适型">舒适型</option>
+              <option value="豪华型">豪华型</option>
+            </select>
+          </div>
+          <div class="profile-actions">
+            <button class="btn" type="submit">保存资料</button>
+            <a class="btn btn--ghost" href="smart-search.html">去智能推荐</a>
+          </div>
+        </form>
+      </section>
+
+      <aside>
+        <section class="profile-card" style="margin-bottom:18px">
+          <h2>账户概览</h2>
+          <div class="profile-stats">
+            <div class="profile-stat"><strong id="statRoutes">—</strong><span>可浏览路线</span></div>
+            <div class="profile-stat"><strong id="statRegions">—</strong><span>区域类型</span></div>
+            <div class="profile-stat"><strong id="statUser">—</strong><span>用户名</span></div>
+          </div>
+          <p style="margin:0;font-size:0.86rem;color:#718391;line-height:1.6" id="profileBioPreview"></p>
+        </section>
+        <section class="profile-card">
+          <h2>快捷入口</h2>
+          <div class="profile-links">
+            <a href="index.html">功能首页 <span>筛选出发</span></a>
+            <a href="smart-search.html">智能推荐 <span>条件匹配</span></a>
+            <a href="search.html">关键词搜索 <span>全国模板</span></a>
+            <a href="feedback.html">意见反馈 <span>提交建议</span></a>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    (() => {
+      if (!XLYAuth.current()) return;
+
+      const fill = () => {
+        const user = XLYAuth.current();
+        const profile = XLYAuth.getProfile(user.username);
+        const name = profile.displayName || user.username;
+        document.getElementById("profileAvatar").textContent = name.slice(0, 1);
+        document.getElementById("profileTitle").textContent = name;
+        document.getElementById("profileSub").textContent =
+          profile.bio || "登录后管理偏好与演示信息";
+        document.getElementById("profileMeta").innerHTML = [
+          `<span>@${user.username}</span>`,
+          profile.city ? `<span>${profile.city}</span>` : "",
+          profile.joinedAt ? `<span>加入 ${profile.joinedAt}</span>` : "",
+        ]
+          .filter(Boolean)
+          .join("");
+        document.getElementById("displayName").value = profile.displayName || "";
+        document.getElementById("city").value = profile.city || "";
+        document.getElementById("email").value = profile.email || "";
+        document.getElementById("bio").value = profile.bio || "";
+        document.getElementById("day_range").value = profile.prefs?.day_range || "";
+        document.getElementById("route_type").value = profile.prefs?.route_type || "";
+        document.getElementById("budget_level").value = profile.prefs?.budget_level || "";
+        document.getElementById("profileBioPreview").textContent =
+          profile.bio || "暂无简介。";
+        document.getElementById("statRoutes").textContent = String(
+          (window.XLY_ROUTES || []).length || "—"
+        );
+        document.getElementById("statRegions").textContent = String(
+          (window.XLY_REGION_TAGS || []).length || "—"
+        );
+        document.getElementById("statUser").textContent = user.username;
+      };
+
+      fill();
+
+      document.getElementById("profileForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const fd = new FormData(e.currentTarget);
+        const res = XLYAuth.saveProfile({
+          displayName: fd.get("displayName"),
+          city: fd.get("city"),
+          email: fd.get("email"),
+          bio: fd.get("bio"),
+          day_range: fd.get("day_range"),
+          route_type: fd.get("route_type"),
+          budget_level: fd.get("budget_level"),
+        });
+        if (!res.ok) {
+          XLYUI.showFlash("danger", res.msg);
+          return;
+        }
+        XLYUI.showFlash("success", res.msg);
+        fill();
+        // 刷新顶栏显示名
+        const chip = document.querySelector(".nav-user");
+        if (chip) chip.textContent = "欢迎，" + (res.profile?.displayName || user.username);
+        const av = document.querySelector(".user-chip .avatar");
+        if (av && res.profile?.displayName) av.textContent = res.profile.displayName.slice(0, 1);
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -59,6 +59,9 @@ body.page-detail::after {
   border-radius: 0;
   background: rgba(255, 255, 255, 0.96);
   box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .app-nav__brand {
@@ -110,7 +113,12 @@ body.page-detail::after {
 }
 
 .app-nav__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   gap: 12px;
+  margin-left: 0;
+  flex-shrink: 0;
 }
 
 .nav-user {

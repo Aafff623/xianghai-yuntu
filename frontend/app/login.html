@@ -26,13 +26,16 @@
       <p class="muted" style="font-size:17px;color:var(--muted)">登录账号，继续你的专属旅程规划</p>
       <form class="auth-form" id="loginForm">
         <h2>账号登录</h2>
+        <p class="auth-demo-hint" style="margin:0 0 12px;padding:10px 12px;border-radius:10px;background:#eef6f9;color:#0a5279;font-size:13px;line-height:1.5">
+          演示账号：<strong>admin</strong> / <strong>123456</strong>（已预填，可直接登录）
+        </p>
         <div class="field">
           <label for="username">用户名</label>
-          <input class="input" id="username" name="username" required placeholder="请输入用户名" autocomplete="username" style="height:50px;border:1px solid #d8e2e7;border-radius:12px;padding:0 14px;width:100%" />
+          <input class="input" id="username" name="username" required placeholder="请输入用户名" value="admin" autocomplete="username" style="height:50px;border:1px solid #d8e2e7;border-radius:12px;padding:0 14px;width:100%" />
         </div>
         <div class="field" style="margin-top:14px">
           <label for="password">密码</label>
-          <input class="input" id="password" name="password" type="password" required placeholder="请输入密码" autocomplete="current-password" style="height:50px;border:1px solid #d8e2e7;border-radius:12px;padding:0 14px;width:100%" />
+          <input class="input" id="password" name="password" type="password" required placeholder="请输入密码" value="123456" autocomplete="current-password" style="height:50px;border:1px solid #d8e2e7;border-radius:12px;padding:0 14px;width:100%" />
         </div>
         <button class="btn" type="submit" style="width:100%;margin-top:18px">登录</button>
         <p class="auth-note" style="text-align:center;margin-top:16px;font-size:14px;color:var(--muted)">
@@ -61,7 +64,7 @@
         return;
       }
       sessionStorage.setItem("xly_flash", JSON.stringify({ type: "success", text: res.msg }));
-      const next = new URLSearchParams(location.search).get("next") || "index.html";
+      const next = new URLSearchParams(location.search).get("next") || "profile.html";
       location.href = next;
     });
   </script>

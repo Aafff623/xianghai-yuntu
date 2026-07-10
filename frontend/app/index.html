@@ -6,15 +6,15 @@
   <title>首页 · 乡旅e模式</title>
   <link rel="stylesheet" href="css/app.css" />
 </head>
-<body>
+<body class="page-home">
   <div id="flash" class="flash" role="status"></div>
   <header class="app-nav">
     <a class="app-nav__brand" href="index.html">
-      <img src="../../assets/landing/logo.jpg" alt="" width="30" height="30" />
+      <img src="../../assets/landing/logo.jpg" alt="" width="32" height="32" />
       <span>乡旅e模式</span>
     </a>
     <form class="app-nav__search" id="headerSearch">
-      <input type="search" name="q" placeholder="搜索全国路线关键词…" />
+      <input type="search" name="q" placeholder="搜索全国路线：水乡 / 梯田 / 徽州…" />
       <button class="btn btn--sm" type="submit">搜索</button>
     </form>
     <div class="app-nav__actions" id="authSlot"></div>
@@ -22,11 +22,16 @@
 
   <main>
     <section class="home-hero">
-      <h1>乡旅e模式</h1>
-      <p>智能路线推荐 — 按计划天数、兴趣主题与规划风格，定制可执行行程。</p>
+      <div class="home-hero__copy">
+        <h1>把全国的乡村短途，收成一条能走的路线。</h1>
+        <p>选天数、主题与风格，再叠加热门标签与区域偏好，智能排序给你最靠前的方案。</p>
+      </div>
+      <div class="home-hero__badge" aria-hidden="true">
+        <img src="../../assets/app/icons-set.jpg" alt="" />
+      </div>
     </section>
 
-    <section class="panel">
+    <section class="panel panel--glass">
       <form id="smartForm">
         <div class="form-grid">
           <div class="field">
@@ -51,40 +56,73 @@
           <div class="field">
             <label for="budget_level">规划风格</label>
             <select id="budget_level" name="budget_level" required>
-              <option value="">选择预算</option>
+              <option value="">选择风格</option>
               <option value="经济型">经济型</option>
               <option value="舒适型">舒适型</option>
               <option value="豪华型">豪华型</option>
             </select>
           </div>
         </div>
-        <button class="btn btn--block" type="submit">智能推荐</button>
+
+        <input type="hidden" name="region_tag" id="region_tag" value="" />
+        <input type="hidden" name="hot_tag" id="hot_tag" value="" />
+
+        <div class="chip-block">
+          <div class="chip-label">全国区域 · 点击定位</div>
+          <div class="chip-row" id="regionChips"></div>
+        </div>
+        <div class="chip-block">
+          <div class="chip-label">热门选择 · 快速标签</div>
+          <div class="chip-row" id="hotChips"></div>
+        </div>
+
+        <div style="margin-top: 1.15rem">
+          <button class="btn btn--block" type="submit">智能推荐</button>
+        </div>
       </form>
     </section>
-
-    <nav class="home-links" aria-label="快捷入口">
-      <a href="register.html">注册</a>
-      <a href="login.html">登录</a>
-      <a href="feedback.html">反馈</a>
-      <a href="../landing/index.html">营销页</a>
-    </nav>
   </main>
 
-  <footer class="app-footer">
-    中北大学软件学院 · 乡旅e模式 · 功能演示
-  </footer>
+  <footer class="app-footer">中北大学软件学院 · 乡旅e模式</footer>
 
   <script src="js/data.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/app.js"></script>
   <script>
+    function renderChips(containerId, items, hiddenId, activeClass) {
+      const el = document.getElementById(containerId);
+      const hidden = document.getElementById(hiddenId);
+      el.innerHTML = items
+        .map(
+          (t) =>
+            `<button type="button" class="chip ${activeClass || ""}" data-value="${t}">${t}</button>`
+        )
+        .join("");
+      el.addEventListener("click", (e) => {
+        const btn = e.target.closest(".chip");
+        if (!btn) return;
+        const val = btn.getAttribute("data-value");
+        const already = hidden.value === val;
+        el.querySelectorAll(".chip").forEach((c) => c.classList.remove("is-active"));
+        if (already) {
+          hidden.value = "";
+        } else {
+          hidden.value = val;
+          btn.classList.add("is-active");
+        }
+      });
+    }
+
+    renderChips("regionChips", XLY_REGION_TAGS, "region_tag");
+    renderChips("hotChips", XLY_HOT_TAGS, "hot_tag", "chip--hot");
+
     document.getElementById("smartForm").addEventListener("submit", (e) => {
       e.preventDefault();
       const fd = new FormData(e.currentTarget);
-      const params = new URLSearchParams({
-        day_range: fd.get("day_range"),
-        route_type: fd.get("route_type"),
-        budget_level: fd.get("budget_level"),
+      const params = new URLSearchParams();
+      ["day_range", "route_type", "budget_level", "region_tag", "hot_tag"].forEach((k) => {
+        const v = fd.get(k);
+        if (v) params.set(k, v);
       });
       const target = "smart-search.html?" + params.toString();
       if (!XLYAuth.current()) {

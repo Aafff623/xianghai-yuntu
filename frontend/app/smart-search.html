@@ -6,11 +6,11 @@
   <title>智能推荐 · 乡旅e模式</title>
   <link rel="stylesheet" href="css/app.css" />
 </head>
-<body>
+<body class="page-results">
   <div id="flash" class="flash" role="status"></div>
   <header class="app-nav">
     <a class="app-nav__brand" href="index.html">
-      <img src="../../assets/landing/logo.jpg" alt="" width="30" height="30" />
+      <img src="../../assets/landing/logo.jpg" alt="" width="32" height="32" />
       <span>乡旅e模式</span>
     </a>
     <form class="app-nav__search" id="headerSearch">
@@ -22,10 +22,12 @@
 
   <main>
     <a class="back-link" href="index.html">← 返回首页</a>
-    <h1 class="page-title">智能路线推荐</h1>
-    <p class="page-sub" id="queryHint">按条件筛选全国区域类型路线</p>
+    <header class="page-head">
+      <h1 class="page-title">智能路线推荐</h1>
+      <p class="page-sub" id="queryHint">按热度 · 评分 · 点赞综合排序</p>
+    </header>
 
-    <section class="panel" style="margin-bottom: 1.25rem">
+    <section class="panel panel--glass" style="margin-bottom: 1.25rem">
       <form id="refineForm">
         <div class="form-grid">
           <div class="field">
@@ -54,14 +56,26 @@
             </select>
           </div>
         </div>
-        <button class="btn" type="submit">智能推荐</button>
+        <input type="hidden" name="region_tag" id="region_tag" value="" />
+        <input type="hidden" name="hot_tag" id="hot_tag" value="" />
+        <div class="chip-block" style="margin-top: 0; padding-top: 0; border: 0">
+          <div class="chip-label">全国区域</div>
+          <div class="chip-row" id="regionChips"></div>
+        </div>
+        <div class="chip-block">
+          <div class="chip-label">热门选择</div>
+          <div class="chip-row" id="hotChips"></div>
+        </div>
+        <div style="margin-top: 1rem">
+          <button class="btn" type="submit">重新推荐</button>
+        </div>
       </form>
     </section>
 
     <h2 class="section-label">为您推荐的路线</h2>
     <div id="results" class="route-list"></div>
 
-    <h2 class="section-label" id="relatedTitle" hidden>其他同天数路线推荐</h2>
+    <h2 class="section-label" id="relatedTitle" hidden>其他同天数热门路线</h2>
     <div id="related" class="route-list"></div>
   </main>
 
@@ -70,20 +84,52 @@
   <script src="js/auth.js"></script>
   <script src="js/app.js"></script>
   <script>
-    function cardHTML(r) {
+    function cardHTML(r, rank) {
+      const score = XLYData.rankScore(r).toFixed(1);
       return `<article class="route-card">
-        <div class="route-card__media"><img src="${r.image}" alt="" /></div>
+        <div class="route-card__media">
+          <img src="${r.image}" alt="" />
+          <span class="route-card__rank">TOP ${rank}</span>
+        </div>
         <div class="route-card__body">
           <div class="tags">
             <span>${r.days}天</span><span>${r.route_type}</span><span>${r.budget_level}</span>
+            <span>${r.region_tag || ""}</span>
           </div>
           <h3>${r.keyword}</h3>
           <p class="meta">${r.region}</p>
+          <div class="stats-row">
+            <span>热度 <strong>${r.popularity}</strong></span>
+            <span>评分 <strong>${r.rating}</strong></span>
+            <span>点赞 <strong>${r.likes}</strong></span>
+            <span>综合 <strong>${score}</strong></span>
+          </div>
           <p>${r.route_details}</p>
-          <p class="meta">饮食：${r.dining} · 费用：${r.cost_estimation}</p>
           <a class="btn btn--ghost btn--sm" href="route-detail.html?id=${encodeURIComponent(r.id)}">查看详细行程</a>
         </div>
       </article>`;
+    }
+
+    function syncChips(containerId, hiddenId, items, activeClass) {
+      const el = document.getElementById(containerId);
+      const hidden = document.getElementById(hiddenId);
+      el.innerHTML = items
+        .map(
+          (t) =>
+            `<button type="button" class="chip ${activeClass || ""} ${
+              hidden.value === t ? "is-active" : ""
+            }" data-value="${t}">${t}</button>`
+        )
+        .join("");
+      el.onclick = (e) => {
+        const btn = e.target.closest(".chip");
+        if (!btn) return;
+        const val = btn.getAttribute("data-value");
+        const already = hidden.value === val;
+        el.querySelectorAll(".chip").forEach((c) => c.classList.remove("is-active"));
+        hidden.value = already ? "" : val;
+        if (!already) btn.classList.add("is-active");
+      };
     }
 
     function run(query) {
@@ -91,21 +137,28 @@
       const box = document.getElementById("results");
       const relatedBox = document.getElementById("related");
       const relatedTitle = document.getElementById("relatedTitle");
+      const bits = [
+        query.day_range && `${query.day_range}天`,
+        query.route_type,
+        query.budget_level,
+        query.region_tag,
+        query.hot_tag && `热门·${query.hot_tag}`,
+      ].filter(Boolean);
       document.getElementById("queryHint").textContent =
-        `${query.day_range || "任意"}天 · ${query.route_type || "任意主题"} · ${query.budget_level || "任意风格"} · 全国区域类型`;
+        (bits.join(" · ") || "全部条件") + " · 按 热度40% + 评分35% + 点赞25% 排序";
 
       if (!list.length) {
-        box.innerHTML = `<div class="empty"><div class="empty__icon">🧭</div><p>未找到匹配的路线</p><p>请尝试调整搜索条件</p></div>`;
+        box.innerHTML = `<div class="empty"><div class="empty__icon">🧭</div><p>未找到匹配的路线</p><p>请尝试调整条件或标签</p></div>`;
         relatedBox.innerHTML = "";
         relatedTitle.hidden = true;
         return;
       }
-      box.innerHTML = list.map(cardHTML).join("");
+      box.innerHTML = list.map((r, i) => cardHTML(r, i + 1)).join("");
       const related = XLYData.related(list[0], 3);
       if (related.length) {
         relatedTitle.hidden = false;
-        relatedTitle.textContent = `其他 ${list[0].day_range} 天路线推荐`;
-        relatedBox.innerHTML = related.map(cardHTML).join("");
+        relatedTitle.textContent = `其他 ${list[0].day_range} 天热门路线`;
+        relatedBox.innerHTML = related.map((r, i) => cardHTML(r, i + 1)).join("");
       } else {
         relatedTitle.hidden = true;
         relatedBox.innerHTML = "";
@@ -117,11 +170,15 @@
       day_range: params.get("day_range") || "1-2",
       route_type: params.get("route_type") || "文化体验",
       budget_level: params.get("budget_level") || "经济型",
+      region_tag: params.get("region_tag") || "",
+      hot_tag: params.get("hot_tag") || "",
     };
-    ["day_range", "route_type", "budget_level"].forEach((k) => {
+    ["day_range", "route_type", "budget_level", "region_tag", "hot_tag"].forEach((k) => {
       const el = document.getElementById(k);
-      if (el && query[k]) el.value = query[k];
+      if (el && query[k] != null) el.value = query[k];
     });
+    syncChips("regionChips", "region_tag", XLY_REGION_TAGS);
+    syncChips("hotChips", "hot_tag", XLY_HOT_TAGS, "chip--hot");
     run(query);
 
     document.getElementById("refineForm").addEventListener("submit", (e) => {
@@ -131,8 +188,11 @@
         day_range: fd.get("day_range"),
         route_type: fd.get("route_type"),
         budget_level: fd.get("budget_level"),
+        region_tag: fd.get("region_tag") || "",
+        hot_tag: fd.get("hot_tag") || "",
       };
-      const sp = new URLSearchParams(q);
+      const sp = new URLSearchParams();
+      Object.entries(q).forEach(([k, v]) => v && sp.set(k, v));
       history.replaceState(null, "", "smart-search.html?" + sp.toString());
       run(q);
     });

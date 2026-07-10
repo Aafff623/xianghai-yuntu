@@ -6,7 +6,7 @@
   <title>搜索结果 · 乡旅e模式</title>
   <link rel="stylesheet" href="css/app.css" />
 </head>
-<body>
+<body class="page-results">
   <div id="flash" class="flash" role="status"></div>
   <header class="app-nav">
     <a class="app-nav__brand" href="index.html">
@@ -46,19 +46,28 @@
       box.innerHTML = `<div class="empty"><p>未找到匹配结果</p></div>`;
     } else {
       box.innerHTML = list
-        .map(
-          (r) => `<article class="route-card">
-          <div class="route-card__media"><img src="${r.image}" alt="" /></div>
+        .map((r, i) => {
+          const score = XLYData.rankScore(r).toFixed(1);
+          return `<article class="route-card">
+          <div class="route-card__media">
+            <img src="${r.image}" alt="" />
+            <span class="route-card__rank">TOP ${i + 1}</span>
+          </div>
           <div class="route-card__body">
-            <div class="tags"><span>${r.days}天</span><span>${r.route_type}</span><span>${r.budget_level}</span></div>
+            <div class="tags"><span>${r.days}天</span><span>${r.route_type}</span><span>${r.budget_level}</span><span>${r.region_tag || ""}</span></div>
             <h3>${r.keyword}</h3>
             <p class="meta">${r.region}</p>
+            <div class="stats-row">
+              <span>热度 <strong>${r.popularity}</strong></span>
+              <span>评分 <strong>${r.rating}</strong></span>
+              <span>点赞 <strong>${r.likes}</strong></span>
+              <span>综合 <strong>${score}</strong></span>
+            </div>
             <p>${r.route_details}</p>
-            <p class="meta">住宿：${r.accommodation} · 饮食：${r.dining}</p>
             <a class="btn btn--ghost btn--sm" href="route-detail.html?id=${encodeURIComponent(r.id)}">查看详细行程</a>
           </div>
-        </article>`
-        )
+        </article>`;
+        })
         .join("");
     }
   </script>

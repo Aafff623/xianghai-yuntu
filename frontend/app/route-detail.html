@@ -6,11 +6,11 @@
   <title>路线详情 · 乡旅e模式</title>
   <link rel="stylesheet" href="css/app.css" />
 </head>
-<body>
+<body class="page-detail">
   <div id="flash" class="flash" role="status"></div>
   <header class="app-nav">
     <a class="app-nav__brand" href="index.html">
-      <img src="../../assets/landing/logo.jpg" alt="" width="30" height="30" />
+      <img src="../../assets/landing/logo.jpg" alt="" width="32" height="32" />
       <span>乡旅e模式</span>
     </a>
     <form class="app-nav__search" id="headerSearch">
@@ -20,9 +20,9 @@
     <div class="app-nav__actions" id="authSlot"></div>
   </header>
 
-  <main id="main">
-    <a class="back-link" href="smart-search.html">← 返回推荐</a>
-    <div id="content"></div>
+  <main>
+    <a class="back-link" href="javascript:history.back()">← 返回上一页</a>
+    <div id="content" class="detail-shell"></div>
   </main>
 
   <footer class="app-footer">中北大学软件学院 · 乡旅e模式</footer>
@@ -33,22 +33,42 @@
     const id = new URLSearchParams(location.search).get("id");
     const r = XLYData.byId(id);
     const box = document.getElementById("content");
+
     if (!r) {
-      box.innerHTML = `<div class="empty"><p>未找到该路线</p><a href="index.html">回首页</a></div>`;
+      box.innerHTML = `<div class="empty"><p>未找到该路线</p><a class="btn btn--ghost" href="index.html" style="margin-top:1rem">回首页</a></div>`;
     } else {
       document.title = r.keyword + " · 乡旅e模式";
       const related = XLYData.related(r, 3);
+      const score = XLYData.rankScore(r).toFixed(1);
       box.innerHTML = `
-        <header class="detail-head">
-          <h1>${r.keyword}</h1>
-          <div class="tags">
-            <span>${r.days}天行程</span>
-            <span>${r.route_type}</span>
-            <span>${r.budget_level}</span>
-            <span>${r.region}</span>
+        <aside class="ai-summary" aria-label="AI 速看">
+          <div class="ai-summary__head">
+            <span class="ai-summary__badge"><span class="ai-summary__badge-dot"></span>AI 速看</span>
           </div>
-          <p class="detail-summary">${r.route_details}</p>
-        </header>
+          <p>${r.ai_summary || r.route_details}</p>
+        </aside>
+
+        <figure class="detail-hero">
+          <img src="${r.image}" alt="" />
+          <figcaption class="detail-hero__veil">
+            <div class="tags" style="margin-bottom:0.45rem">
+              <span>${r.days}天行程</span>
+              <span>${r.route_type}</span>
+              <span>${r.budget_level}</span>
+              <span>${r.region_tag || ""}</span>
+            </div>
+            <h1>${r.keyword}</h1>
+            <div class="stats-row" style="color:rgba(255,255,255,0.85)">
+              <span>热度 <strong style="color:#fff">${r.popularity}</strong></span>
+              <span>评分 <strong style="color:#fff">${r.rating}</strong></span>
+              <span>点赞 <strong style="color:#fff">${r.likes}</strong></span>
+              <span>综合 <strong style="color:#fff">${score}</strong></span>
+            </div>
+          </figcaption>
+        </figure>
+
+        <p class="detail-summary panel" style="padding:1rem 1.15rem">${r.route_details}<br><span class="meta" style="color:var(--ink-faint);font-size:0.84rem">${r.region}</span></p>
+
         <div class="detail-grid">
           <section class="panel">
             <h2 class="section-label" style="margin-top:0">详细行程安排</h2>
@@ -56,7 +76,7 @@
               ${r.daily_schedule
                 .map(
                   (s) => `<li>
-                  <time>第${s.day}天 ${s.time}</time>
+                  <time>第${s.day}天<br>${s.time}</time>
                   <div><strong>${s.title}</strong><p>${s.desc}</p></div>
                 </li>`
                 )
@@ -69,14 +89,15 @@
             <div class="info-card"><h3>费用估算</h3><p>${r.cost_estimation}</p></div>
           </aside>
         </div>
+
         ${
           related.length
-            ? `<h2 class="section-label">其他 ${r.day_range} 天路线推荐</h2>
+            ? `<h2 class="section-label">其他 ${r.day_range} 天热门路线</h2>
           <div class="related">
             ${related
               .map(
                 (x) =>
-                  `<a href="route-detail.html?id=${encodeURIComponent(x.id)}">${x.keyword}<br><span class="meta" style="font-weight:500;color:var(--ink-faint)">${x.region}</span></a>`
+                  `<a href="route-detail.html?id=${encodeURIComponent(x.id)}">${x.keyword}<span>${x.region_tag || x.region} · 评分 ${x.rating}</span></a>`
               )
               .join("")}
           </div>`

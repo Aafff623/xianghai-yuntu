@@ -1046,6 +1046,22 @@ body.page-detail main {
   font-weight: 600;
 }
 
+.doc-prose a.md-link,
+.md-link {
+  color: #0a6eae;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  word-break: break-all;
+}
+
+.doc-prose a.md-link:hover,
+.md-link:hover {
+  color: #065a91;
+  text-decoration-thickness: 2px;
+}
+
 .md-table {
   width: 100%;
   max-width: 42rem;

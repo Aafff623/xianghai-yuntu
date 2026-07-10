@@ -21,13 +21,54 @@ window.XLYMd = {
       }
     };
 
-    const inline = (t) =>
-      t
+    const escapeAttr = (s) =>
+      String(s)
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+    const safeHref = (href) => {
+      const h = String(href || "").trim();
+      if (/^https?:\/\//i.test(h) || h.startsWith("/") || h.startsWith("#") || h.startsWith("mailto:")) {
+        return h;
+      }
+      return "#";
+    };
+
+    const inline = (t) => {
+      // 占位 markdown 链接，避免 URL 被二次转义破坏
+      const links = [];
+      let s = String(t).replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, text, href) => {
+        const i = links.length;
+        links.push({ text, href: safeHref(href) });
+        return `\u0000MDLINK${i}\u0000`;
+      });
+      s = s
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
         .replace(/`([^`]+)`/g, "<code>$1</code>");
+      // 裸 URL → 超链接
+      s = s.replace(/(^|[\s(])(https?:\/\/[^\s)<]+)/g, (_, pre, url) => {
+        const clean = url.replace(/[.,;:!?)]+$/, "");
+        const trail = url.slice(clean.length);
+        return `${pre}<a class="md-link" href="${escapeAttr(clean)}" target="_blank" rel="noopener noreferrer">${escapeAttr(clean)}</a>${trail}`;
+      });
+      links.forEach((l, i) => {
+        const label = l.text
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+        s = s.replace(
+          `\u0000MDLINK${i}\u0000`,
+          `<a class="md-link" href="${escapeAttr(l.href)}" target="_blank" rel="noopener noreferrer">${label}</a>`
+        );
+      });
+      return s;
+    };
 
     while (i < lines.length) {
       const raw = lines[i];

@@ -29,3 +29,28 @@
 ```
 chore(init): project-init Phase A for coding-dev
 ```
+
+## landing-page — 营销落地页 + AI 插图
+
+- **时间**: 2026-07-10
+- **改动**:
+  - 新增 `frontend/landing/` 单页落地页（HTML/CSS/JS）
+  - 新增 `assets/landing/` AI 生成插图 6 张 + logo 副本
+- **状态**: awaiting-review
+- **说明**: 未 git commit，待用户 Review
+
+
+## landing-page-v3 — 加长营销页 + 轮播/轨道卡 + 演示模块
+
+- **时间**: 2026-07-10
+- **改动**:
+  - Hero 城市风光轮播（青岛/烟威/日照/东营潍坊滨州）
+  - 体验类型等宽圆形轨道排版
+  - 扩充模块：七市、推荐演示表单、详情时间轴、调研、人群、搜索、路线图、反馈
+  - 导航项扩充；assets/landing 新增 slide 图
+- **测试**（第 1 轮）:
+  - 资源路径全通过；JS syntax OK
+  - Playwright: 轮播切换、智能推荐出卡、搜索「金沙滩」、反馈提示
+  - 三圆 disc 宽高均为 148px；页面高度约 8.3 屏
+- **状态**: committed after test
+

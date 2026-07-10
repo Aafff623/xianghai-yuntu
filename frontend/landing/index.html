@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>乡海云途 · 海洋乡村智能路线规划</title>
+  <meta name="description" content="乡海云途：面向山东沿海七市的智能路线推荐平台。按天数、类型与预算定制行程，查看每日安排与费用估算。" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#top">
+      <img src="../../assets/landing/logo.jpg" alt="" width="32" height="32" />
+      <span>乡海云途</span>
+    </a>
+    <nav class="nav__links" aria-label="主导航">
+      <a href="#cities">沿海七市</a>
+      <a href="#scenes">体验类型</a>
+      <a href="#features">智能推荐</a>
+      <a href="#demo">推荐演示</a>
+      <a href="#routes">示例路线</a>
+      <a href="#detail">行程详情</a>
+      <a href="#audience">适用人群</a>
+      <a href="#how">使用方式</a>
+    </nav>
+    <div class="nav__actions">
+      <a class="btn btn--ghost" href="#feedback">意见反馈</a>
+      <a class="btn btn--primary" href="#demo">开始规划</a>
+    </div>
+    <button class="nav__menu" type="button" aria-label="打开菜单" aria-expanded="false" id="menuBtn">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <div class="nav-drawer" id="navDrawer" hidden>
+    <a href="#cities">沿海七市</a>
+    <a href="#scenes">体验类型</a>
+    <a href="#features">智能推荐</a>
+    <a href="#demo">推荐演示</a>
+    <a href="#routes">示例路线</a>
+    <a href="#detail">行程详情</a>
+    <a href="#audience">适用人群</a>
+    <a href="#how">使用方式</a>
+    <a href="#feedback">意见反馈</a>
+    <a class="btn btn--primary" href="#demo">开始规划</a>
+  </div>
+
+  <main id="top">
+    <!-- Hero + city carousel -->
+    <section class="hero">
+      <div class="hero__copy">
+        <p class="kicker">乡旅与海 e 模式 · Web 平台</p>
+        <h1>把海边短途，收成一条能走的路线。</h1>
+        <p class="hero__sub">面向山东沿海七市。按天数、路线类型与预算匹配行程，展开每日时间轴，并给出饮食、住宿与费用参考。</p>
+        <div class="hero__cta">
+          <a class="btn btn--primary btn--lg" href="#demo">试用推荐表单</a>
+          <a class="btn btn--text" href="#routes">看示例路线</a>
+        </div>
+        <ul class="hero__stats" aria-label="调研摘要">
+          <li><strong>80%</strong><span>愿意使用 AI 定制行程</span></li>
+          <li><strong>7 市</strong><span>青岛至滨州沿海覆盖</span></li>
+          <li><strong>3 维</strong><span>天数 · 类型 · 预算</span></li>
+        </ul>
+      </div>
+
+      <div class="hero__visual">
+        <div class="carousel" id="cityCarousel" aria-roledescription="carousel" aria-label="山东沿海城市风光">
+          <div class="carousel__viewport">
+            <div class="carousel__track">
+              <figure class="carousel__slide is-active" data-index="0">
+                <img src="../../assets/landing/slide-qingdao.jpg" alt="青岛湾区黄昏与海岸建筑" width="1600" height="900" fetchpriority="high" />
+                <figcaption>
+                  <span class="carousel__city">青岛</span>
+                  <span class="carousel__hint">湾区 · 渔村 · 古城近郊</span>
+                </figcaption>
+              </figure>
+              <figure class="carousel__slide" data-index="1">
+                <img src="../../assets/landing/slide-weihai.jpg" alt="威海烟台一带海岸崖径与海雾" width="1600" height="900" loading="lazy" />
+                <figcaption>
+                  <span class="carousel__city">烟台 · 威海</span>
+                  <span class="carousel__hint">崖径 · 海湾 · 慢节奏海岸</span>
+                </figcaption>
+              </figure>
+              <figure class="carousel__slide" data-index="2">
+                <img src="../../assets/landing/dest-beach.jpg" alt="日照一带金沙滩浅海" width="1600" height="900" loading="lazy" />
+                <figcaption>
+                  <span class="carousel__city">日照</span>
+                  <span class="carousel__hint">金沙滩 · 海滨休闲</span>
+                </figcaption>
+              </figure>
+              <figure class="carousel__slide" data-index="3">
+                <img src="../../assets/landing/hero-coast.jpg" alt="东营潍坊滨州一带沿海渔村" width="1600" height="900" loading="lazy" />
+                <figcaption>
+                  <span class="carousel__city">东营 · 潍坊 · 滨州</span>
+                  <span class="carousel__hint">渔村 · 湿地 · 乡村海岸</span>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="carousel__controls">
+            <button type="button" class="carousel__btn" id="carouselPrev" aria-label="上一张">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg>
+            </button>
+            <div class="carousel__dots" id="carouselDots" role="tablist" aria-label="轮播指示"></div>
+            <button type="button" class="carousel__btn" id="carouselNext" aria-label="下一张">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 cities -->
+    <section class="cities" id="cities">
+      <div class="section-head reveal">
+        <h2>山东沿海七市</h2>
+        <p>产品地域锚定：海洋 + 乡村场景，覆盖从青岛到滨州的海岸带。</p>
+      </div>
+      <ul class="cities__grid reveal">
+        <li><strong>青岛</strong><span>湾区与近郊渔村</span></li>
+        <li><strong>烟台</strong><span>海岸与葡萄酒乡</span></li>
+        <li><strong>威海</strong><span>慢节奏海湾</span></li>
+        <li><strong>日照</strong><span>沙滩与滨海步道</span></li>
+        <li><strong>东营</strong><span>黄河入海与湿地</span></li>
+        <li><strong>潍坊</strong><span>滨海乡村</span></li>
+        <li><strong>滨州</strong><span>沿海平原与渔家</span></li>
+      </ul>
+    </section>
+
+    <!-- Orbit scenes: equal circular cards -->
+    <section class="scenes" id="scenes">
+      <div class="section-head section-head--center reveal">
+        <h2>三种海边节奏</h2>
+        <p>海滨休闲、文化古城、海岛体验，对应不同路线类型与天数组合。</p>
+      </div>
+
+      <div class="orbit reveal" aria-label="体验类型环形展示">
+        <div class="orbit__ring" aria-hidden="true"></div>
+        <div class="orbit__ring orbit__ring--inner" aria-hidden="true"></div>
+        <div class="orbit__center">
+          <span>体验</span>
+          <strong>类型环</strong>
+        </div>
+
+        <figure class="orbit__item" style="--a: -90deg">
+          <div class="orbit__disc">
+            <img src="../../assets/landing/dest-beach.jpg" alt="海滨休闲示意" loading="lazy" />
+          </div>
+          <figcaption>
+            <strong>海滨休闲</strong>
+            <span>海洋风光 · 周末放松</span>
+          </figcaption>
+        </figure>
+
+        <figure class="orbit__item" style="--a: 30deg">
+          <div class="orbit__disc">
+            <img src="../../assets/landing/dest-town.jpg" alt="文化古城示意" loading="lazy" />
+          </div>
+          <figcaption>
+            <strong>文化古城</strong>
+            <span>文化探索 · 非遗漫游</span>
+          </figcaption>
+        </figure>
+
+        <figure class="orbit__item" style="--a: 150deg">
+          <div class="orbit__disc">
+            <img src="../../assets/landing/dest-island.jpg" alt="海岛体验示意" loading="lazy" />
+          </div>
+          <figcaption>
+            <strong>海岛体验</strong>
+            <span>亲子休闲 · 赶海过夜</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="value" id="features">
+      <div class="value__text reveal">
+        <h2>不是堆攻略，是帮你收敛到可执行方案。</h2>
+        <p>信息分散、行程同质、预算难估，是沿海短途常见问题。乡海云途用天数、路线类型、预算三级条件筛选，再给出每日安排与费用参考。</p>
+        <ul class="value__list">
+          <li>
+            <span class="value__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h14"/><circle cx="17" cy="12" r="2.2"/></svg>
+            </span>
+            <div>
+              <strong>三维筛选</strong>
+              <span>1-2 / 3-5 / 6-7 天，文化探索到亲子休闲，预算分经济、舒适、豪华</span>
+            </div>
+          </li>
+          <li>
+            <span class="value__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M8 3.5v3M16 3.5v3M3.5 9.5h17"/><path d="M8 13.5h3M13 13.5h3M8 16.5h5"/></svg>
+            </span>
+            <div>
+              <strong>每日行程</strong>
+              <span>按天展开时间轴，饮食、住宿与费用估算同页呈现</span>
+            </div>
+          </li>
+          <li>
+            <span class="value__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+            </span>
+            <div>
+              <strong>关键词搜索</strong>
+              <span>按路线名称模糊匹配，仅搜路线，不搜用户</span>
+            </div>
+          </li>
+          <li>
+            <span class="value__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6.5h12M8 12h12M8 17.5h12"/><circle cx="4.5" cy="6.5" r="1.3"/><circle cx="4.5" cy="12" r="1.3"/><circle cx="4.5" cy="17.5" r="1.3"/></svg>
+            </span>
+            <div>
+              <strong>相关推荐</strong>
+              <span>同天数其他路线最多 3 条，方便横向比较后再决定</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="value__visual reveal">
+        <img src="../../assets/landing/feature-map.jpg" alt="沿海路线示意插图" loading="lazy" width="1024" height="1024" />
+      </div>
+    </section>
+
+    <!-- Interactive smart-recommend demo -->
+    <section class="demo" id="demo">
+      <div class="section-head reveal">
+        <h2>智能推荐演示</h2>
+        <p>对齐 MVP 表单：选择行程天数、路线类型与预算级别，查看匹配结果示意。</p>
+      </div>
+
+      <div class="demo__panel reveal">
+        <form class="demo__form" id="smartForm">
+          <label>
+            <span>行程天数</span>
+            <select name="day_range" required>
+              <option value="">选择天数</option>
+              <option value="1-2" selected>1-2天</option>
+              <option value="3-5">3-5天</option>
+              <option value="6-7">6-7天</option>
+            </select>
+          </label>
+          <label>
+            <span>路线类型</span>
+            <select name="route_type" required>
+              <option value="">选择类型</option>
+              <option value="文化探索">文化探索</option>
+              <option value="海洋风光" selected>海洋风光</option>
+              <option value="自然景观">自然景观</option>
+              <option value="美食之旅">美食之旅</option>
+              <option value="亲子休闲">亲子休闲</option>
+              <option value="历史遗迹">历史遗迹</option>
+            </select>
+          </label>
+          <label>
+            <span>预算级别</span>
+            <select name="budget_level" required>
+              <option value="">选择预算</option>
+              <option value="经济型" selected>经济型</option>
+              <option value="舒适型">舒适型</option>
+              <option value="豪华型">豪华型</option>
+            </select>
+          </label>
+          <button type="submit" class="btn btn--primary btn--lg">智能推荐</button>
+        </form>
+
+        <div class="demo__result" id="smartResult" aria-live="polite">
+          <p class="demo__hint">选择条件后点击「智能推荐」，查看示意结果（本地演示，不连后端）。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sample routes -->
+    <section class="routes" id="routes">
+      <div class="section-head reveal">
+        <h2>示例路线</h2>
+        <p>山东沿海主题种子示意，正式数据将扩展至七市更多目的地。</p>
+      </div>
+      <div class="routes__grid">
+        <article class="route-card reveal" data-route="jimo">
+          <div class="route-card__media">
+            <img src="../../assets/landing/dest-town.jpg" alt="" loading="lazy" />
+          </div>
+          <div class="route-card__body">
+            <div class="route-card__tags">
+              <span>1 天</span><span>文化探索</span><span>经济型</span>
+            </div>
+            <h3>即墨古城非遗漫游</h3>
+            <p>县衙、文庙与老街手作，一天走完古城文化轴。</p>
+            <a class="route-card__link" href="#detail">查看行程结构</a>
+          </div>
+        </article>
+        <article class="route-card reveal" data-route="beach">
+          <div class="route-card__media">
+            <img src="../../assets/landing/dest-beach.jpg" alt="" loading="lazy" />
+          </div>
+          <div class="route-card__body">
+            <div class="route-card__tags">
+              <span>1 天</span><span>海洋风光</span><span>舒适型</span>
+            </div>
+            <h3>金沙滩海滨休闲</h3>
+            <p>浅海漫步、海鲜与落日，适合周末放松。</p>
+            <a class="route-card__link" href="#detail">查看行程结构</a>
+          </div>
+        </article>
+        <article class="route-card reveal" data-route="island">
+          <div class="route-card__media">
+            <img src="../../assets/landing/dest-island.jpg" alt="" loading="lazy" />
+          </div>
+          <div class="route-card__body">
+            <div class="route-card__tags">
+              <span>2 天</span><span>亲子休闲</span><span>经济型</span>
+            </div>
+            <h3>灵山岛赶海体验</h3>
+            <p>潮间带探索与渔村过夜，适合亲子短途。</p>
+            <a class="route-card__link" href="#detail">查看行程结构</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Route detail demo -->
+    <section class="detail" id="detail">
+      <div class="section-head reveal">
+        <h2>路线详情结构</h2>
+        <p>对齐 MVP：概述、每日行程时间轴、饮食 / 住宿 / 费用三卡、相关推荐。</p>
+      </div>
+
+      <article class="detail__card reveal">
+        <header class="detail__header">
+          <div>
+            <h3 id="detailTitle">即墨古城非遗漫游</h3>
+            <div class="route-card__tags" id="detailTags">
+              <span>1 天行程</span><span>文化探索</span><span>经济型</span>
+            </div>
+          </div>
+          <p class="detail__summary" id="detailSummary">从县衙到文庙，再走老街手作铺，一天完成古城文化主轴，节奏舒缓、预算可控。</p>
+        </header>
+
+        <div class="detail__grid">
+          <div class="timeline" id="detailTimeline">
+            <h4>详细行程安排</h4>
+            <ol>
+              <li>
+                <time>09:00-12:00</time>
+                <div>
+                  <strong>县衙与文庙</strong>
+                  <p>参观即墨古城核心文保点，了解地方治理与儒家教育脉络。</p>
+                </div>
+              </li>
+              <li>
+                <time>12:00-14:00</time>
+                <div>
+                  <strong>老街午餐</strong>
+                  <p>本地面食与海鲜小馆，人均约 40-60 元。</p>
+                </div>
+              </li>
+              <li>
+                <time>14:00-17:30</time>
+                <div>
+                  <strong>非遗手作与市集</strong>
+                  <p>走访剪纸、面塑等工坊，可选择体验课。</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div class="detail__side">
+            <div class="info-card">
+              <h4>饮食推荐</h4>
+              <p id="detailDining">即墨老酒配海鲜小炒，古城内老字号面馆。</p>
+            </div>
+            <div class="info-card">
+              <h4>住宿建议</h4>
+              <p id="detailStay">当日往返；若过夜可选古城客栈或近郊民宿。</p>
+            </div>
+            <div class="info-card">
+              <h4>费用估算</h4>
+              <p id="detailCost">约 ¥100-180 / 人（不含远程交通）</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Research / pain -->
+    <section class="research" id="research">
+      <div class="section-head reveal">
+        <h2>用户在意什么</h2>
+        <p>来自项目调研摘要，用于说明产品切入点（非实时统计看板）。</p>
+      </div>
+      <div class="research__grid">
+        <article class="research__card reveal">
+          <strong>68%</strong>
+          <span>关注渔家文化体验</span>
+        </article>
+        <article class="research__card reveal">
+          <strong>55%</strong>
+          <span>亲子研学动机</span>
+        </article>
+        <article class="research__card reveal">
+          <strong>57%</strong>
+          <span>认为交通不便是痛点</span>
+        </article>
+        <article class="research__card reveal">
+          <strong>52%</strong>
+          <span>人均预算 1000-2000 元</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- Audience -->
+    <section class="audience" id="audience">
+      <div class="section-head reveal">
+        <h2>适用人群</h2>
+        <p>对齐项目书目标用户，先服务这三类短途决策场景。</p>
+      </div>
+      <div class="audience__grid">
+        <article class="audience__card reveal">
+          <img src="../../assets/landing/lifestyle-family.jpg" alt="" loading="lazy" />
+          <div>
+            <h3>亲子家庭</h3>
+            <p>需要安全、节奏可控、有教育感的 1-2 日海岛或古城行程。</p>
+          </div>
+        </article>
+        <article class="audience__card reveal">
+          <img src="../../assets/landing/dest-beach.jpg" alt="" loading="lazy" />
+          <div>
+            <h3>城市中高收入家庭</h3>
+            <p>周末沿海放松，预算舒适型，重视餐饮与住宿建议是否靠谱。</p>
+          </div>
+        </article>
+        <article class="audience__card reveal">
+          <img src="../../assets/landing/dest-island.jpg" alt="" loading="lazy" />
+          <div>
+            <h3>年轻背包客</h3>
+            <p>经济型、可搜索关键词、希望快速得到可执行路线而非长文攻略。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Quote -->
+    <section class="quote reveal" aria-label="用户反馈摘录">
+      <div class="quote__inner">
+        <div class="quote__media">
+          <img src="../../assets/landing/lifestyle-family.jpg" alt="一家三口走向海边栈道的剪影" loading="lazy" width="600" height="400" />
+        </div>
+        <blockquote class="quote__body">
+          <p>以前要翻十几个笔记，现在选完天数和预算，就能直接看到可走的路线。</p>
+          <footer>亲子短途用户调研摘录</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- How -->
+    <section class="how" id="how">
+      <div class="section-head reveal">
+        <h2>使用方式</h2>
+        <p>从注册到查看行程，主路径尽量短。智能推荐、搜索与详情在正式版中需登录。</p>
+      </div>
+      <ol class="how__steps">
+        <li class="reveal">
+          <span class="how__icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="11" r="4.5"/><path d="M7.5 25c1.4-4.2 4.5-6.5 8.5-6.5s7.1 2.3 8.5 6.5"/></svg>
+          </span>
+          <div class="how__copy">
+            <h3>注册登录</h3>
+            <p>用户名唯一，密码哈希存储。登录后顶栏显示欢迎名。</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="how__icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9h20M6 16h20M6 23h20"/><circle cx="12" cy="9" r="2.2" fill="currentColor" stroke="none"/><circle cx="20" cy="16" r="2.2" fill="currentColor" stroke="none"/><circle cx="14" cy="23" r="2.2" fill="currentColor" stroke="none"/></svg>
+          </span>
+          <div class="how__copy">
+            <h3>选择条件</h3>
+            <p>天数、类型、预算三项提交，规则匹配返回路线列表。</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="how__icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4.5c-3.7 0-6.7 2.9-6.7 6.5 0 4.9 6.7 12.5 6.7 12.5s6.7-7.6 6.7-12.5c0-3.6-3-6.5-6.7-6.5z"/><circle cx="16" cy="11" r="2.2"/><path d="M7 27.5h18"/></svg>
+          </span>
+          <div class="how__copy">
+            <h3>查看行程</h3>
+            <p>打开详情时间轴，对照餐饮、住宿与费用估算。</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="how__icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8h18v14H7z"/><path d="M11 14h10M11 18h7"/></svg>
+          </span>
+          <div class="how__copy">
+            <h3>提交反馈</h3>
+            <p>文本入库，用于后续体验改进；Wave 2 可接情感分析。</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Search demo strip -->
+    <section class="search-demo" id="search">
+      <div class="search-demo__panel reveal">
+        <div>
+          <h2>关键词搜索</h2>
+          <p>在顶栏输入「金沙滩」「灵山岛」等词，返回路线卡片。重建版会补齐搜索入口，并去掉 legacy 的「匹配用户」区块。</p>
+        </div>
+        <form class="search-demo__form" id="searchForm">
+          <label class="sr-only" for="searchInput">搜索路线</label>
+          <input id="searchInput" type="search" placeholder="试试：金沙滩 / 即墨 / 灵山岛" autocomplete="off" />
+          <button type="submit" class="btn btn--primary">搜索</button>
+        </form>
+        <div class="search-demo__out" id="searchOut" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section class="roadmap" id="roadmap">
+      <div class="section-head reveal">
+        <h2>产品节奏</h2>
+        <p>Wave 1 对齐已跑通的规则推荐；AI 对话与电商预订不在当前落地页承诺范围。</p>
+      </div>
+      <div class="roadmap__grid">
+        <article class="roadmap__card is-active reveal">
+          <h3>Wave 1 · MVP</h3>
+          <ul>
+            <li>注册 / 登录 / 登出</li>
+            <li>智能推荐与相关推荐</li>
+            <li>关键词搜索与路线详情</li>
+            <li>反馈提交 · 山东沿海种子数据</li>
+          </ul>
+        </article>
+        <article class="roadmap__card reveal">
+          <h3>Wave 2 · AI + SEO</h3>
+          <ul>
+            <li>文心一言对话推荐</li>
+            <li>路线摘要与反馈情感分析</li>
+            <li>语义 URL、sitemap、JSON-LD</li>
+          </ul>
+        </article>
+        <article class="roadmap__card reveal">
+          <h3>Wave 3 · 远景</h3>
+          <ul>
+            <li>票务住宿特产一站预订</li>
+            <li>AR/VR 导览、政府端监管</li>
+            <li>竞赛叙事能力，非近期开发</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Feedback demo -->
+    <section class="feedback" id="feedback">
+      <div class="feedback__panel reveal">
+        <div class="feedback__copy">
+          <h2>意见反馈</h2>
+          <p>正式版将文本入库并提示成功。此处为落地页演示，提交后仅本地提示，不会发送到服务器。</p>
+        </div>
+        <form class="feedback__form" id="feedbackForm">
+          <label for="feedbackText">你的建议</label>
+          <textarea id="feedbackText" rows="4" placeholder="请输入您的意见或建议…" required maxlength="500"></textarea>
+          <button type="submit" class="btn btn--primary">提交反馈</button>
+          <p class="feedback__msg" id="feedbackMsg" role="status" hidden>反馈已记录（演示）。感谢你的建议。</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="cta">
+      <div class="cta__panel reveal">
+        <div class="cta__copy">
+          <h2>下一次沿海短途，从条件筛选开始。</h2>
+          <p>应用端按前后端分离重建中。可先在本页试用推荐表单与行程结构演示。</p>
+          <div class="cta__actions">
+            <a class="btn btn--on-dark btn--lg" href="#demo">试用推荐表单</a>
+            <a class="btn btn--ghost-on-dark btn--lg" href="#detail">看行程详情结构</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="../../assets/landing/logo.jpg" alt="" width="28" height="28" />
+          <div>
+            <strong>乡海云途</strong>
+            <span>海洋乡村智能路线规划</span>
+          </div>
+        </div>
+        <nav class="footer__nav" aria-label="页脚导航">
+          <a href="#cities">沿海七市</a>
+          <a href="#features">智能推荐</a>
+          <a href="#demo">推荐演示</a>
+          <a href="#routes">示例路线</a>
+          <a href="#how">使用方式</a>
+          <a href="#feedback">意见反馈</a>
+        </nav>
+      </div>
+      <p class="footer__note">中国海洋大学 · 乡旅与海 e 模式项目组</p>
+      <p class="footer__legal">© 2026 乡海云途 · 插图为示意素材，路线与数据以正式产品为准</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

@@ -41,6 +41,7 @@
 |------|------|
 | 2026-07-10 | 新增 `avatar-admin.svg`；`logo.svg` 改为乡旅e模式词标；引入 prototype 风光与路线独立配图 |
 | 2026-07-10 | `readme/`：Playwright Showcase 五图 + architecture/workflow/features.svg；根 README 重写 |
+| 2026-07-10 | 导入 GPT 资产包 v2：`banner/architecture/workflow/features/tech-stack.png` |
 
 子目录说明：
 

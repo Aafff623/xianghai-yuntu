@@ -13,7 +13,7 @@
 </div>
 
 <p align="center">
-  <img src="assets/readme/banner.jpg" alt="乡旅e模式 Banner" width="100%">
+  <img src="assets/readme/banner.png" alt="乡旅e模式 Banner" width="100%">
 </p>
 
 <p align="center">
@@ -62,7 +62,7 @@
 ## 功能
 
 <p align="center">
-  <img src="assets/readme/features.svg" alt="核心功能模块" width="92%">
+  <img src="assets/readme/features.png" alt="核心功能模块" width="92%">
 </p>
 
 | 功能 | 说明 |
@@ -197,7 +197,7 @@ python -m http.server 8765
 ## 架构
 
 <p align="center">
-  <img src="assets/readme/architecture.svg" alt="系统架构图" width="94%">
+  <img src="assets/readme/architecture.png" alt="系统架构图" width="94%">
 </p>
 
 | 层 | 现状 | 说明 |
@@ -207,7 +207,11 @@ python -m http.server 8765
 | **assets/** | ✅ | 品牌 / 路线图 / Showcase（ADR-0001） |
 | **docs/** | ✅ | MVP 规格、ADR、Agent 流程 |
 
-### 技术栈（示意）
+### 技术栈
+
+<p align="center">
+  <img src="assets/readme/tech-stack.png" alt="技术栈分层图" width="92%">
+</p>
 
 ```mermaid
 flowchart TB
@@ -238,7 +242,7 @@ flowchart TB
 ## 用户主链路
 
 <p align="center">
-  <img src="assets/readme/workflow.svg" alt="用户主链路" width="96%">
+  <img src="assets/readme/workflow.png" alt="用户主链路" width="96%">
 </p>
 
 ```mermaid
@@ -288,7 +292,7 @@ coding-dev/   # 或仓库根
 | project-init + 文档骨架 | ✅ | docs / assets / ADR |
 | Landing + App 静态演示 | ✅ | 全国口径 · 鉴权 · 详情 MD |
 | README Showcase 截图 | ✅ | Playwright → `assets/readme/` |
-| README 架构 / 链路图 | ✅ | SVG 基线；可换 GPT 高级图 |
+| README 架构 / 链路 / 功能 / 技术栈图 | ✅ | GPT 高级 PNG（v2 包） |
 | Flask API + SQLite | 🔜 | Wave 1 后端闭环 |
 | 文心一言 + SEO | ⚪ | Wave 2 |
 | 电商 / AR / 政府端 | ⚪ | Wave 3 远景 |
@@ -308,21 +312,18 @@ coding-dev/   # 或仓库根
 
 ---
 
-## GPT 高级配图规格（待替换）
+## README 配图索引
 
-当前 GitHub 已能显示：**Playwright 截图 + SVG 架构/链路/功能图**。  
-若要用 GPT 生成更高级的视觉图，请按 [`assets/readme/README.md`](assets/readme/README.md) 中的 **出图清单** 生成并覆盖同名文件：
-
-| 目标文件 | 类型 | 用途 |
+| 文件 | 说明 | 来源 |
 |---|---|---|
-| `architecture.png` | 架构图 | 三栏：frontend / backend / data |
-| `workflow.png` | 链路图 | 6 步主路径 + 旁路能力 |
-| `features.png` | 功能模块图 | 4 大能力卡片 |
-| `tech-stack.png` | 技术栈分层 | 客户端 / API / DB / AI |
-| `structure.png` | 仓库结构示意 | 目录树信息图 |
-| `banner.png` | 页首横幅 | 建议 3:1 乡村/自然 |
+| `banner.png` | 页首横幅 | GPT 资产包 v2 |
+| `architecture.png` | 系统架构 | GPT 资产包 v2 |
+| `workflow.png` | 用户主链路 | GPT 资产包 v2 |
+| `features.png` | 核心功能 | GPT 资产包 v2 |
+| `tech-stack.png` | 技术栈分层 | GPT 资产包 v2 |
+| `showcase-*.png` | 界面相册 | Playwright 实机截图 |
 
-> 生成后把 README 中对应 `.svg` 引用改为 `.png` 即可。
+契约与命名说明 → [`assets/readme/README.md`](assets/readme/README.md)
 
 ---
 

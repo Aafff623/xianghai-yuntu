@@ -81,29 +81,21 @@
 
   <footer class="app-footer">中北大学软件学院 · 乡旅e模式</footer>
   <script src="js/data.js"></script>
+  <script src="js/icons.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/app.js"></script>
   <script>
     function cardHTML(r, rank) {
-      const score = XLYData.rankScore(r).toFixed(1);
       return `<article class="route-card">
         <div class="route-card__media">
           <img src="${r.image}" alt="" />
           <span class="route-card__rank">TOP ${rank}</span>
         </div>
         <div class="route-card__body">
-          <div class="tags">
-            <span>${r.days}天</span><span>${r.route_type}</span><span>${r.budget_level}</span>
-            <span>${r.region_tag || ""}</span>
-          </div>
+          ${XLYIcons.tagsHTML(r)}
           <h3>${r.keyword}</h3>
           <p class="meta">${r.region}</p>
-          <div class="stats-row">
-            <span>热度 <strong>${r.popularity}</strong></span>
-            <span>评分 <strong>${r.rating}</strong></span>
-            <span>点赞 <strong>${r.likes}</strong></span>
-            <span>综合 <strong>${score}</strong></span>
-          </div>
+          ${XLYIcons.statsHTML(r)}
           <p>${r.route_details}</p>
           <a class="btn btn--ghost btn--sm" href="route-detail.html?id=${encodeURIComponent(r.id)}">查看详细行程</a>
         </div>

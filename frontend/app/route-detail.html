@@ -22,11 +22,13 @@
 
   <main>
     <a class="back-link" href="javascript:history.back()">← 返回上一页</a>
-    <div id="content" class="detail-shell"></div>
+    <div id="content"></div>
   </main>
 
   <footer class="app-footer">中北大学软件学院 · 乡旅e模式</footer>
   <script src="js/data.js"></script>
+  <script src="js/md.js"></script>
+  <script src="js/icons.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/app.js"></script>
   <script>
@@ -39,70 +41,114 @@
     } else {
       document.title = r.keyword + " · 乡旅e模式";
       const related = XLYData.related(r, 3);
-      const score = XLYData.rankScore(r).toFixed(1);
+
+      const toc = [
+        { id: "sec-ai", label: "AI 速看" },
+        { id: "sec-overview", label: "路线概述" },
+        { id: "sec-schedule", label: "行程安排" },
+        { id: "sec-dining", label: "饮食推荐" },
+        { id: "sec-stay", label: "住宿建议" },
+        { id: "sec-cost", label: "费用估算" },
+        { id: "sec-related", label: "相关推荐" },
+      ];
+
+      const tocHTML = toc
+        .map((t) => `<a href="#${t.id}" data-toc="${t.id}">${t.label}</a>`)
+        .join("");
+
       box.innerHTML = `
-        <aside class="ai-summary" aria-label="AI 速看">
-          <div class="ai-summary__head">
-            <span class="ai-summary__badge"><span class="ai-summary__badge-dot"></span>AI 速看</span>
-          </div>
-          <p>${r.ai_summary || r.route_details}</p>
-        </aside>
-
-        <figure class="detail-hero">
-          <img src="${r.image}" alt="" />
-          <figcaption class="detail-hero__veil">
-            <div class="tags" style="margin-bottom:0.45rem">
-              <span>${r.days}天行程</span>
-              <span>${r.route_type}</span>
-              <span>${r.budget_level}</span>
-              <span>${r.region_tag || ""}</span>
-            </div>
-            <h1>${r.keyword}</h1>
-            <div class="stats-row" style="color:rgba(255,255,255,0.85)">
-              <span>热度 <strong style="color:#fff">${r.popularity}</strong></span>
-              <span>评分 <strong style="color:#fff">${r.rating}</strong></span>
-              <span>点赞 <strong style="color:#fff">${r.likes}</strong></span>
-              <span>综合 <strong style="color:#fff">${score}</strong></span>
-            </div>
-          </figcaption>
-        </figure>
-
-        <p class="detail-summary panel" style="padding:1rem 1.15rem">${r.route_details}<br><span class="meta" style="color:var(--ink-faint);font-size:0.84rem">${r.region}</span></p>
-
-        <div class="detail-grid">
-          <section class="panel">
-            <h2 class="section-label" style="margin-top:0">详细行程安排</h2>
-            <ol class="timeline">
-              ${r.daily_schedule
-                .map(
-                  (s) => `<li>
-                  <time>第${s.day}天<br>${s.time}</time>
-                  <div><strong>${s.title}</strong><p>${s.desc}</p></div>
-                </li>`
-                )
-                .join("")}
-            </ol>
-          </section>
-          <aside class="info-cards">
-            <div class="info-card"><h3>饮食推荐</h3><p>${r.dining}</p></div>
-            <div class="info-card"><h3>住宿建议</h3><p>${r.accommodation}</p></div>
-            <div class="info-card"><h3>费用估算</h3><p>${r.cost_estimation}</p></div>
+        <div class="toc-mobile" id="tocMobile">${tocHTML}</div>
+        <div class="detail-layout">
+          <aside class="detail-toc" aria-label="文章目录">
+            <p class="detail-toc__title">目录</p>
+            <nav id="tocNav">${tocHTML}</nav>
           </aside>
-        </div>
 
-        ${
-          related.length
-            ? `<h2 class="section-label">其他 ${r.day_range} 天热门路线</h2>
-          <div class="related">
-            ${related
-              .map(
-                (x) =>
-                  `<a href="route-detail.html?id=${encodeURIComponent(x.id)}">${x.keyword}<span>${x.region_tag || x.region} · 评分 ${x.rating}</span></a>`
-              )
-              .join("")}
-          </div>`
-            : ""
-        }`;
+          <div class="detail-shell">
+            <aside class="ai-summary" id="sec-ai" aria-label="AI 速看">
+              <div class="ai-summary__head">
+                <span class="ai-summary__badge"><span class="ai-summary__badge-dot"></span>AI 速看</span>
+              </div>
+              <p>${r.ai_summary || r.route_details}</p>
+            </aside>
+
+            <figure class="detail-hero">
+              <img src="${r.image}" alt="" />
+              <figcaption class="detail-hero__veil">
+                ${XLYIcons.tagsHTML(r)}
+                <h1>${r.keyword}</h1>
+                ${XLYIcons.statsHTML(r)}
+              </figcaption>
+            </figure>
+
+            <article class="doc-prose" id="sec-overview">
+              ${XLYMd.render(r.body_md || `## 路线概述\n\n${r.route_details}`)}
+              <p style="color:var(--ink-faint);font-size:0.88rem;margin-top:0.25rem">${r.region}</p>
+            </article>
+
+            <section class="doc-prose" id="sec-schedule">
+              <h2>详细行程安排</h2>
+              <ol class="timeline">
+                ${r.daily_schedule
+                  .map(
+                    (s) => `<li>
+                    <time>第${s.day}天<br>${s.time}</time>
+                    <div><strong>${s.title}</strong><p>${s.desc}</p></div>
+                  </li>`
+                  )
+                  .join("")}
+              </ol>
+            </section>
+
+            <article class="doc-prose" id="sec-dining">
+              ${XLYMd.render(r.dining_md || `## 饮食推荐\n\n${r.dining || ""}`)}
+            </article>
+
+            <article class="doc-prose" id="sec-stay">
+              ${XLYMd.render(r.stay_md || `## 住宿建议\n\n${r.accommodation || ""}`)}
+            </article>
+
+            <article class="doc-prose" id="sec-cost">
+              ${XLYMd.render(r.cost_md || `## 费用估算\n\n${r.cost_estimation || ""}`)}
+            </article>
+
+            ${
+              related.length
+                ? `<section id="sec-related">
+              <h2 class="section-label">其他 ${r.day_range} 天热门路线</h2>
+              <div class="related">
+                ${related
+                  .map(
+                    (x) =>
+                      `<a href="route-detail.html?id=${encodeURIComponent(x.id)}">${x.keyword}<span>${x.region_tag || ""} · 评分 ${x.rating} · ${(x.hot_tags || []).slice(0, 2).join(" / ")}</span></a>`
+                  )
+                  .join("")}
+              </div>
+            </section>`
+                : ""
+            }
+          </div>
+        </div>`;
+
+      // TOC active state on scroll
+      const links = [...document.querySelectorAll("[data-toc]")];
+      const ids = toc.map((t) => t.id);
+      const setActive = (id) => {
+        links.forEach((a) => a.classList.toggle("is-active", a.getAttribute("data-toc") === id));
+      };
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((en) => {
+            if (en.isIntersecting) setActive(en.target.id);
+          });
+        },
+        { rootMargin: "-20% 0px -65% 0px", threshold: 0.01 }
+      );
+      ids.forEach((sid) => {
+        const el = document.getElementById(sid);
+        if (el) obs.observe(el);
+      });
+      setActive("sec-ai");
     }
   </script>
 </body>

@@ -214,30 +214,6 @@ python -m http.server 8765
   <img src="assets/readme/tech-stack.png" alt="技术栈分层图" width="92%">
 </p>
 
-```mermaid
-flowchart TB
-  subgraph Client["Browser"]
-    L[Landing HTML/CSS/JS]
-    A[App HTML/CSS/JS]
-    LS[localStorage session]
-  end
-  subgraph Planned["backend/ planned"]
-    F[Flask REST]
-    ORM[SQLAlchemy]
-    BC[Bcrypt]
-  end
-  subgraph Data["Data"]
-    Seed[js/data.js seeds]
-    DB[(SQLite planned)]
-  end
-  L --> A
-  A --> LS
-  A --> Seed
-  A -.->|Wave 1 API| F
-  F --> ORM --> DB
-  F --> BC
-```
-
 ---
 
 ## 用户主链路
@@ -245,18 +221,6 @@ flowchart TB
 <p align="center">
   <img src="assets/readme/workflow.png" alt="用户主链路" width="96%">
 </p>
-
-```mermaid
-flowchart LR
-  Landing --> Auth[注册/登录]
-  Auth --> Home[首页筛选]
-  Home --> Smart[智能推荐]
-  Smart --> Detail[路线详情]
-  Detail --> Feedback[意见反馈]
-  Home --> Search[关键词搜索]
-  Auth --> Profile[个人资料]
-  Profile --> Home
-```
 
 **实现要点**
 

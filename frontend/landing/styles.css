@@ -1,4 +1,4 @@
-/* 乡海云途 Landing v3 — longer product story
+/* 乡旅e模式 Landing — nationwide rural tourism
    Accent: ocean blue. Light theme. */
 
 :root {
@@ -438,6 +438,14 @@ a {
   margin-top: 0.75rem;
 }
 
+.carousel__controls--dots-only {
+  justify-content: center;
+}
+
+.carousel__controls--dots-only .carousel__dots {
+  flex: 0 0 auto;
+}
+
 .carousel__btn {
   width: 36px;
   height: 36px;
@@ -498,6 +506,10 @@ a {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 0.55rem;
+}
+
+.cities__grid--6 {
+  grid-template-columns: repeat(6, 1fr);
 }
 
 .cities__grid li {
@@ -1456,6 +1468,10 @@ a {
     grid-template-columns: repeat(4, 1fr);
   }
 
+  .cities__grid--6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .value {
     grid-template-columns: 1fr;
   }
@@ -1511,6 +1527,10 @@ a {
   }
 
   .cities__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cities__grid--6 {
     grid-template-columns: repeat(2, 1fr);
   }
 

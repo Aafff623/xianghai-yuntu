@@ -54,3 +54,13 @@ chore(init): project-init Phase A for coding-dev
   - 三圆 disc 宽高均为 148px；页面高度约 8.3 屏
 - **状态**: committed after test
 
+
+## landing-national — 全国范围口径 + 轮播自动播放
+
+- **时间**: 2026-07-10
+- **改动**:
+  - Landing 对齐任务书「乡旅e模式」全国乡村旅游，去掉山东单城锁定
+  - 示意路线：江南水乡 / 西南梯田 / 华北河谷 / 徽州山地
+  - 轮播 5s 自动，去掉左右箭头
+- **状态**: commit + push
+

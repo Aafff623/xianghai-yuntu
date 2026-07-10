@@ -61,11 +61,9 @@
   if (carousel) {
     const slides = Array.from(carousel.querySelectorAll(".carousel__slide"));
     const dotsWrap = document.getElementById("carouselDots");
-    const prevBtn = document.getElementById("carouselPrev");
-    const nextBtn = document.getElementById("carouselNext");
     let index = 0;
     let timer = null;
-    const intervalMs = 4500;
+    const intervalMs = 5000;
 
     const goTo = (i) => {
       index = (i + slides.length) % slides.length;
@@ -81,7 +79,6 @@
     };
 
     const next = () => goTo(index + 1);
-    const prev = () => goTo(index - 1);
 
     if (dotsWrap) {
       slides.forEach((_, n) => {
@@ -98,15 +95,6 @@
         dotsWrap.appendChild(dot);
       });
     }
-
-    prevBtn?.addEventListener("click", () => {
-      prev();
-      restart();
-    });
-    nextBtn?.addEventListener("click", () => {
-      next();
-      restart();
-    });
 
     const stop = () => {
       if (timer) {
@@ -126,6 +114,7 @@
       start();
     };
 
+    // Auto-play only; no prev/next arrows. Pause on hover for readability.
     carousel.addEventListener("mouseenter", stop);
     carousel.addEventListener("mouseleave", start);
     carousel.addEventListener("focusin", stop);
@@ -135,77 +124,82 @@
   }
 
   /* ---------- Demo data ---------- */
+  /* 示意路线覆盖多区域类型（江南 / 西南 / 华北 / 徽州等），不锁单一城市 */
   const ROUTES = [
     {
-      id: "jimo",
-      title: "即墨古城非遗漫游",
+      id: "town",
+      title: "江南水乡古镇非遗日",
+      region: "华东 · 江南水乡型",
       days: "1-2",
-      type: "文化探索",
+      type: "文化体验",
       budget: "经济型",
-      blurb: "县衙、文庙与老街手作，一天走完古城文化轴。",
-      img: "../../assets/landing/dest-town.jpg",
-      summary: "从县衙到文庙，再走老街手作铺，一天完成古城文化主轴，节奏舒缓、预算可控。",
-      dining: "即墨老酒配海鲜小炒，古城内老字号面馆。",
-      stay: "当日往返；若过夜可选古城客栈或近郊民宿。",
-      cost: "约 ¥100-180 / 人（不含远程交通）",
+      blurb: "水巷古桥与手作市集，全国水乡型古镇通用一日结构。",
+      img: "../../assets/landing/dest-culture.jpg",
+      summary: "适用于江南一带水乡古镇：上午水巷，中午老街，下午非遗手作，节奏舒缓、预算可控。",
+      dining: "本帮小菜与河鲜，古镇内老字号面馆。",
+      stay: "当日往返；过夜可选古镇客栈。",
+      cost: "约 ¥100-180 / 人（不含城际交通）",
       timeline: [
-        { time: "09:00-12:00", title: "县衙与文庙", desc: "参观即墨古城核心文保点，了解地方治理与儒家教育脉络。" },
-        { time: "12:00-14:00", title: "老街午餐", desc: "本地面食与海鲜小馆，人均约 40-60 元。" },
-        { time: "14:00-17:30", title: "非遗手作与市集", desc: "走访剪纸、面塑等工坊，可选择体验课。" },
+        { time: "09:00-12:00", title: "水巷与古桥", desc: "沿河道漫步，了解水乡建筑与市井格局。" },
+        { time: "12:00-14:00", title: "老街午餐", desc: "本地面食与河鲜小馆，人均约 40-60 元。" },
+        { time: "14:00-17:30", title: "非遗手作与市集", desc: "走访剪纸、染布等工坊，可选择体验课。" },
       ],
     },
     {
-      id: "beach",
-      title: "金沙滩海滨休闲",
+      id: "nature",
+      title: "西南梯田山乡慢行",
+      region: "西南 · 梯田山乡型",
       days: "1-2",
-      type: "海洋风光",
+      type: "自然观光",
       budget: "舒适型",
-      blurb: "浅海漫步、海鲜与落日，适合周末放松。",
-      img: "../../assets/landing/dest-beach.jpg",
-      summary: "上午赶海与沙滩散步，下午海鲜与日落，适合不赶场的周末。",
-      dining: "海边烧烤与鲜活海鲜餐厅。",
-      stay: "海景酒店或近沙滩民宿，舒适型预算。",
-      cost: "约 ¥280-450 / 人（含一顿海鲜正餐）",
+      blurb: "梯田观景与村落慢行，覆盖西南山乡自然观光场景。",
+      img: "../../assets/landing/dest-nature.jpg",
+      summary: "适用于西南梯田与山乡聚落：上午观景，下午村落，周末自然观光友好。",
+      dining: "农家土菜与时令蔬果。",
+      stay: "山景民宿或乡村客栈，舒适型预算。",
+      cost: "约 ¥220-380 / 人（含一顿农家餐）",
       timeline: [
-        { time: "09:30-12:00", title: "金沙滩漫步", desc: "浅海戏水、捡贝壳，注意潮汐时间。" },
-        { time: "12:00-14:00", title: "海鲜午餐", desc: "当地渔家菜，人均约 80-120 元。" },
-        { time: "16:00-18:30", title: "日落观景", desc: "栈道或沙滩观日落，节奏放松。" },
+        { time: "09:30-12:00", title: "梯田观景", desc: "沿观景步道慢行，注意防晒与补给。" },
+        { time: "12:00-14:00", title: "农家午餐", desc: "当地家常菜，人均约 50-90 元。" },
+        { time: "15:00-17:30", title: "村落漫步", desc: "走访民居与田埂小径，节奏放松。" },
       ],
     },
     {
-      id: "island",
-      title: "灵山岛赶海体验",
+      id: "family",
+      title: "华北河谷亲子研学",
+      region: "华北 · 河谷乡野型",
       days: "1-2",
       type: "亲子休闲",
       budget: "经济型",
-      blurb: "潮间带探索与渔村过夜，适合亲子短途。",
-      img: "../../assets/landing/dest-island.jpg",
-      summary: "两日一夜的海岛亲子线：赶海、渔村夜宿与环岛缓行。",
-      dining: "渔家宴、岛上小馆，口味偏家常。",
-      stay: "岛上渔家客栈，经济型双床或家庭房。",
-      cost: "约 ¥350-520 / 人（含一夜住宿）",
+      blurb: "自然步道与乡野过夜，适合京津冀等近郊亲子短途。",
+      img: "../../assets/landing/dest-family.jpg",
+      summary: "两日一夜亲子自然线：河谷步道、乡野夜宿与轻量研学，不绑定单一景区门票体系。",
+      dining: "农家宴与河鲜家常菜。",
+      stay: "乡村家庭房或亲子民宿，经济型。",
+      cost: "约 ¥320-480 / 人（含一夜住宿）",
       timeline: [
-        { time: "第1天 10:00", title: "登岛与赶海", desc: "乘船登岛，潮间带探索，适合亲子。" },
-        { time: "第1天 18:00", title: "渔家晚餐与夜宿", desc: "海鲜家常菜，住渔家客栈。" },
-        { time: "第2天 09:00", title: "环岛缓行", desc: "海岸步道与返程，避免赶点。" },
+        { time: "第1天 10:00", title: "河谷步道", desc: "沿河道步道探索，适合亲子节奏。" },
+        { time: "第1天 18:00", title: "农家晚餐与夜宿", desc: "家常菜，住乡村家庭房。" },
+        { time: "第2天 09:00", title: "轻量研学", desc: "自然观察与返程，避免赶点。" },
       ],
     },
     {
-      id: "heritage",
-      title: "刘公岛历史半日线",
+      id: "village",
+      title: "徽州山地古村两日",
+      region: "华东 · 徽州山地型",
       days: "1-2",
-      type: "历史遗迹",
+      type: "乡村旅游",
       budget: "舒适型",
-      blurb: "威海刘公岛半日历史遗迹与海湾风光。",
-      img: "../../assets/landing/slide-weihai.jpg",
-      summary: "以刘公岛核心展陈为主，兼顾海湾景观，适合 1 日舒适型。",
-      dining: "威海海鲜与本地面食。",
-      stay: "威海市区酒店，当日可返。",
-      cost: "约 ¥220-360 / 人（含船票门票参考）",
+      blurb: "石板巷、民居与近村山径，山地古村慢住模板。",
+      img: "../../assets/landing/slide-mountain.jpg",
+      summary: "适用于徽州及同类山地古村：兼顾乡俗体验与自然山径。",
+      dining: "山货与本地面食。",
+      stay: "村内精品民宿，舒适型。",
+      cost: "约 ¥260-420 / 人（含一晚住宿参考）",
       timeline: [
-        { time: "09:00-11:30", title: "登岛参观", desc: "历史展陈与核心纪念点。" },
-        { time: "12:00-13:30", title: "午餐", desc: "市区或码头附近海鲜馆。" },
-        { time: "14:00-16:00", title: "海湾散步", desc: "海边步道放松收尾。" },
+        { time: "第1天 11:00", title: "入村漫步", desc: "石板巷与民居外观导览。" },
+        { time: "第1天 17:00", title: "村晚与夜宿", desc: "农家晚餐，住村内民宿。" },
+        { time: "第2天 08:30", title: "山径轻行", desc: "近村山径与返程。" },
       ],
     },
   ];
@@ -319,16 +313,15 @@
     const out = document.getElementById("searchOut");
     if (!out) return;
     if (!q) {
-      out.textContent = "请输入关键词，例如：金沙滩。";
+      out.textContent = "请输入关键词，例如：古镇。";
       return;
     }
-    const hits = ROUTES.filter(
-      (r) =>
-        r.title.toLowerCase().includes(q) ||
-        r.type.includes(q) ||
-        r.blurb.includes(q) ||
-        r.id.includes(q)
-    );
+    const hits = ROUTES.filter((r) => {
+      const bag = [r.title, r.type, r.blurb, r.id, r.region || "", r.summary || ""]
+        .join(" ")
+        .toLowerCase();
+      return bag.includes(q);
+    });
     if (!hits.length) {
       out.textContent = `未找到与「${q}」匹配的路线。`;
       return;

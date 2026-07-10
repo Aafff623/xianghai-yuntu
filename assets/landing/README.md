@@ -1,17 +1,16 @@
 # assets/landing/
 
-乡海云途营销落地页插图（AI 生成，2026-07-10）。
+乡旅e模式营销落地页插图（全国乡村/自然/文化主题）。
 
 | 文件 | 用途 |
 |------|------|
-| `slide-qingdao.jpg` | 轮播：青岛湾区 |
-| `slide-weihai.jpg` | 轮播：烟台 / 威海海岸 |
-| `hero-coast.jpg` | 轮播：东营 · 潍坊 · 滨州渔村意象 |
-| `dest-beach.jpg` | 海滨休闲 · 轮播日照 |
-| `dest-town.jpg` | 文化古城 |
-| `dest-island.jpg` | 海岛体验 |
-| `lifestyle-family.jpg` | 生活方式 / 引用区 |
-| `feature-map.jpg` | 智能推荐 / 路线示意插图 |
-| `logo.jpg` | 自 `assets/brand/logo-primary.jpg` 复制 |
+| `slide-jiangnan.jpg` | 轮播：江南水乡 |
+| `slide-terrace.jpg` | 轮播：山乡梯田 |
+| `slide-mountain.jpg` | 轮播：山地村落 |
+| `slide-nature.jpg` | 轮播：河谷乡野 |
+| `dest-culture.jpg` | 文化体验 |
+| `dest-nature.jpg` | 自然观光 |
+| `dest-family.jpg` | 亲子休闲 |
+| `logo.jpg` | 品牌 Logo 副本 |
 
 页面入口：`frontend/landing/index.html`

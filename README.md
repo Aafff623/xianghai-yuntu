@@ -1,11 +1,10 @@
 <div align="center">
 
-# 乡海云途 · 海洋乡村旅游智能规划 Web 平台
+# 乡旅e模式 · 乡村旅游路线规划 Web 系统
 
-*"东临碣石，以观沧海。"* —— 曹操《观沧海》
+*把全国的乡村短途，收成一条能走的路线。*
 
-🌊 山东沿海七市：青岛金滩、即墨古城、威海刘公岛、日照渔港、灵山赶海……  
-面向城市中产家庭与亲子研学用户，用 **Web 平台** 讲清**路线故事**与**可执行的每日行程**——先读懂海岸与乡村，再出发山东。
+面向 **全国** 乡村旅游、自然观光、亲子休闲与文化体验用户的轻量路线规划 Web 演示：按 **天数 · 主题 · 风格** 收敛可执行行程。
 
 <p>
   <strong>中文</strong>
@@ -14,240 +13,269 @@
 </div>
 
 <p align="center">
-  <img src="assets/banners/qingdao-sunset-banner.jpg" alt="乡海云途 Banner — 青岛海岸" width="100%">
+  <img src="assets/readme/banner.jpg" alt="乡旅e模式 Banner" width="100%">
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Wave_1-MVP_In_Progress-yellow?style=for-the-badge" alt="Wave 1">
-  <img src="https://img.shields.io/badge/Stack-Flask_%7C_HTML_%7C_SQLite-blue?style=for-the-badge" alt="Stack">
-  <img src="https://img.shields.io/badge/Platform-Web-0077BE?style=for-the-badge" alt="Platform">
-  <img src="https://img.shields.io/badge/UI_Prototype-WIP-orange?style=for-the-badge" alt="UI Prototype">
-  <img src="https://img.shields.io/badge/Docs-project--init_Done-brightgreen?style=for-the-badge" alt="Docs">
+  <img src="https://img.shields.io/badge/Wave_1-Frontend_Demo_Ready-brightgreen?style=for-the-badge" alt="Wave 1">
+  <img src="https://img.shields.io/badge/Stack-HTML_CSS_JS_%7C_Flask_planned-blue?style=for-the-badge" alt="Stack">
+  <img src="https://img.shields.io/badge/Scope-Nationwide_Rural-0a6eae?style=for-the-badge" alt="Nationwide">
+  <img src="https://img.shields.io/badge/Demo_Account-admin%2F123456-orange?style=for-the-badge" alt="Demo">
   <a href="https://github.com/Aafff623/xianghai-yuntu/stargazers"><img src="https://img.shields.io/github/stars/Aafff623/xianghai-yuntu?style=for-the-badge" alt="GitHub stars"></a>
 </p>
 
 <p align="center">
-  <a href="#为什么需要本系统">🌊 为什么</a> ·
-  <a href="#功能">✨ 功能</a> ·
-  <a href="#演示">📱 演示</a> ·
-  <a href="#快速开始">🚀 快速开始</a> ·
-  <a href="#架构">🏗️ 架构</a> ·
-  <a href="#路线图">🗺️ 路线图</a> ·
-  <a href="#文档">📚 文档</a> ·
-  <a href="#license">License</a>
+  <a href="#为什么需要本系统">为什么</a> ·
+  <a href="#功能">功能</a> ·
+  <a href="#演示--showcase">演示</a> ·
+  <a href="#快速开始">快速开始</a> ·
+  <a href="#架构">架构</a> ·
+  <a href="#用户主链路">主链路</a> ·
+  <a href="#路线图">路线图</a> ·
+  <a href="#文档">文档</a>
 </p>
 
 ---
 
 ## 为什么需要本系统
 
-规划山东「海洋 + 乡村」行程时，用户通常会遇到以下信息与决策障碍：
+规划乡村短途时，用户常遇到：
 
-- 景点、渔家体验与交通信息分散在多个平台，难以一次拼成完整路线；
-- 通用 OTA 更关注票务与酒店，对**渔家文化、亲子研学、预算分级**支持不足；
-- 用户有 AI 定制意愿（调研：非常 + 比较愿意 **80%**），但缺少可解释、可落地的规则推荐入口；
-- 竞赛与展示场景需要**统一品牌**与**可演示的 Web 闭环**，而非散落的多份旧原型。
+- 攻略分散，难以一次拼成 **可走的每日行程**；
+- 通用 OTA 偏票务酒店，对 **天数 / 主题 / 预算风格** 的可解释匹配不足；
+- 调研中有较高智能定制意愿，但缺少轻量可演示的 Web 闭环。
 
-乡海云途因此将 Wave 1 主线收敛为：**注册登录、智能路线推荐、详情展示、关键词搜索与用户反馈**。
+乡旅e模式 Wave 1 主线收敛为：
 
-| 能力 | 产品职责 |
+| 能力 | 职责 |
 |---|---|
-| 智能推荐 | 按行程天数、路线类型、预算级别规则匹配路线 |
-| 路线详情 | 概述、每日行程时间轴、餐饮 / 住宿 / 费用估算 |
-| 关键词搜索 | 路线名称与标签模糊检索（重建版补全顶栏入口） |
-| 用户反馈 | 文本意见入库，Flash 提示提交结果 |
-| 统一导航 | 登录态、返回首页、全局消息提示 |
-| 数据与地域 | MVP 种子路线对齐**山东沿海 / 青岛**主题（非旧版平遥样本） |
+| 智能推荐 | 天数 · 兴趣主题 · 规划风格 + 热门标签 / 区域 |
+| 路线详情 | 概述、日程、餐饮 / 住宿 / 费用（Markdown） |
+| 关键词搜索 | 全国区域类型模板模糊检索 |
+| 注册登录 | 本地演示鉴权；默认 `admin` / `123456` |
+| 个人资料 | 偏好与简介 |
+| 意见反馈 | Landing + App 双入口演示 |
+| 数据口径 | **全国区域类型**，不锁单一城市景点库 |
 
 ---
 
 ## 功能
 
 <p align="center">
-  <img src="assets/readme/features.png" alt="乡海云途 核心功能模块" width="80%">
+  <img src="assets/readme/features.svg" alt="核心功能模块" width="92%">
 </p>
-
-> **Phase B 占位：** 上图为 `assets/readme/features.png` 契约路径；终稿信息图生成说明见 [`assets/readme/README.md`](assets/readme/README.md)。
 
 | 功能 | 说明 |
 |---|---|
-| **注册 / 登录 / 登出** | Bcrypt 密码哈希；顶栏显示用户名与注销 |
-| **首页智能推荐表单** | 三下拉：行程天数 · 路线类型 · 预算级别 → 提交智能推荐 |
-| **智能推荐结果** | 路线卡片列表、「查看详细行程」、同天数相关推荐 ≤3 |
-| **路线详情** | 元信息胶囊、概述、`daily_schedule` 每日时间轴、饮食 / 住宿 / 费用 |
-| **关键词搜索** | 顶栏搜索框 → 结果列表（**不含**旧原型「搜用户」） |
-| **用户反馈** | 多行文本提交；成功 / 失败 Flash |
-| **响应式 Web** | 桌面优先 + 移动浏览器自适应（海洋蓝主色 `#0077BE`） |
+| **Landing** | 营销页：场景、推荐演示、风光笔记、反馈、产品节奏 |
+| **注册 / 登录 / 登出** | 演示账号写死；顶栏用户态与「返回首页」 |
+| **首页筛选** | 三下拉 + 标签 → 智能推荐 |
+| **智能推荐结果** | 排序卡片、收藏演示、查看详情 |
+| **路线详情** | Markdown 正文、延伸阅读超链接、相关推荐 |
+| **关键词搜索** | 全国区域类型检索 |
+| **个人资料** | 简介、默认筛选偏好 |
+| **意见反馈** | Landing 分栏 + App 反馈页 |
 
-> **业务边界（Wave 1）：** 不覆盖真实支付、特产电商、门票库存、政府端、AR/VR、文心一言对话（Wave 2）、App 小程序。产品主线保持为 **Web 路线推荐与展示**。
+> **Wave 1 边界：** 无真实支付 / 库存 / 政府端 / AR·VR；文心一言为 Wave 2。当前后端 Flask 为规划态，前端可用静态服务器完整演示。
 
-完整验收清单 → [`docs/knowledge/mvp-product-spec.md`](docs/knowledge/mvp-product-spec.md)
+验收清单 → [`docs/knowledge/mvp-product-spec.md`](docs/knowledge/mvp-product-spec.md)
 
 ---
 
-## 演示
+## 演示 / Showcase
 
 ### 推荐演示路径
 
+```text
+Landing 了解产品
+  → 注册/登录（admin / 123456）
+  → 首页三维筛选 → 智能推荐列表
+  → 路线详情（日程文档）
+  → 顶栏搜索 / 个人资料 / 反馈
+  → 「返回首页」回 Landing
 ```
-注册 → 登录 → 首页三下拉智能推荐 → 结果列表 → 路线详情（每日行程）
-  → 顶栏关键词搜索 → 提交反馈（主链路：推荐 / 详情需登录）
-```
 
-UI 原型出图 brief（Grok CLI 用）→ [`docs/output/reports/ui-prototype/ui-prototype-brief.md`](docs/output/reports/ui-prototype/ui-prototype-brief.md)
+### Playwright 截图相册
 
-### Showcase
+以下截图由本地静态服务 + Playwright 实机截取，路径均在 `assets/readme/`。
 
-Web 界面高保真原型与真机截图将在 Grok 出图、前端实现与视觉验收完成后补充 📸，本节暂时保留展示位。
-
-| 槽位 | 文件 | 状态 |
-|---|---|---|
-| 首页 | `assets/readme/showcase-home.png` | 原型出图中 |
-| 智能推荐 | `assets/readme/showcase-smart-search.png` | 原型出图中 |
-| 路线详情 | `assets/readme/showcase-route-detail.png` | 原型出图中 |
-| 登录 / 注册 | `assets/readme/showcase-auth.png` | 原型出图中 |
-
-<!--
-后续建议使用三列相册：
-
-1. 首页 / 智能推荐表单
-2. 智能推荐结果 / 路线卡片
-3. 路线详情 / 反馈
--->
+<table>
+  <tr>
+    <td width="50%" align="center">
+      <img src="assets/readme/showcase-landing.png" alt="Landing 营销页" width="100%"><br/>
+      <sub>Landing · 营销落地页</sub>
+    </td>
+    <td width="50%" align="center">
+      <img src="assets/readme/showcase-home.png" alt="功能首页筛选" width="100%"><br/>
+      <sub>App · 首页筛选</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <img src="assets/readme/showcase-smart-search.png" alt="智能推荐结果" width="100%"><br/>
+      <sub>App · 智能推荐</sub>
+    </td>
+    <td width="50%" align="center">
+      <img src="assets/readme/showcase-route-detail.png" alt="路线详情" width="100%"><br/>
+      <sub>App · 路线详情</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <img src="assets/readme/showcase-auth.png" alt="登录页" width="100%"><br/>
+      <sub>App · 登录（演示账号预填）</sub>
+    </td>
+    <td width="50%" align="center">
+      <img src="assets/brand/logo.svg" alt="品牌 Logo" width="60%"><br/>
+      <sub>Brand · logo.svg</sub>
+    </td>
+  </tr>
+</table>
 
 <details>
-<summary>查看 UI 页面清单（7 页 + 全局壳）</summary>
+<summary>UI 页面清单</summary>
 
-| # | 页面 | 路由 |
+| # | 页面 | 路径 |
 |---|---|---|
-| P1 | 首页 | `/` |
-| P2 | 登录 | `/login` |
-| P3 | 注册 | `/register` |
-| P4 | 智能推荐结果 | `/smart-search` |
-| P5 | 关键词搜索 | `/search` |
-| P6 | 路线详情 | `/routes/:id` |
-| P7 | 反馈 | `/feedback` |
-
-全局壳：顶栏（Logo · 用户态 · 搜索框）、Flash 消息、页脚、「返回首页」/「返回推荐」。
+| L1 | Landing | `frontend/landing/index.html` |
+| P1 | 功能首页 | `frontend/app/index.html` |
+| P2 | 登录 | `frontend/app/login.html` |
+| P3 | 注册 | `frontend/app/register.html` |
+| P4 | 智能推荐 | `frontend/app/smart-search.html` |
+| P5 | 搜索 | `frontend/app/search.html` |
+| P6 | 路线详情 | `frontend/app/route-detail.html` |
+| P7 | 反馈 | `frontend/app/feedback.html` |
+| P8 | 个人资料 | `frontend/app/profile.html` |
 
 </details>
 
-### 首批路线（Seed / Mock 参考）
+### 首批全国区域类型（种子）
 
-| 关键词 | 路线示例 | 天数 | 类型 |
+| 区域类型 | 示例路线 | 天数 | 主题 |
 |---|---|---|---|
-| 即墨 | 即墨古城非遗漫游 | 1-2 | 文化探索 |
-| 金沙滩 | 金沙滩海滨休闲 | 1-2 | 海洋风光 |
-| 灵山岛 | 灵山岛赶海体验 | 1-2 | 亲子休闲 |
-
-地域叙事主参考：山东沿海 **7 市**（青岛、烟台、威海、日照、东营、潍坊、滨州）。详见项目书 `docs/source/project-books/`。
+| 江南水乡 | 江南水乡古镇非遗日 | 1-2 | 文化体验 |
+| 西南梯田 | 西南梯田山乡慢行 | 1-2 | 自然观光 |
+| 华北河谷 | 华北河谷亲子研学 | 1-2 | 亲子休闲 |
+| 徽州山地 | 徽州山地古村两日 | 1-2 | 乡村旅游 |
+| 西北丹霞 等 | 见 `frontend/app/js/data.js` | 3-5+ | 自然观光 等 |
 
 ---
 
 ## 快速开始
 
-### 当前阶段（文档 + 资产就绪）
-
-**`frontend/` 与 `backend/` 尚未初始化代码。** 接手后建议按下列顺序阅读，再开 PRD 与脚手架。
-
-1. 读本 README — 定位、边界、演示路径  
-2. [`docs/knowledge/mvp-product-spec.md`](docs/knowledge/mvp-product-spec.md) — Wave 1 验收真相源  
-3. [`docs/output/reports/ui-prototype/ui-prototype-brief.md`](docs/output/reports/ui-prototype/ui-prototype-brief.md) — UI 原型与 Grok 出图  
-4. 开 PRD：`docs/output/reports/mvp-platform/prd.md`（待撰写）  
-5. 初始化 `backend/` → `frontend/`
-
-### 前置环境（全栈开发时）
-
-| 组件 | 版本建议 | 备注 |
-|---|---|---|
-| Python | 3.10+ | Flask REST API |
-| pip / venv | 近期版 | 后端依赖隔离 |
-| SQLite | 3 | 开发库（随 Python / 系统） |
-| 浏览器 | 近期版 | 前端静态页 + API 联调 |
-| Node.js | 18+ | 可选；若前端引入构建工具链 |
-
-### 后端（`backend/`，待初始化）
+### 本地演示（当前可用）
 
 ```bash
+# 克隆
 git clone https://github.com/Aafff623/xianghai-yuntu.git
-cd xianghai-yuntu
-# 待 backend/ 脚手架合并后补充：
-# python -m venv .venv && .venv\Scripts\activate   # Windows
-# pip install -r backend/requirements.txt
-# flask run
+cd xianghai-yuntu   # 或 coding-dev 工作目录
+
+# 任意静态服务器（仓库根）
+python -m http.server 8765
 ```
 
-技术栈裁定 → [`docs/adr/0002-tech-stack-from-backup.md`](docs/adr/0002-tech-stack-from-backup.md)
+浏览器打开：
 
-### 前端（`frontend/`，待初始化）
+| 入口 | URL |
+|---|---|
+| Landing | http://127.0.0.1:8765/frontend/landing/index.html |
+| App | http://127.0.0.1:8765/frontend/app/index.html |
+| 登录 | 用户名 `admin` · 密码 `123456` |
 
-独立目录通过 REST JSON 调用 `backend/`；视觉与交互以 UI brief 与 `assets/brand/` 为准。
+### 全栈（规划中）
 
-<details>
-<summary>新成员阅读顺序</summary>
-
-| 顺序 | 路径 | 目的 |
+| 组件 | 建议 | 备注 |
 |---|---|---|
-| 1 | `README.md` | 定位、跑起来、边界 |
-| 2 | `CONTEXT.md` · `CONTEXT-MAP.md` | 术语与分端地图 |
-| 3 | `AGENTS.md` · `CLAUDE.md` | 任务流与 Agent 纪律 |
-| 4 | `docs/knowledge/mvp-product-spec.md` | MVP 验收与字段枚举 |
-| 5 | `docs/output/reports/ui-prototype/ui-prototype-brief.md` | 7 页 UI 与 Grok prompt |
-| 6 | `docs/adr/0002-tech-stack-from-backup.md` | 技术栈裁定 |
-| 7 | `docs/contexts/*/CONTEXT.md` + 对应端源码 | 实施 |
+| Python | 3.10+ | Flask REST（`backend/` 待脚手架） |
+| SQLite | 3 | 开发库 |
+| 浏览器 | 近期版 | 静态页联调 |
 
-</details>
+技术栈裁定 → [`docs/adr/0002-tech-stack-from-backup.md`](docs/adr/0002-tech-stack-from-backup.md)
 
 ---
 
 ## 架构
 
 <p align="center">
-  <img src="assets/readme/architecture.png" alt="系统架构图" width="80%">
+  <img src="assets/readme/architecture.svg" alt="系统架构图" width="94%">
 </p>
 
-- **`frontend/`**：HTML / CSS / JavaScript；7 个用户页 + 全局壳；REST 调用后端 API
-- **`backend/`**：Flask REST API；SQLAlchemy 模型；Bcrypt 鉴权；SQLite 开发库
-- **`assets/`**：品牌 Logo、Banner、README 配图、UI 原型图（ADR-0001：**图片不进 docs/**）
-- **数据路径**：浏览器 → JSON API → SQLite；Wave 2 接入文心一言 API（Web 组企划）
-
-### 技术栈
-
-<p align="center">
-  <img src="assets/readme/tech-stack.png" alt="技术栈分层图" width="80%">
-</p>
-
-| 层级 | 技术 | 路径 |
+| 层 | 现状 | 说明 |
 |---|---|---|
-| 用户端 | HTML · CSS · JavaScript | `frontend/` |
-| 后端 | Python 3 · Flask · SQLAlchemy · Bcrypt | `backend/` |
-| 数据库 | SQLite（开发） | 后端配置 / 本地文件 |
-| AI（Wave 2） | 百度文心一言 API | 独立 ADR / PRD |
+| **frontend/** | ✅ 可演示 | Landing + App 静态页 |
+| **backend/** | 🔜 规划 | Flask REST · Bcrypt · SQLAlchemy |
+| **assets/** | ✅ | 品牌 / 路线图 / Showcase（ADR-0001） |
+| **docs/** | ✅ | MVP 规格、ADR、Agent 流程 |
 
-### 用户主链路
+### 技术栈（示意）
+
+```mermaid
+flowchart TB
+  subgraph Client["Browser"]
+    L[Landing HTML/CSS/JS]
+    A[App HTML/CSS/JS]
+    LS[localStorage session]
+  end
+  subgraph Planned["backend/ planned"]
+    F[Flask REST]
+    ORM[SQLAlchemy]
+    BC[Bcrypt]
+  end
+  subgraph Data["Data"]
+    Seed[js/data.js seeds]
+    DB[(SQLite planned)]
+  end
+  L --> A
+  A --> LS
+  A --> Seed
+  A -.->|Wave 1 API| F
+  F --> ORM --> DB
+  F --> BC
+```
+
+---
+
+## 用户主链路
 
 <p align="center">
-  <img src="assets/readme/workflow.png" alt="用户主链路流程图" width="80%">
+  <img src="assets/readme/workflow.svg" alt="用户主链路" width="96%">
 </p>
 
-**实现要点：**
+```mermaid
+flowchart LR
+  Landing --> Auth[注册/登录]
+  Auth --> Home[首页筛选]
+  Home --> Smart[智能推荐]
+  Smart --> Detail[路线详情]
+  Detail --> Feedback[意见反馈]
+  Home --> Search[关键词搜索]
+  Auth --> Profile[个人资料]
+  Profile --> Home
+```
 
-- 智能推荐 / 搜索 / 路线详情 **需登录**；首页、注册、登录、反馈可匿名访问（反馈是否强制登录待 PRD）
-- 路线卡展示 **天 / 类型 / 预算** 三标签；详情页渲染 `daily_schedule` JSON 时间轴
-- 品牌统一 **乡海云途** + 海洋蓝主题；密钥与 API Key **不入库**
+**实现要点**
 
-### 目录结构
+- 智能推荐 / 搜索 / 详情 / 资料 **需登录**
+- 演示账号：`admin` / `123456`（专业头像 `assets/brand/avatar-admin.svg`）
+- App 顶栏统一：**返回首页（Landing）** · 搜索 · 登录态
 
-<p align="center">
-  <img src="assets/readme/structure.png" alt="仓库目录结构图" width="80%">
-</p>
+---
+
+## 目录结构
 
 ```text
-xianghai-yuntu/
-├── frontend/              # 用户端 Web UI
-├── backend/               # Flask REST API
-├── assets/                # 全部图片（brand · banners · readme · prototype）
-├── docs/                  # Agent 资产 + source/ 接手文档
+coding-dev/   # 或仓库根
+├── frontend/
+│   ├── landing/          # 营销落地页
+│   └── app/              # 功能页 + js/css
+├── backend/              # Flask（规划）
+├── assets/
+│   ├── brand/            # Logo · 管理员头像
+│   ├── landing/          # Landing 插图
+│   ├── routes/           # 路线配图
+│   ├── prototype/        # 原型风光与参考图
+│   └── readme/           # README Showcase + 架构图
+├── docs/                 # 规格 · ADR · Agent 流程
 ├── AGENTS.md · CONTEXT.md · README.md
 ```
 
@@ -257,13 +285,13 @@ xianghai-yuntu/
 
 | 阶段 | 状态 | 说明 |
 |---|:---:|---|
-| Phase A project-init + backup 提炼 | ✅ | docs 骨架、ADR、MVP 规格、assets 归类 |
-| UI 原型调研 brief | ✅ | `ui-prototype-brief.md`（Grok 出图） |
-| Phase B README 信息图 | 🔜 | `assets/readme/*.png`（见 `assets/readme/README.md`） |
-| Phase C Showcase 截图 | 🔜 | 待前后端跑通 |
-| Wave 1 MVP：API + 前端 + 种子路线 | 🔜 | 待 PRD approved |
-| Wave 2：文心一言 + SEO | ⚪ | Web 组企划 |
-| Wave 3：特产电商 / AR / 政府端 | ⚪ | 竞赛远景，非近期 |
+| project-init + 文档骨架 | ✅ | docs / assets / ADR |
+| Landing + App 静态演示 | ✅ | 全国口径 · 鉴权 · 详情 MD |
+| README Showcase 截图 | ✅ | Playwright → `assets/readme/` |
+| README 架构 / 链路图 | ✅ | SVG 基线；可换 GPT 高级图 |
+| Flask API + SQLite | 🔜 | Wave 1 后端闭环 |
+| 文心一言 + SEO | ⚪ | Wave 2 |
+| 电商 / AR / 政府端 | ⚪ | Wave 3 远景 |
 
 ---
 
@@ -271,27 +299,36 @@ xianghai-yuntu/
 
 | 文档 | 说明 |
 |---|---|
-| [`CONTEXT.md`](CONTEXT.md) | 产品域事实、术语、约束 |
-| [`CONTEXT-MAP.md`](CONTEXT-MAP.md) | 分端上下文地图 |
-| [`AGENTS.md`](AGENTS.md) · [`CLAUDE.md`](CLAUDE.md) | Agent 入口与维护协议 |
-| [`docs/README.md`](docs/README.md) | 文档资产索引 |
-| [`docs/knowledge/mvp-product-spec.md`](docs/knowledge/mvp-product-spec.md) | MVP 功能、字段、页面、API 规划 |
-| [`docs/knowledge/reference-from-backup.md`](docs/knowledge/reference-from-backup.md) | 接手资料怎么用 |
-| [`docs/adr/0001-assets-directory-for-images.md`](docs/adr/0001-assets-directory-for-images.md) | 图片放 `assets/` |
-| [`docs/adr/0002-tech-stack-from-backup.md`](docs/adr/0002-tech-stack-from-backup.md) | 技术栈裁定 |
-| [`docs/contexts/`](docs/contexts/) | frontend / backend 分端 CONTEXT |
-| [`docs/output/reports/ui-prototype/ui-prototype-brief.md`](docs/output/reports/ui-prototype/ui-prototype-brief.md) | UI 原型出图 brief |
-| [`assets/readme/README.md`](assets/readme/README.md) | README 配图文件名契约 |
-
-任务流：GitHub Issues + `docs/output/handoff/`；接手原始文档见 `docs/source/`（项目书、PPT、企划）。
+| [`CONTEXT.md`](CONTEXT.md) | 产品域术语与约束 |
+| [`docs/knowledge/mvp-product-spec.md`](docs/knowledge/mvp-product-spec.md) | MVP 验收真相源 |
+| [`docs/adr/0001-assets-directory-for-images.md`](docs/adr/0001-assets-directory-for-images.md) | 图片只放 `assets/` |
+| [`docs/adr/0002-tech-stack-from-backup.md`](docs/adr/0002-tech-stack-from-backup.md) | 技术栈 |
+| [`assets/README.md`](assets/README.md) | 全局资产索引 |
+| [`assets/readme/README.md`](assets/readme/README.md) | README 配图契约 + **GPT 出图规格** |
 
 ---
 
-## 项目来源与说明
+## GPT 高级配图规格（待替换）
 
-本项目基于 roommate 交接的乡旅与海 e 模式竞赛资料与多版 Flask 原型快照，在 **`xianghai-yuntu` 仓库从零前后端分离重建**。旧版单体代码与 `backup/` 原始压缩包**不在本仓库**，仅 `docs/source/` 与 `docs/knowledge/` 中的提炼文档作为接手参考。
+当前 GitHub 已能显示：**Playwright 截图 + SVG 架构/链路/功能图**。  
+若要用 GPT 生成更高级的视觉图，请按 [`assets/readme/README.md`](assets/readme/README.md) 中的 **出图清单** 生成并覆盖同名文件：
 
-重建版统一品牌为 **乡海云途**，地域聚焦 **山东沿海**，视觉采用 **海洋蓝** 主色；不代表任何旧原型中的错名、错校徽或山西平遥样本数据。
+| 目标文件 | 类型 | 用途 |
+|---|---|---|
+| `architecture.png` | 架构图 | 三栏：frontend / backend / data |
+| `workflow.png` | 链路图 | 6 步主路径 + 旁路能力 |
+| `features.png` | 功能模块图 | 4 大能力卡片 |
+| `tech-stack.png` | 技术栈分层 | 客户端 / API / DB / AI |
+| `structure.png` | 仓库结构示意 | 目录树信息图 |
+| `banner.png` | 页首横幅 | 建议 3:1 乡村/自然 |
+
+> 生成后把 README 中对应 `.svg` 引用改为 `.png` 即可。
+
+---
+
+## 项目说明
+
+本仓库在 **全国乡村短途** 口径下重建 Web 演示（仓库名历史沿用 `xianghai-yuntu`）。产品名：**乡旅e模式**。旧「山东七市锁定」叙事已退出 Wave 1 主线。
 
 ---
 

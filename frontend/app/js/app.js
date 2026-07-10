@@ -82,6 +82,26 @@
     });
   }
 
+  /** 各功能页顶栏：返回 Landing Page */
+  function injectLandingLink() {
+    document.querySelectorAll(".app-nav").forEach((nav) => {
+      if (nav.querySelector(".app-nav__home")) return;
+      const brand = nav.querySelector(".app-nav__brand");
+      const link = document.createElement("a");
+      link.className = "btn btn--ghost btn--sm app-nav__home";
+      link.href = "../landing/index.html";
+      link.textContent = "返回首页";
+      link.setAttribute("title", "返回营销落地页");
+      if (brand && brand.nextSibling) {
+        brand.parentNode.insertBefore(link, brand.nextSibling);
+      } else if (brand) {
+        brand.insertAdjacentElement("afterend", link);
+      } else {
+        nav.prepend(link);
+      }
+    });
+  }
+
   function escapeHtml(s) {
     return String(s)
       .replace(/&/g, "&amp;")
@@ -112,6 +132,7 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     paintBrand();
+    injectLandingLink();
     guard();
     renderAuthSlot();
     wireHeaderSearch();

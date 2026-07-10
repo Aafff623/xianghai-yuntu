@@ -9,109 +9,177 @@
   <link rel="stylesheet" href="css/shell.css" />
   <style>
     .profile-page {
-      max-width: 1080px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 28px 20px 64px;
+      padding: 24px 20px 72px;
     }
+
     .profile-hero {
       display: grid;
       grid-template-columns: auto 1fr auto;
-      gap: 18px;
+      gap: 20px 24px;
       align-items: center;
-      padding: 24px 26px;
+      padding: 22px 24px;
       border-radius: 18px;
-      background: linear-gradient(135deg, #fff 0%, #f3f8fa 100%);
+      background:
+        radial-gradient(ellipse 50% 120% at 100% 0%, rgba(20, 125, 155, 0.08), transparent 55%),
+        linear-gradient(135deg, #fff 0%, #f5f9fb 100%);
       border: 1px solid #dce5e9;
       box-shadow: 0 14px 36px rgba(10, 53, 83, 0.06);
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
+
     .profile-avatar {
-      width: 72px;
-      height: 72px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       display: grid;
       place-items: center;
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 700;
       color: #fff;
       background: linear-gradient(135deg, #e6c897, #0a5a82);
       overflow: hidden;
       flex-shrink: 0;
+      box-shadow: 0 0 0 3px #fff, 0 0 0 4px rgba(10, 84, 126, 0.15);
     }
+
     .profile-avatar img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
-    .profile-hero h1 {
+
+    .profile-hero__copy h1 {
       margin: 0 0 6px;
       font-size: 1.55rem;
       font-family: "Noto Serif SC", "Songti SC", serif;
       color: #0a3553;
+      letter-spacing: -0.02em;
     }
-    .profile-hero p {
+
+    .profile-hero__copy p {
       margin: 0;
       color: #718391;
       font-size: 0.92rem;
+      line-height: 1.55;
+      max-width: 48ch;
     }
+
     .profile-meta {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 10px;
+      margin-top: 12px;
     }
+
     .profile-meta span {
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       font-weight: 600;
       color: #0a5279;
       background: #eef6f9;
       border-radius: 999px;
-      padding: 4px 10px;
+      padding: 5px 11px;
     }
-    .profile-grid {
+
+    .profile-hero__actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: stretch;
+      min-width: 132px;
+    }
+
+    .profile-layout {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
+      grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.85fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .profile-stack {
+      display: grid;
       gap: 18px;
     }
+
     .profile-card {
       background: #fff;
       border: 1px solid #dce5e9;
       border-radius: 16px;
-      padding: 20px 22px 22px;
+      padding: 0;
       box-shadow: 0 10px 28px rgba(10, 53, 83, 0.04);
+      overflow: hidden;
     }
-    .profile-card h2 {
-      margin: 0 0 14px;
-      font-size: 1.05rem;
+
+    .profile-card__head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 20px 14px;
+      border-bottom: 1px solid #eef2f4;
+      background: linear-gradient(180deg, #fbfcfd 0%, #fff 100%);
+    }
+
+    .profile-card__head h2 {
+      margin: 0;
+      font-size: 1rem;
       color: #0a3553;
+      font-weight: 700;
     }
+
+    .profile-card__head span {
+      font-size: 0.75rem;
+      color: #8a9eab;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .profile-card__body {
+      padding: 18px 20px 20px;
+    }
+
+    .profile-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 16px;
+    }
+
+    .profile-form-grid .field--full {
+      grid-column: 1 / -1;
+    }
+
     .profile-card .field {
-      margin-bottom: 12px;
+      margin: 0;
     }
+
     .profile-card label {
       display: block;
-      font-size: 0.84rem;
+      font-size: 0.8rem;
       font-weight: 600;
-      color: #3d5160;
+      color: #4a5d6b;
       margin-bottom: 6px;
     }
+
     .profile-card input,
     .profile-card textarea,
     .profile-card select {
       width: 100%;
       border: 1px solid #d8e2e7;
-      border-radius: 12px;
-      padding: 11px 14px;
+      border-radius: 11px;
+      padding: 11px 13px;
       font: inherit;
       background: #fbfcfd;
       color: #0a3553;
     }
+
     .profile-card textarea {
-      min-height: 96px;
+      min-height: 92px;
       resize: vertical;
       line-height: 1.55;
     }
+
     .profile-card input:focus,
     .profile-card textarea:focus,
     .profile-card select:focus {
@@ -120,44 +188,79 @@
       box-shadow: 0 0 0 3px rgba(11, 84, 126, 0.1);
       background: #fff;
     }
+
+    .profile-section-label {
+      grid-column: 1 / -1;
+      margin: 4px 0 0;
+      padding-top: 8px;
+      border-top: 1px dashed #e6eef2;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #8a9eab;
+    }
+
     .profile-actions {
+      grid-column: 1 / -1;
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 8px;
+      margin-top: 4px;
+      padding-top: 4px;
     }
+
     .profile-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
       margin-bottom: 14px;
     }
+
     .profile-stat {
-      padding: 12px 10px;
+      padding: 14px 10px;
       border-radius: 12px;
-      background: #f6fafb;
+      background: linear-gradient(180deg, #f7fafb, #f0f5f7);
       border: 1px solid #e6eef2;
       text-align: center;
     }
+
     .profile-stat strong {
       display: block;
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       color: #0a3553;
       font-family: "Noto Serif SC", "Songti SC", serif;
+      line-height: 1.1;
+      margin-bottom: 4px;
     }
+
     .profile-stat span {
       font-size: 0.72rem;
       color: #718391;
     }
+
+    .profile-bio-box {
+      margin: 0;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #fbfcfd;
+      border: 1px solid #eef2f4;
+      font-size: 0.88rem;
+      color: #4a5d6b;
+      line-height: 1.6;
+    }
+
     .profile-links {
       display: grid;
       gap: 8px;
     }
+
     .profile-links a {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
       align-items: center;
-      padding: 12px 14px;
+      padding: 13px 14px;
       border-radius: 12px;
       border: 1px solid #e4eaed;
       background: #fbfcfd;
@@ -165,25 +268,43 @@
       font-weight: 600;
       font-size: 0.9rem;
       text-decoration: none;
+      transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
     }
+
     .profile-links a:hover {
-      border-color: #b8c9d3;
+      border-color: rgba(10, 110, 174, 0.35);
+      background: #f3f8fb;
       color: #0a6eae;
     }
+
     .profile-links a span {
       color: #8a9eab;
       font-weight: 500;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
     }
-    @media (max-width: 860px) {
+
+    @media (max-width: 900px) {
       .profile-hero {
         grid-template-columns: auto 1fr;
       }
-      .profile-hero .btn {
+      .profile-hero__actions {
         grid-column: 1 / -1;
-        width: 100%;
+        flex-direction: row;
+        min-width: 0;
       }
-      .profile-grid {
+      .profile-hero__actions .btn {
+        flex: 1;
+      }
+      .profile-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .profile-form-grid {
+        grid-template-columns: 1fr;
+      }
+      .profile-stats {
         grid-template-columns: 1fr;
       }
     }
@@ -206,87 +327,110 @@
   <main class="profile-page">
     <section class="profile-hero">
       <div class="profile-avatar" id="profileAvatar" aria-hidden="true">A</div>
-      <div>
+      <div class="profile-hero__copy">
         <h1 id="profileTitle">个人资料</h1>
         <p id="profileSub">登录后管理偏好与演示信息</p>
         <div class="profile-meta" id="profileMeta"></div>
       </div>
-      <a class="btn" href="index.html">开始规划</a>
+      <div class="profile-hero__actions">
+        <a class="btn" href="index.html">开始规划</a>
+        <a class="btn btn--ghost" href="smart-search.html">智能推荐</a>
+      </div>
     </section>
 
-    <div class="profile-grid">
-      <section class="profile-card">
-        <h2>基本信息</h2>
-        <form id="profileForm">
-          <div class="field">
-            <label for="displayName">显示名称</label>
-            <input id="displayName" name="displayName" maxlength="40" required />
-          </div>
-          <div class="field">
-            <label for="city">常住 / 偏好城市</label>
-            <input id="city" name="city" maxlength="40" placeholder="例如：全国 / 上海 / 昆明" />
-          </div>
-          <div class="field">
-            <label for="email">联系邮箱（演示）</label>
-            <input id="email" name="email" type="email" maxlength="80" placeholder="可选" />
-          </div>
-          <div class="field">
-            <label for="bio">个人简介</label>
-            <textarea id="bio" name="bio" maxlength="200" placeholder="一句话介绍你的旅行偏好"></textarea>
-          </div>
-          <h2 style="margin-top:8px">默认筛选偏好</h2>
-          <div class="field">
-            <label for="day_range">计划天数</label>
-            <select id="day_range" name="day_range">
-              <option value="">未设置</option>
-              <option value="1-2">1-2天</option>
-              <option value="3-5">3-5天</option>
-              <option value="6-7">6-7天</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="route_type">兴趣主题</label>
-            <select id="route_type" name="route_type">
-              <option value="">未设置</option>
-              <option value="文化体验">文化体验</option>
-              <option value="自然观光">自然观光</option>
-              <option value="亲子休闲">亲子休闲</option>
-              <option value="乡村旅游">乡村旅游</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="budget_level">规划风格</label>
-            <select id="budget_level" name="budget_level">
-              <option value="">未设置</option>
-              <option value="经济型">经济型</option>
-              <option value="舒适型">舒适型</option>
-              <option value="豪华型">豪华型</option>
-            </select>
-          </div>
-          <div class="profile-actions">
-            <button class="btn" type="submit">保存资料</button>
-            <a class="btn btn--ghost" href="smart-search.html">去智能推荐</a>
-          </div>
-        </form>
-      </section>
-
-      <aside>
-        <section class="profile-card" style="margin-bottom:18px">
-          <h2>账户概览</h2>
-          <div class="profile-stats">
-            <div class="profile-stat"><strong id="statRoutes">—</strong><span>可浏览路线</span></div>
-            <div class="profile-stat"><strong id="statRegions">—</strong><span>区域类型</span></div>
-            <div class="profile-stat"><strong id="statUser">—</strong><span>用户名</span></div>
-          </div>
-          <p style="margin:0;font-size:0.86rem;color:#718391;line-height:1.6" id="profileBioPreview"></p>
-        </section>
+    <div class="profile-layout">
+      <div class="profile-stack">
         <section class="profile-card">
-          <h2>快捷入口</h2>
-          <div class="profile-links">
-            <a href="index.html">功能首页 <span>筛选出发</span></a>
-            <a href="smart-search.html">智能推荐 <span>条件匹配</span></a>
-            <a href="search.html">关键词搜索 <span>全国模板</span></a>
-            <a href="feedback.html">意见反馈 <span>提交建议</span></a>
+          <div class="profile-card__head">
+            <h2>基本信息</h2>
+            <span>PROFILE</span>
+          </div>
+          <div class="profile-card__body">
+            <form id="profileForm" class="profile-form-grid">
+              <div class="field">
+                <label for="displayName">显示名称</label>
+                <input id="displayName" name="displayName" maxlength="40" required />
+              </div>
+              <div class="field">
+                <label for="city">常住 / 偏好城市</label>
+                <input id="city" name="city" maxlength="40" placeholder="例如：全国 / 上海 / 昆明" />
+              </div>
+              <div class="field field--full">
+                <label for="email">联系邮箱（演示）</label>
+                <input id="email" name="email" type="email" maxlength="80" placeholder="可选" />
+              </div>
+              <div class="field field--full">
+                <label for="bio">个人简介</label>
+                <textarea id="bio" name="bio" maxlength="200" placeholder="一句话介绍你的旅行偏好"></textarea>
+              </div>
+
+              <p class="profile-section-label">默认筛选偏好</p>
+              <div class="field">
+                <label for="day_range">计划天数</label>
+                <select id="day_range" name="day_range">
+                  <option value="">未设置</option>
+                  <option value="1-2">1-2天</option>
+                  <option value="3-5">3-5天</option>
+                  <option value="6-7">6-7天</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="route_type">兴趣主题</label>
+                <select id="route_type" name="route_type">
+                  <option value="">未设置</option>
+                  <option value="文化体验">文化体验</option>
+                  <option value="自然观光">自然观光</option>
+                  <option value="亲子休闲">亲子休闲</option>
+                  <option value="乡村旅游">乡村旅游</option>
+                </select>
+              </div>
+              <div class="field field--full">
+                <label for="budget_level">规划风格</label>
+                <select id="budget_level" name="budget_level">
+                  <option value="">未设置</option>
+                  <option value="经济型">经济型</option>
+                  <option value="舒适型">舒适型</option>
+                  <option value="豪华型">豪华型</option>
+                </select>
+              </div>
+              <div class="profile-actions">
+                <button class="btn" type="submit">保存资料</button>
+                <a class="btn btn--ghost" href="smart-search.html">用偏好去推荐</a>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+
+      <aside class="profile-stack">
+        <section class="profile-card">
+          <div class="profile-card__head">
+            <h2>账户概览</h2>
+            <span>OVERVIEW</span>
+          </div>
+          <div class="profile-card__body">
+            <div class="profile-stats">
+              <div class="profile-stat"><strong id="statRoutes">—</strong><span>可浏览路线</span></div>
+              <div class="profile-stat"><strong id="statRegions">—</strong><span>区域类型</span></div>
+              <div class="profile-stat"><strong id="statUser">—</strong><span>用户名</span></div>
+            </div>
+            <p class="profile-bio-box" id="profileBioPreview"></p>
+          </div>
+        </section>
+
+        <section class="profile-card">
+          <div class="profile-card__head">
+            <h2>快捷入口</h2>
+            <span>SHORTCUTS</span>
+          </div>
+          <div class="profile-card__body">
+            <div class="profile-links">
+              <a href="index.html">功能首页 <span>筛选出发</span></a>
+              <a href="smart-search.html">智能推荐 <span>条件匹配</span></a>
+              <a href="search.html">关键词搜索 <span>全国模板</span></a>
+              <a href="feedback.html">意见反馈 <span>提交建议</span></a>
+              <a href="../landing/index.html">营销首页 <span>Landing</span></a>
+            </div>
           </div>
         </section>
       </aside>
@@ -360,11 +504,9 @@
         }
         XLYUI.showFlash("success", res.msg);
         fill();
-        // 刷新顶栏显示名
         const cur = XLYAuth.current();
         const chip = document.querySelector(".nav-user");
         if (chip) chip.textContent = "欢迎，" + (res.profile?.displayName || cur?.username || "");
-        // admin 使用固定专业头像，不随显示名改字母
         if (cur?.username !== "admin") {
           const av = document.querySelector(".user-chip .avatar:not(img)");
           if (av && res.profile?.displayName) av.textContent = res.profile.displayName.slice(0, 1);

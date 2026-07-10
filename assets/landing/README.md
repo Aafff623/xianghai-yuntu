@@ -11,6 +11,8 @@
 | `dest-culture.jpg` | 文化体验 |
 | `dest-nature.jpg` | 自然观光 |
 | `dest-family.jpg` | 亲子休闲 |
-| `logo.jpg` | 品牌 Logo 副本 |
+| `logo.jpg` | 品牌 Logo 副本（历史；页面已改用 `../brand/logo.svg`） |
+| `slide-qingdao.jpg` 等 | 早期山东轮播素材（可选保留） |
 
-页面入口：`frontend/landing/index.html`
+页面入口：`frontend/landing/index.html`  
+主 Logo：`../brand/logo.svg` · 演示管理员头像：`../brand/avatar-admin.svg`

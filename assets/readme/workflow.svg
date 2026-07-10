@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 420" role="img" aria-label="用户主链路">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fbfaf7"/><stop offset="1" stop-color="#f0f6f8"/></linearGradient>
+  <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b4f78"/><stop offset="1" stop-color="#147d9b"/></linearGradient>
+  <filter id="s"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0a3553" flood-opacity="0.1"/></filter>
+  <marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#0a6eae"/></marker>
+</defs>
+<rect width="980" height="420" fill="url(#bg)"/>
+<text x="40" y="42" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="22" font-weight="700" fill="#0a3553">乡旅e模式 · 用户主链路</text>
+<text x="40" y="68" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="13" fill="#5e7482">Landing 认知 → 注册登录 → 三维筛选推荐 → 详情文档 → 反馈</text>
+<g filter="url(#s)">
+  <rect x="40" y="120" width="130" height="150" rx="14" fill="#fff" stroke="#dce5e9"/>
+  <rect x="40" y="120" width="130" height="8" rx="4" fill="url(#sea)"/>
+  <text x="54" y="162" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#0a6eae">01 Landing</text>
+  <text x="54" y="192" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#0a3553">营销认知</text>
+  <text x="54" y="220" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="11" fill="#5e7482">主题场景 / 演示</text>
+</g>
+<path d="M174 195 H196" stroke="#0a6eae" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<g filter="url(#s)">
+  <rect x="200" y="120" width="130" height="150" rx="14" fill="#fff" stroke="#dce5e9"/>
+  <rect x="200" y="120" width="130" height="8" rx="4" fill="url(#sea)"/>
+  <text x="214" y="162" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#0a6eae">02 注册登录</text>
+  <text x="214" y="192" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#0a3553">admin / 123456</text>
+  <text x="214" y="220" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="11" fill="#5e7482">演示账号可用</text>
+</g>
+<path d="M334 195 H356" stroke="#0a6eae" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<g filter="url(#s)">
+  <rect x="360" y="120" width="130" height="150" rx="14" fill="#fff" stroke="#dce5e9"/>
+  <rect x="360" y="120" width="130" height="8" rx="4" fill="url(#sea)"/>
+  <text x="374" y="162" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#0a6eae">03 首页筛选</text>
+  <text x="374" y="192" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#0a3553">天数·主题·风格</text>
+  <text x="374" y="220" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="11" fill="#5e7482">热门标签可选</text>
+</g>
+<path d="M494 195 H516" stroke="#0a6eae" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<g filter="url(#s)">
+  <rect x="520" y="120" width="130" height="150" rx="14" fill="#fff" stroke="#dce5e9"/>
+  <rect x="520" y="120" width="130" height="8" rx="4" fill="url(#sea)"/>
+  <text x="534" y="162" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#0a6eae">04 智能推荐</text>
+  <text x="534" y="192" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#0a3553">排序结果卡片</text>
+  <text x="534" y="220" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="11" fill="#5e7482">需登录</text>
+</g>
+<path d="M654 195 H676" stroke="#0a6eae" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<g filter="url(#s)">
+  <rect x="680" y="120" width="130" height="150" rx="14" fill="#fff" stroke="#dce5e9"/>
+  <rect x="680" y="120" width="130" height="8" rx="4" fill="url(#sea)"/>
+  <text x="694" y="162" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#0a6eae">05 路线详情</text>
+  <text x="694" y="192" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#0a3553">Markdown 行程</text>
+  <text x="694" y="220" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="11" fill="#5e7482">餐饮住宿费用</text>
+</g>
+<path d="M814 195 H836" stroke="#0a6eae" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<g filter="url(#s)">
+  <rect x="840" y="120" width="130" height="150" rx="14" fill="#fff" stroke="#dce5e9"/>
+  <rect x="840" y="120" width="130" height="8" rx="4" fill="url(#sea)"/>
+  <text x="854" y="162" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#0a6eae">06 反馈</text>
+  <text x="854" y="192" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#0a3553">意见提交</text>
+  <text x="854" y="220" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="11" fill="#5e7482">本地演示提示</text>
+</g>
+
+<rect x="40" y="310" width="900" height="70" rx="12" fill="#fff" stroke="#e4eaed"/>
+<text x="60" y="342" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#0a3553">旁路能力</text>
+<text x="60" y="366" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="12" fill="#5e7482">顶栏关键词搜索 · 个人资料偏好 · 收藏（演示）· 返回 Landing 首页</text>
+</svg>

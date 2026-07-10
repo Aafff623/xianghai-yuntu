@@ -73,3 +73,26 @@ chore(init): project-init Phase A for coding-dev
   - 新增 frontend/app 七页功能演示（全国种子数据 + localStorage 鉴权）
 - **状态**: commit + push
 
+
+## app-polish-final — 资料页布局 / 按钮 hover / 返回 Landing / 资产文档 / README
+
+- **时间**: 2026-07-10
+- **类型**: T3 功能实施（ad-hoc）+ T9 资产 + T0
+- **做了什么**:
+  - 个人资料页：基本信息 / 账户概览 / 快捷入口卡片重排
+  - 修复白底 ghost/outline 按钮 hover 白字不可见
+  - App 顶栏「返回首页」→ Landing；Landing 导航圆角 16px
+  - Playwright Showcase 截图 + SVG 架构/链路/功能图
+  - 重写根 README（乡旅e模式全国口径）；`assets/readme/README.md` GPT 出图规格
+  - 全局 `assets/README.md` / brand / landing 索引
+- **改了哪些文件**:
+  - `frontend/app/**`、`frontend/landing/styles.css`
+  - `README.md`、`assets/**`、`docs/history/2026-07-10/commit-history.md`
+- **状态**: committed after push
+- **建议 commit**:
+  ```
+  feat: polish app UI, landing nav radius, refresh README showcase
+  ```
+
+
+

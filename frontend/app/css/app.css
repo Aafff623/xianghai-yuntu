@@ -110,7 +110,7 @@ main {
   padding: 1.35rem 1.15rem 3rem;
 }
 
-/* Buttons — 独立配色，hover 仅作用于自身 */
+/* Buttons — 主色 / ghost 分流，避免白底按钮 hover 变蓝盖白字 */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -124,18 +124,18 @@ main {
   padding: 0.6rem 1.2rem;
   cursor: pointer;
   background: var(--ocean);
-  color: #fff !important;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  color: #fff;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
   isolation: isolate;
   position: relative;
   z-index: 1;
   box-shadow: none;
 }
 
-.btn:hover,
-.btn:focus-visible {
+.btn:hover:not(.btn--ghost):not(.btn--outline),
+.btn:focus-visible:not(.btn--ghost):not(.btn--outline) {
   background: var(--ocean-deep);
-  color: #fff !important;
+  color: #fff;
   transform: none;
   box-shadow: none;
 }
@@ -144,19 +144,47 @@ main {
   transform: scale(0.98);
 }
 
-.btn--ghost {
-  background: #fff;
+.btn--ghost,
+a.btn--ghost,
+button.btn--ghost {
+  background: #fff !important;
+  background-image: none !important;
   border-color: var(--line);
   color: var(--ink) !important;
-  box-shadow: none;
+  box-shadow: none !important;
 }
 
 .btn--ghost:hover,
-.btn--ghost:focus-visible {
-  background: #fff;
-  border-color: rgba(10, 110, 174, 0.4);
+.btn--ghost:focus-visible,
+a.btn--ghost:hover,
+a.btn--ghost:focus-visible,
+button.btn--ghost:hover,
+button.btn--ghost:focus-visible {
+  background: #f4f8fa !important;
+  background-image: none !important;
+  border-color: rgba(10, 110, 174, 0.4) !important;
   color: var(--ocean-deep) !important;
-  box-shadow: none;
+  box-shadow: none !important;
+}
+
+.btn--outline,
+a.btn--outline,
+button.btn--outline {
+  background: #fff !important;
+  background-image: none !important;
+  border: 1px solid var(--line);
+  color: var(--ink) !important;
+  box-shadow: none !important;
+}
+
+.btn--outline:hover,
+.btn--outline:focus-visible,
+a.btn--outline:hover,
+button.btn--outline:hover {
+  background: #f4f8fa !important;
+  background-image: none !important;
+  border-color: rgba(10, 110, 174, 0.4) !important;
+  color: var(--ocean-deep) !important;
 }
 
 .btn--sm {

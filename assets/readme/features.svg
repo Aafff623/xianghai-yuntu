@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" role="img" aria-label="核心功能模块">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f7fafb"/><stop offset="1" stop-color="#eef5f8"/></linearGradient>
+  <filter id="s"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0a3553" flood-opacity="0.08"/></filter>
+</defs>
+<rect width="960" height="360" fill="url(#bg)"/>
+<text x="40" y="44" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="22" font-weight="700" fill="#0a3553">核心功能模块 · Wave 1</text>
+<g filter="url(#s)">
+  <rect x="40" y="80" width="200" height="200" rx="16" fill="#fff" stroke="#dce5e9"/>
+  <circle cx="76" cy="122" r="14" fill="#0a6eae"/>
+  <text x="104" y="128" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#0a3553">智能推荐</text>
+  <text x="64" y="180" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="13" fill="#5e7482">天数 · 主题 · 风格</text>
+  <text x="64" y="204" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="13" fill="#5e7482">软匹配排序</text>
+</g>
+<g filter="url(#s)">
+  <rect x="280" y="80" width="200" height="200" rx="16" fill="#fff" stroke="#dce5e9"/>
+  <circle cx="316" cy="122" r="14" fill="#0a6eae"/>
+  <text x="344" y="128" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#0a3553">路线详情</text>
+  <text x="304" y="180" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="13" fill="#5e7482">概述 · 日程</text>
+  <text x="304" y="204" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="13" fill="#5e7482">餐饮住宿费用</text>
+</g>
+<g filter="url(#s)">
+  <rect x="520" y="80" width="200" height="200" rx="16" fill="#fff" stroke="#dce5e9"/>
+  <circle cx="556" cy="122" r="14" fill="#0a6eae"/>
+  <text x="584" y="128" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#0a3553">关键词搜索</text>
+  <text x="544" y="180" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="13" fill="#5e7482">全国区域模板</text>
+  <text x="544" y="204" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="13" fill="#5e7482">模糊检索</text>
+</g>
+<g filter="url(#s)">
+  <rect x="760" y="80" width="200" height="200" rx="16" fill="#fff" stroke="#dce5e9"/>
+  <circle cx="796" cy="122" r="14" fill="#0a6eae"/>
+  <text x="824" y="128" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#0a3553">账号与反馈</text>
+  <text x="784" y="180" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="13" fill="#5e7482">注册登录资料</text>
+  <text x="784" y="204" font-family="Microsoft YaHei, Segoe UI, sans-serif" font-size="13" fill="#5e7482">意见提交演示</text>
+</g>
+</svg>

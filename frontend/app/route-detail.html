@@ -115,11 +115,18 @@
                 related.length
                   ? `<section class="doc-section" id="sec-related">
                 <h2 class="section-label doc-h">相关推荐</h2>
-                <div class="related">
+                <div class="related related--cards">
                   ${related
                     .map(
                       (x) =>
-                        `<a href="route-detail.html?id=${encodeURIComponent(x.id)}">${x.keyword}<span>${x.region_tag || ""} · ${x.rating} 分 · ${(x.hot_tags || []).slice(0, 2).join(" / ")}</span></a>`
+                        `<a class="related-card" href="route-detail.html?id=${encodeURIComponent(x.id)}">
+                          <span class="related-card__media"><img src="${x.image}" alt="" loading="lazy" /></span>
+                          <span class="related-card__body">
+                            <strong>${x.keyword}</strong>
+                            <em>${x.region_tag || ""} · ${x.rating} 分</em>
+                            <em class="related-card__tags">${(x.hot_tags || []).slice(0, 3).join(" · ")}</em>
+                          </span>
+                        </a>`
                     )
                     .join("")}
                 </div>

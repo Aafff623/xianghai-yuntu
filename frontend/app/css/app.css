@@ -74,8 +74,9 @@ body.page-home::before {
 
 body.page-results::before {
   background:
-    linear-gradient(180deg, rgba(6, 22, 40, 0.62) 0%, rgba(6, 22, 40, 0.28) 28%, rgba(244, 241, 235, 0.88) 48%, rgba(244, 241, 235, 0.97) 100%),
-    url("../../../assets/app/bg-results.jpg") center top / cover no-repeat fixed;
+    linear-gradient(180deg, rgba(244, 241, 235, 0.88) 0%, rgba(244, 241, 235, 0.96) 40%, #f4f1eb 100%),
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(10, 110, 174, 0.08), transparent 55%),
+    var(--surface);
 }
 
 body.page-detail::before {
@@ -115,28 +116,28 @@ main {
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  border-radius: 999px;
+  border-radius: 2px;
   border: 1px solid transparent;
   font: inherit;
   font-weight: 600;
   font-size: 0.9rem;
   padding: 0.6rem 1.2rem;
   cursor: pointer;
-  background: linear-gradient(135deg, var(--ocean) 0%, var(--ocean-deep) 100%);
+  background: var(--ocean);
   color: #fff !important;
-  transition: transform 0.18s var(--ease), box-shadow 0.18s var(--ease),
-    background 0.18s var(--ease), border-color 0.18s var(--ease);
+  transition: background 0.15s ease, border-color 0.15s ease;
   isolation: isolate;
   position: relative;
   z-index: 1;
+  box-shadow: none;
 }
 
 .btn:hover,
 .btn:focus-visible {
-  background: linear-gradient(135deg, #0b7cc4 0%, #043d66 100%);
+  background: var(--ocean-deep);
   color: #fff !important;
-  transform: translateY(-1px);
-  box-shadow: 0 10px 24px rgba(10, 110, 174, 0.28);
+  transform: none;
+  box-shadow: none;
 }
 
 .btn:active {
@@ -144,7 +145,7 @@ main {
 }
 
 .btn--ghost {
-  background: rgba(255, 255, 255, 0.92);
+  background: #fff;
   border-color: var(--line);
   color: var(--ink) !important;
   box-shadow: none;
@@ -155,7 +156,7 @@ main {
   background: #fff;
   border-color: rgba(10, 110, 174, 0.4);
   color: var(--ocean-deep) !important;
-  box-shadow: 0 8px 20px rgba(10, 110, 174, 0.12);
+  box-shadow: none;
 }
 
 .btn--sm {
@@ -180,14 +181,19 @@ main {
   position: sticky;
   top: 0;
   z-index: 40;
-  height: var(--nav-h);
+  height: auto;
+  min-height: var(--nav-h);
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0 1.15rem;
-  background: rgba(244, 241, 235, 0.82);
-  backdrop-filter: blur(14px) saturate(140%);
-  border-bottom: 1px solid rgba(14, 26, 36, 0.06);
+  margin: 0.65rem auto 0;
+  max-width: calc(var(--max) + 2rem);
+  padding: 0.55rem 0.85rem;
+  background: #fff;
+  border: 1px solid rgba(14, 26, 36, 0.1);
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(14, 26, 36, 0.04);
+  backdrop-filter: none;
 }
 
 .app-nav__brand {
@@ -306,6 +312,11 @@ main {
   align-items: end;
 }
 
+.home-hero--simple {
+  grid-template-columns: 1fr;
+  max-width: 36rem;
+}
+
 .home-hero__copy h1 {
   margin: 0 0 0.45rem;
   font-size: clamp(1.85rem, 3.6vw, 2.55rem);
@@ -337,16 +348,16 @@ main {
 }
 
 .panel {
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.65);
-  border-radius: calc(var(--radius) + 4px);
-  padding: 1.35rem 1.35rem 1.45rem;
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(12px);
+  background: #fff;
+  border: 1px solid rgba(14, 26, 36, 0.08);
+  border-radius: 2px;
+  padding: 1.35rem 1.45rem 1.5rem;
+  box-shadow: 0 1px 2px rgba(14, 26, 36, 0.04);
 }
 
 .panel--glass {
-  background: rgba(255, 255, 255, 0.78);
+  background: #fff;
+  backdrop-filter: none;
 }
 
 .form-grid {
@@ -425,35 +436,34 @@ main {
 
 .chip {
   appearance: none;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--ink-soft);
+  border: 1px solid #d8dee4;
+  background: #fff;
+  color: #5c6b78;
   font: inherit;
   font-size: 0.8rem;
-  font-weight: 600;
-  padding: 0.38rem 0.75rem;
-  border-radius: 999px;
+  font-weight: 500;
+  padding: 0.36rem 0.7rem;
+  border-radius: 2px;
   cursor: pointer;
-  transition: background 0.15s var(--ease), border-color 0.15s var(--ease),
-    color 0.15s var(--ease), transform 0.15s var(--ease);
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
 }
 
 .chip:hover {
-  border-color: rgba(10, 110, 174, 0.35);
-  color: var(--ocean-deep);
-  transform: translateY(-1px);
+  border-color: #a8b4c0;
+  color: #1a2b38;
+  transform: none;
 }
 
 .chip.is-active {
-  background: rgba(10, 110, 174, 0.1);
-  border-color: rgba(10, 110, 174, 0.45);
-  color: var(--ocean-deep);
+  background: #f0f4f8;
+  border-color: #0a6eae;
+  color: #0a6eae;
 }
 
 .chip--hot.is-active {
-  background: linear-gradient(135deg, rgba(255, 140, 66, 0.18), rgba(10, 110, 174, 0.12));
-  border-color: rgba(255, 140, 66, 0.45);
-  color: #b85a18;
+  background: #fff8f2;
+  border-color: #c46a28;
+  color: #a35418;
 }
 
 /* Auth */
@@ -484,25 +494,25 @@ main {
   font-weight: 600;
 }
 
-/* Results header */
+/* Results header — 与文档页同系，非深色 Hero */
 .page-head {
   margin-bottom: 1.15rem;
   color: var(--ink);
 }
 
 body.page-results .page-head {
-  color: #f4f8fc;
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
+  color: var(--ink);
+  text-shadow: none;
 }
 
 body.page-results .page-head .page-sub,
 body.page-results .back-link {
-  color: rgba(244, 248, 252, 0.88) !important;
+  color: var(--ink-soft) !important;
   text-shadow: none;
 }
 
 body.page-results .back-link:hover {
-  color: #fff !important;
+  color: var(--ocean) !important;
 }
 
 .page-title {
@@ -532,21 +542,19 @@ body.page-results .back-link:hover {
 .route-card {
   display: grid;
   grid-template-columns: 160px 1fr;
-  background: rgba(255, 255, 255, 0.94);
+  background: #fff;
   border: 1px solid rgba(14, 26, 36, 0.08);
-  border-radius: var(--radius);
+  border-radius: 2px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(14, 26, 36, 0.05);
-  transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease),
-    border-color 0.22s var(--ease);
+  box-shadow: none;
+  transition: border-color 0.15s ease;
   color: var(--ink);
 }
 
 .route-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow);
-  border-color: rgba(10, 110, 174, 0.18);
-  /* 明确：不改变内部文字/链接基础色 */
+  transform: none;
+  box-shadow: none;
+  border-color: rgba(14, 26, 36, 0.16);
   color: var(--ink);
   background: #fff;
 }
@@ -1111,7 +1119,7 @@ body.page-detail main {
   line-height: 1.65;
 }
 
-/* 相关推荐：列表而非卡片栅格 */
+/* 相关推荐：带独立封面图的条目 */
 .related {
   display: grid;
   grid-template-columns: 1fr;
@@ -1121,34 +1129,78 @@ body.page-detail main {
   margin-top: 0.35rem;
 }
 
-.related a {
+.related--cards {
+  gap: 0.75rem;
+  border-top: none;
+  margin-top: 0.15rem;
+  padding-top: 0.15rem;
+}
+
+.related-card {
+  display: grid !important;
+  grid-template-columns: 112px 1fr;
+  gap: 0.85rem;
+  align-items: stretch;
+  background: transparent !important;
+  border: 1px solid #e8ecf0 !important;
+  border-radius: 2px !important;
+  padding: 0 !important;
+  overflow: hidden;
+  color: #0e1a24 !important;
+  transition: border-color 0.15s ease;
+  font-weight: 400 !important;
+}
+
+.related-card:hover {
+  border-color: #c5ced6 !important;
+  color: #0e1a24 !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.related-card__media {
+  display: block;
+  min-height: 84px;
+  background: #eef1f4;
+  overflow: hidden;
+}
+
+.related-card__media img {
+  width: 100%;
+  height: 100%;
+  min-height: 84px;
+  object-fit: cover;
+}
+
+.related-card__body {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 0.2rem;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid #e8ecf0;
-  border-radius: 0;
-  padding: 0.85rem 0;
-  font-size: 0.95rem;
+  padding: 0.65rem 0.75rem 0.65rem 0;
+  min-width: 0;
+}
+
+.related-card__body strong {
+  font-size: 0.92rem;
   font-weight: 600;
-  color: #0e1a24 !important;
-  transition: color 0.15s ease;
+  color: #0e1a24;
+  line-height: 1.35;
 }
 
-.related a:hover {
-  border-color: #e8ecf0;
-  transform: none;
-  box-shadow: none;
-  color: #0a6eae !important;
+.related-card:hover .related-card__body strong {
+  color: #0a6eae;
 }
 
-.related a span {
-  display: block;
-  margin-top: 0;
-  font-weight: 400;
-  font-size: 0.8rem;
+.related-card__body em {
+  font-style: normal;
+  font-size: 0.78rem;
   color: #8a96a0;
+  font-weight: 400;
+}
+
+.related-card__tags {
+  color: #a0aab4 !important;
 }
 
 .section-label.doc-h {

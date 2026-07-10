@@ -346,8 +346,9 @@
         XLYUI.showFlash("success", res.msg);
         fill();
         // 刷新顶栏显示名
+        const cur = XLYAuth.current();
         const chip = document.querySelector(".nav-user");
-        if (chip) chip.textContent = "欢迎，" + (res.profile?.displayName || user.username);
+        if (chip) chip.textContent = "欢迎，" + (res.profile?.displayName || cur?.username || "");
         const av = document.querySelector(".user-chip .avatar");
         if (av && res.profile?.displayName) av.textContent = res.profile.displayName.slice(0, 1);
       });

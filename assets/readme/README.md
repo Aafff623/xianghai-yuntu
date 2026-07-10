@@ -53,4 +53,7 @@
 |------|:----:|
 | Playwright Showcase | ✅ |
 | GPT 架构 / 链路 / 功能 / 技术栈 / Banner PNG | ✅ v2 |
-| structure.png（目录树信息图） | ⬜ 可选 |
+| structure.png（目录树信息图） | ⬜ 可选（README 用文字树代替） |
+| Deliver 资产目录同步 | ✅ 2026-07-10 |
+
+**主题 brief：** [`docs/output/reports/readme-diagrams/readme-diagram-status.md`](../../docs/output/reports/readme-diagrams/readme-diagram-status.md)

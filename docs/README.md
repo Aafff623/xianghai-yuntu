@@ -74,6 +74,8 @@ docs/
 |---|---|---|
 | `docs/adr/0000-…` | 采用 ADR | **Accepted** |
 | `docs/adr/0001-…` | 图片放 assets/ | **Accepted** |
-| `docs/output/reports/{theme}/` | 第一个业务 PRD | 待立项 |
-| `assets/readme/` | README 终稿配图 | 占位，待生成 |
-| `frontend/` · `backend/` | 应用源码 | 待脚手架 |
+| `docs/output/reports/mvp-platform/prd.md` | Wave 1 PRD | 已有草稿 |
+| `docs/output/reports/readme-diagrams/` | README 配图主题状态 | ✅ 见 `readme-diagram-status.md` |
+| `assets/readme/` | README 配图（Showcase + GPT 信息图 v2） | ✅ 已落地 |
+| `frontend/` | Landing + App 静态演示 | ✅ 可本地演示 |
+| `backend/` | Flask REST | 🔜 规划 / 待脚手架 |

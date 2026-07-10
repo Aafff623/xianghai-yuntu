@@ -13,7 +13,7 @@
 | `prototype/` | GPT HTML 原型风光与参考截图 | Landing 反馈视觉；App 鉴权/反馈分栏 |
 | `banners/` | 横幅 / 海岸题材 | README / 营销 |
 | `marketing/` | 竞赛封面等 | 对外材料 |
-| `readme/` | README Showcase 配图（可占位） | 根 `README.md` |
+| `readme/` | README 配图（Showcase 截图 + GPT 信息图 v2） | 根 `README.md` |
 | `misc/` | 占位图 | 兜底 |
 
 ## 品牌（`brand/`）
@@ -42,9 +42,28 @@
 | 2026-07-10 | 新增 `avatar-admin.svg`；`logo.svg` 改为乡旅e模式词标；引入 prototype 风光与路线独立配图 |
 | 2026-07-10 | `readme/`：Playwright Showcase 五图 + architecture/workflow/features.svg；根 README 重写 |
 | 2026-07-10 | 导入 GPT 资产包 v2：`banner/architecture/workflow/features/tech-stack.png` |
+| 2026-07-10 | Deliver 收尾：资产索引与 `docs/README` 状态同步；Wave 1 前端演示资产齐备 |
+
+### `readme/` 契约文件（当前主用）
+
+| 文件 | 说明 |
+|------|------|
+| `banner.png` | 页首横幅 |
+| `architecture.png` | 系统架构 |
+| `workflow.png` | 用户主链路 |
+| `features.png` | 核心功能 |
+| `tech-stack.png` | 技术栈分层 |
+| `showcase-landing.png` | Playwright · Landing |
+| `showcase-home.png` | Playwright · App 首页 |
+| `showcase-smart-search.png` | Playwright · 智能推荐 |
+| `showcase-route-detail.png` | Playwright · 路线详情 |
+| `showcase-auth.png` | Playwright · 登录 |
+
+> 细节与替换流程见 [`readme/README.md`](readme/README.md)。SVG 基线（`*.svg`）可保留作对照，根 README 已优先引用 PNG。
 
 子目录说明：
 
+- [`brand/README.md`](brand/README.md)
 - [`landing/README.md`](landing/README.md)
 - [`routes/README.md`](routes/README.md)
 - [`prototype/README.md`](prototype/README.md)

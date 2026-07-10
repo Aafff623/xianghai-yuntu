@@ -88,11 +88,27 @@ chore(init): project-init Phase A for coding-dev
 - **改了哪些文件**:
   - `frontend/app/**`、`frontend/landing/styles.css`
   - `README.md`、`assets/**`、`docs/history/2026-07-10/commit-history.md`
-- **状态**: committed after push
+- **状态**: committed after push（`c03e354` 等）
+
+
+## readme-assets-v2 — GPT 信息图导入 + README 文案收尾 + Deliver
+
+- **时间**: 2026-07-10
+- **类型**: T9 资产 + T4 brief 同步 + T0
+- **做了什么**:
+  - 导入 `xianglv-e-mode-readme-assets-v2.zip` → `banner/architecture/workflow/features/tech-stack.png`
+  - 根 README 引用切 PNG；文案加长、副标改写、徽章 flat-square
+  - Deliver：同步 `assets/README.md`、`assets/readme/README.md`、`docs/README.md` 资产状态（非占位）
+- **改了哪些文件**:
+  - `assets/readme/*.png`、`assets/readme/README.md`、`assets/README.md`
+  - `README.md`、`docs/README.md`、`docs/history/2026-07-10/commit-history.md`
+  - （可选 brief）`docs/output/reports/readme-diagrams/readme-diagram-status.md`
+- **状态**: awaiting-review → 本轮 Deliver 后建议 commit
 - **建议 commit**:
   ```
-  feat: polish app UI, landing nav radius, refresh README showcase
+  docs(assets): deliver sync readme asset catalog status
   ```
+
 
 
 

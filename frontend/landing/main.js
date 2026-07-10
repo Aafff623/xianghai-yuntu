@@ -366,4 +366,26 @@
       });
     });
   }
+
+  /* ---------- Product roadmap tabs ---------- */
+  const roadmapTabs = document.querySelectorAll(".roadmap__tab");
+  const roadmapPanels = document.querySelectorAll(".roadmap__panel");
+  if (roadmapTabs.length && roadmapPanels.length) {
+    roadmapTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const wave = tab.getAttribute("data-wave");
+        roadmapTabs.forEach((t) => {
+          const on = t === tab;
+          t.classList.toggle("is-active", on);
+          t.setAttribute("aria-selected", on ? "true" : "false");
+        });
+        roadmapPanels.forEach((panel) => {
+          const on = panel.getAttribute("data-wave") === wave;
+          panel.classList.toggle("is-active", on);
+          if (on) panel.removeAttribute("hidden");
+          else panel.setAttribute("hidden", "");
+        });
+      });
+    });
+  }
 })();

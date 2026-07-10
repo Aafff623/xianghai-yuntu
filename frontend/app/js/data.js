@@ -351,30 +351,36 @@ window.XLYData = {
     return window.XLY_ROUTES.find((r) => r.id === id) || null;
   },
   smartSearch({ day_range, route_type, budget_level, region_tag, hot_tag }) {
-    let list = window.XLY_ROUTES.filter((r) => {
-      const d = !day_range || r.day_range === day_range;
-      const t = !route_type || r.route_type === route_type;
-      const b = !budget_level || r.budget_level === budget_level;
-      const reg = !region_tag || r.region_tag === region_tag;
-      const hot =
-        !hot_tag ||
-        (Array.isArray(r.hot_tags) && r.hot_tags.includes(hot_tag)) ||
-        (r.keyword || "").includes(hot_tag);
-      return d && t && b && reg && hot;
+    // 软匹配：全部进入候选，按匹配分 + 热度综合排序，保证结果量
+    const scored = window.XLY_ROUTES.map((r) => {
+      let match = 0;
+      if (day_range && r.day_range === day_range) match += 40;
+      else if (day_range) match -= 8;
+      if (route_type && r.route_type === route_type) match += 28;
+      if (budget_level && r.budget_level === budget_level) match += 18;
+      if (region_tag && r.region_tag === region_tag) match += 32;
+      if (
+        hot_tag &&
+        Array.isArray(r.hot_tags) &&
+        r.hot_tags.includes(hot_tag)
+      ) {
+        match += 24;
+      }
+      const final = match * 0.55 + rankScore(r) * 0.45;
+      return { r, match, final };
     });
-    if (!list.length) {
-      // 放宽：去掉风格限制，保留天数或主题或标签
-      list = window.XLY_ROUTES.filter((r) => {
-        const d = !day_range || r.day_range === day_range;
-        const t = !route_type || r.route_type === route_type;
-        const reg = !region_tag || r.region_tag === region_tag;
-        const hot =
-          !hot_tag || (Array.isArray(r.hot_tags) && r.hot_tags.includes(hot_tag));
-        return (d || t) && (reg || !region_tag) && (hot || !hot_tag);
-      });
+
+    // 至少保留匹配分较高的一批；不足时回退全量按热度
+    let list = scored
+      .filter((x) => x.match >= 18 || (!day_range && !route_type && !region_tag && !hot_tag))
+      .sort((a, b) => b.final - a.final)
+      .map((x) => x.r);
+
+    if (list.length < 4) {
+      list = scored.sort((a, b) => b.final - a.final).map((x) => x.r);
     }
-    if (!list.length) list = window.XLY_ROUTES.slice();
-    return list.sort((a, b) => rankScore(b) - rankScore(a));
+    // 演示侧默认展示更多条
+    return list.slice(0, 10);
   },
   related(route, limit = 3) {
     if (!route) return [];

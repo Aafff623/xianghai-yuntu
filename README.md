@@ -1,13 +1,14 @@
 <div align="center">
 
-# 乡旅e模式 · 乡村旅游路线规划 Web 系统
+# 乡旅e模式 · 全国乡村短途智能路线规划
 
-*把全国的乡村短途，收成一条能走的路线。*
+*从分散的攻略与碎片信息里，整理出一条能出发、走得完、也说得清的乡村行程。*
 
-面向 **全国** 乡村旅游、自然观光、亲子休闲与文化体验用户的轻量路线规划 Web 演示：按 **天数 · 主题 · 风格** 收敛可执行行程。
+面向 **全国** 乡村旅游、自然观光、亲子休闲与文化体验用户的轻量 Web 演示系统。  
+不只堆景点清单，而是按 **计划天数 · 兴趣主题 · 规划风格** 做可解释筛选，再展开每日安排、餐饮住宿与费用参考，帮助你把「想去乡下走走」收成一条真正可执行的路线。
 
 <p>
-  <strong>中文</strong>
+  <strong>中文文档</strong>
 </p>
 
 </div>
@@ -17,11 +18,11 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Wave_1-Frontend_Demo_Ready-brightgreen?style=for-the-badge" alt="Wave 1">
-  <img src="https://img.shields.io/badge/Stack-HTML_CSS_JS_%7C_Flask_planned-blue?style=for-the-badge" alt="Stack">
-  <img src="https://img.shields.io/badge/Scope-Nationwide_Rural-0a6eae?style=for-the-badge" alt="Nationwide">
-  <img src="https://img.shields.io/badge/Demo_Account-admin%2F123456-orange?style=for-the-badge" alt="Demo">
-  <a href="https://github.com/Aafff623/xianghai-yuntu/stargazers"><img src="https://img.shields.io/github/stars/Aafff623/xianghai-yuntu?style=for-the-badge" alt="GitHub stars"></a>
+  <img src="https://img.shields.io/badge/Wave%201-Frontend%20Demo-2ea44f?style=flat-square&logo=github" alt="Wave 1">
+  <img src="https://img.shields.io/badge/Stack-HTML%20%7C%20CSS%20%7C%20JS%20%2B%20Flask%20planned-0b547e?style=flat-square&logo=javascript&logoColor=white" alt="Stack">
+  <img src="https://img.shields.io/badge/Scope-Nationwide%20Rural-147d9b?style=flat-square&logo=googlemaps&logoColor=white" alt="Nationwide">
+  <img src="https://img.shields.io/badge/Demo-admin%20%2F%20123456-c47845?style=flat-square&logo=keybase&logoColor=white" alt="Demo">
+  <a href="https://github.com/Aafff623/xianghai-yuntu/stargazers"><img src="https://img.shields.io/github/stars/Aafff623/xianghai-yuntu?style=flat-square&logo=github" alt="GitHub stars"></a>
 </p>
 
 <p align="center">

@@ -3,34 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>提交反馈 · 乡旅e模式</title>
+  <title>意见反馈 · 乡旅e模式</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/app.css" />
+  <link rel="stylesheet" href="css/shell.css" />
 </head>
-<body class="page-home">
+<body class="page-feedback">
   <div id="flash" class="flash" role="status"></div>
   <header class="app-nav">
     <a class="app-nav__brand" href="index.html">
-      <img src="../../assets/landing/logo.jpg" alt="" width="30" height="30" />
+      <img src="../../assets/brand/logo.svg" alt="乡旅e模式" />
       <span>乡旅e模式</span>
     </a>
+    <form class="app-nav__search" id="headerSearch">
+      <input type="search" name="q" placeholder="搜索目的地 / 玩法 / 攻略" />
+      <button class="btn btn--sm" type="submit">搜索</button>
+    </form>
     <div class="app-nav__actions" id="authSlot"></div>
   </header>
 
-  <main>
-    <a class="back-link" href="index.html">← 返回首页</a>
-    <div class="auth-wrap panel" style="max-width:560px">
-      <h1>提交反馈</h1>
-      <form id="feedbackForm">
-        <div class="field">
-          <label for="content">您的意见或建议</label>
-          <textarea id="content" name="content" required placeholder="请输入您的意见或建议…" maxlength="800"></textarea>
-        </div>
-        <button class="btn btn--block" type="submit">提交反馈</button>
+  <div class="feedback-layout">
+    <section class="feedback-main">
+      <a class="back-link" href="index.html">← 返回首页</a>
+      <p class="eyebrow">Voice of Traveler</p>
+      <h1>意见反馈</h1>
+      <p style="color:var(--muted);max-width:36ch">告诉我们你的体验与建议，帮助乡旅e模式变得更好。</p>
+      <form class="feedback-card" id="feedbackForm">
+        <label for="content" style="display:block;font-weight:600;margin-bottom:10px;font-size:14px">你的意见或建议</label>
+        <textarea id="content" name="content" required placeholder="请描述你的想法、遇到的问题，或希望增加的功能…" maxlength="800"></textarea>
+        <button class="btn" type="submit" style="width:100%;margin-top:14px">提交反馈</button>
+        <p style="margin:14px 0 0;font-size:13px;color:var(--muted)">演示环境将反馈保存在本地浏览器，不会上传服务器。</p>
       </form>
-    </div>
-  </main>
+    </section>
+    <aside class="feedback-image" aria-hidden="true"></aside>
+  </div>
 
-  <footer class="app-footer">中北大学软件学院 · 乡旅e模式</footer>
   <script src="js/auth.js"></script>
   <script src="js/app.js"></script>
   <script>

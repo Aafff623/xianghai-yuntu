@@ -37,8 +37,12 @@
     if (!slot || !window.XLYAuth) return;
     const user = XLYAuth.current();
     if (user) {
-      slot.innerHTML = `<span class="nav-user">欢迎，${escapeHtml(user.username)}</span>
-        <button type="button" class="btn btn--ghost btn--sm" id="logoutBtn">注销</button>`;
+      const initial = escapeHtml((user.username || "?").slice(0, 1));
+      slot.innerHTML = `<div class="user-chip" style="display:flex;align-items:center;gap:10px">
+          <span class="avatar" style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#e6c897,#0a5a82);display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px">${initial}</span>
+          <span class="nav-user">欢迎，${escapeHtml(user.username)}</span>
+        </div>
+        <button type="button" class="btn btn--ghost btn--sm" id="logoutBtn">退出</button>`;
       document.getElementById("logoutBtn")?.addEventListener("click", () => {
         XLYAuth.logout();
         sessionStorage.setItem(
@@ -48,9 +52,23 @@
         location.href = "index.html";
       });
     } else {
-      slot.innerHTML = `<a class="nav-link" href="register.html">注册</a>
-        <a class="btn btn--primary btn--sm" href="login.html">登录</a>`;
+      slot.innerHTML = `<a class="btn btn--ghost btn--sm" href="login.html">登录</a>
+        <a class="btn btn--sm" href="register.html">注册</a>`;
     }
+  }
+
+  function paintBrand() {
+    document.querySelectorAll(".app-nav__brand img").forEach((img) => {
+      img.src = "../../assets/brand/logo.svg";
+      img.alt = "乡旅e模式";
+      img.removeAttribute("width");
+      img.removeAttribute("height");
+    });
+    document.querySelectorAll('.app-nav__search input[type="search"]').forEach((input) => {
+      if (!input.placeholder || input.placeholder.includes("关键词")) {
+        input.placeholder = "搜索目的地 / 玩法 / 攻略";
+      }
+    });
   }
 
   function escapeHtml(s) {
@@ -82,6 +100,7 @@
   }
 
   document.addEventListener("DOMContentLoaded", () => {
+    paintBrand();
     guard();
     renderAuthSlot();
     wireHeaderSearch();

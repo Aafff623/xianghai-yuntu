@@ -4,17 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>搜索结果 · 乡旅e模式</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/app.css" />
+  <link rel="stylesheet" href="css/shell.css" />
 </head>
 <body class="page-results">
   <div id="flash" class="flash" role="status"></div>
   <header class="app-nav">
     <a class="app-nav__brand" href="index.html">
-      <img src="../../assets/landing/logo.jpg" alt="" width="30" height="30" />
+      <img src="../../assets/brand/logo.svg" alt="乡旅e模式" />
       <span>乡旅e模式</span>
     </a>
     <form class="app-nav__search" id="headerSearch">
-      <input type="search" name="q" id="qInput" placeholder="搜索全国路线关键词…" />
+      <input type="search" name="q" id="qInput" placeholder="搜索目的地 / 玩法 / 攻略" />
       <button class="btn btn--sm" type="submit">搜索</button>
     </form>
     <div class="app-nav__actions" id="authSlot"></div>
@@ -22,49 +24,88 @@
 
   <main>
     <a class="back-link" href="index.html">← 返回首页</a>
-    <h1 class="page-title">搜索结果</h1>
-    <p class="page-sub" id="hint">仅匹配路线，不包含用户</p>
-    <div id="results" class="route-list"></div>
+    <header class="page-head">
+      <p class="eyebrow">Route Search</p>
+      <h1 class="page-title serif">搜索结果</h1>
+      <p class="page-sub" id="hint">输入关键词查找全国区域类型路线</p>
+    </header>
+
+    <div class="search-tools">
+      <div class="filters" style="display:flex;gap:10px;flex-wrap:wrap">
+        <button type="button" class="btn btn--ghost btn--sm">智能排序</button>
+        <button type="button" class="btn btn--ghost btn--sm">行程天数</button>
+        <button type="button" class="btn btn--ghost btn--sm">旅行主题</button>
+      </div>
+      <div class="view-toggle" id="viewToggle">
+        <button type="button" class="active" data-view="card">▦ 卡片视图</button>
+        <button type="button" data-view="map">⌖ 地图视图</button>
+      </div>
+    </div>
+
+    <div id="results" class="route-grid"></div>
+    <div id="mapView" class="map-view" aria-hidden="true">
+      <p>地图视图（演示占位）· 后续可接入真实地图 SDK<br />当前按卡片列表中的区域类型聚合展示</p>
+    </div>
   </main>
 
   <footer class="app-footer">中北大学软件学院 · 乡旅e模式</footer>
   <script src="js/data.js"></script>
-  <script src="js/icons.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/app.js"></script>
   <script>
     const q = new URLSearchParams(location.search).get("q") || "";
     document.getElementById("qInput").value = q;
-    document.getElementById("hint").textContent = q
-      ? `关键词「${q}」· 全国区域类型路线 · 共 ${XLYData.keywordSearch(q).length} 条`
-      : "请输入关键词，如：水乡、梯田、徽州、亲子、西北";
-
     const list = XLYData.keywordSearch(q);
+    document.getElementById("hint").innerHTML = q
+      ? `为你找到与「<strong style="color:#0b5b83">${q}</strong>」相关的 ${list.length} 条路线。`
+      : "请输入关键词，如：水乡、梯田、徽州、亲子";
+
     const box = document.getElementById("results");
     if (!q) {
-      box.innerHTML = `<div class="empty"><p>请输入搜索关键词</p></div>`;
+      box.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><div class="empty-state__icon">⌕</div><h2>开始搜索</h2><p>试试「水乡」「丹霞」「亲子」等关键词。</p></div>`;
     } else if (!list.length) {
-      box.innerHTML = `<div class="empty"><p>未找到匹配结果</p></div>`;
+      box.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><div class="empty-state__icon">∅</div><h2>没有匹配结果</h2><p>换个词试试，或回到首页用智能推荐。</p><a class="btn" href="index.html">去智能推荐</a></div>`;
     } else {
       box.innerHTML = list
-        .map(
-          (r, i) => `<article class="route-card">
-          <div class="route-card__media">
+        .map((r) => {
+          const tags = [
+            `<span class="tag blue">${r.days}天</span>`,
+            `<span class="tag blue">${r.route_type}</span>`,
+            `<span class="tag sand">${r.budget_level}</span>`,
+            r.region_tag ? `<span class="tag blue">${r.region_tag}</span>` : "",
+          ].join("");
+          return `<article class="route-card-proto">
             <img src="${r.image}" alt="" />
-            <span class="route-card__rank">TOP ${i + 1}</span>
-          </div>
-          <div class="route-card__body">
-            ${XLYIcons.tagsHTML(r)}
-            <h3>${r.keyword}</h3>
-            <p class="meta">${r.region}</p>
-            ${XLYIcons.statsHTML(r)}
-            <p>${r.route_details}</p>
-            <a class="btn btn--ghost btn--sm" href="route-detail.html?id=${encodeURIComponent(r.id)}">查看详细行程</a>
-          </div>
-        </article>`
-        )
+            <div class="route-card-proto__body">
+              <h3>${r.keyword}</h3>
+              <div class="meta-row">${tags}</div>
+              <p class="muted" style="margin:0;color:var(--muted);font-size:14px;flex:1">${r.route_details}</p>
+              <div class="footer">
+                <span class="price">¥ ${r.price_from || "—"} <small>/人起</small></span>
+                <a class="btn btn--sm" href="route-detail.html?id=${encodeURIComponent(r.id)}">查看</a>
+              </div>
+            </div>
+          </article>`;
+        })
         .join("");
     }
+
+    document.getElementById("viewToggle").addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-view]");
+      if (!btn) return;
+      document.querySelectorAll("#viewToggle button").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      const map = document.getElementById("mapView");
+      if (btn.dataset.view === "map") {
+        box.style.display = "none";
+        map.classList.add("is-on");
+        map.setAttribute("aria-hidden", "false");
+      } else {
+        box.style.display = "";
+        map.classList.remove("is-on");
+        map.setAttribute("aria-hidden", "true");
+      }
+    });
   </script>
 </body>
 </html>

@@ -1,0 +1,643 @@
+/* 原型借鉴：顶栏 / 搜索 / 按钮 / 标签 设计系统 */
+:root {
+  --ink: #0a3553;
+  --ink-2: #163f5d;
+  --sea: #0b547e;
+  --sea-2: #147d9b;
+  --teal: #7fb8bc;
+  --sand: #f3ede2;
+  --paper: #fbfaf7;
+  --line: #dce5e9;
+  --muted: #718391;
+  --accent: #c47845;
+  --shadow-sm: 0 12px 30px rgba(10, 53, 83, 0.08);
+  --shadow: 0 22px 60px rgba(10, 53, 83, 0.1);
+  --r: 20px;
+  --r-sm: 14px;
+  --max-proto: 1200px;
+}
+
+body.page-home,
+body.page-results,
+body.page-detail,
+body.page-auth,
+body.page-feedback {
+  background: linear-gradient(180deg, #fff 0%, #fbfaf7 70%, #f6f2eb 100%);
+  color: var(--ink);
+}
+
+body.page-home::before,
+body.page-results::before,
+body.page-detail::before,
+body.page-auth::before,
+body.page-feedback::before {
+  background:
+    radial-gradient(ellipse 80% 40% at 20% 0%, rgba(127, 184, 188, 0.12), transparent 55%),
+    linear-gradient(180deg, #fff 0%, #fbfaf7 100%);
+}
+
+body.page-home::after,
+body.page-results::after,
+body.page-detail::after {
+  opacity: 0.02;
+}
+
+/* 顶栏：原型风格全宽条 */
+.app-nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  min-height: 72px;
+  height: auto;
+  padding: 0 max(24px, calc((100vw - var(--max-proto)) / 2));
+  gap: 28px;
+  border: none;
+  border-bottom: 1px solid rgba(15, 63, 90, 0.09);
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: none;
+}
+
+.app-nav__brand {
+  gap: 0;
+}
+
+.app-nav__brand img {
+  width: auto;
+  height: 40px;
+  max-width: 200px;
+  border-radius: 0;
+  object-fit: contain;
+  box-shadow: none;
+}
+
+.app-nav__brand span {
+  display: none; /* logo SVG 自带字标 */
+}
+
+.app-nav__search {
+  max-width: 300px;
+  height: 42px;
+  margin: 0 0 0 auto;
+  border: 1px solid #d6e0e5;
+  border-radius: 999px;
+  padding: 0 4px 0 16px;
+  background: #fff;
+  align-items: center;
+}
+
+.app-nav__search input {
+  border: 0;
+  background: transparent;
+  padding: 0.4rem 0;
+  font-size: 14px;
+}
+
+.app-nav__search input:focus {
+  border: 0;
+  background: transparent;
+  outline: none;
+}
+
+.app-nav__search .btn {
+  border-radius: 999px;
+  height: 34px;
+  padding: 0 16px;
+  font-size: 13px;
+}
+
+.app-nav__actions {
+  gap: 12px;
+}
+
+.nav-user {
+  color: #203f55;
+  font-size: 14px;
+}
+
+.btn {
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0b4c75, #0b5f88);
+  box-shadow: 0 10px 24px rgba(11, 84, 126, 0.16);
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background: linear-gradient(135deg, #0c5a88, #0a6a95);
+  box-shadow: 0 12px 28px rgba(11, 84, 126, 0.22);
+}
+
+.btn--ghost {
+  border-radius: 12px;
+  border: 1px solid #d3dee4;
+  background: #fff;
+  color: var(--ink) !important;
+  box-shadow: none;
+}
+
+.btn--ghost:hover {
+  border-color: #b8c9d3;
+  color: var(--sea) !important;
+  box-shadow: none;
+}
+
+.btn--sm {
+  border-radius: 10px;
+}
+
+/* 标签体系 */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: #edf4f6;
+  color: #2d5f79;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.tag.sand,
+.tag--hot {
+  background: #f5eee4 !important;
+  color: #8a633f !important;
+  border: none !important;
+}
+
+.tag.blue,
+.tag--region {
+  background: #e7f2f7 !important;
+  color: #0b5d82 !important;
+  border: none !important;
+}
+
+.tag.rank {
+  background: #0b557e;
+  color: #fff;
+}
+
+.price {
+  font-family: Georgia, "Noto Serif SC", serif;
+  color: var(--accent);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.price small {
+  font-size: 12px;
+  color: var(--muted);
+  font-family: inherit;
+  font-weight: 500;
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sea-2);
+  font-weight: 700;
+}
+
+.serif {
+  font-family: "Noto Serif SC", "Songti SC", "STSong", serif;
+}
+
+/* 智能推荐大卡 */
+.route-result {
+  display: grid;
+  grid-template-columns: minmax(200px, 280px) 1fr minmax(160px, 220px) 150px;
+  min-height: 210px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(16, 66, 94, 0.08);
+  border-radius: var(--r);
+  box-shadow: var(--shadow-sm);
+}
+
+.route-result > img,
+.route-result__cover {
+  width: 100%;
+  height: 100%;
+  min-height: 210px;
+  object-fit: cover;
+  display: block;
+}
+
+.route-result__body {
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.route-result__body h3 {
+  margin: 0;
+  font-size: 22px;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  color: var(--ink);
+  line-height: 1.25;
+}
+
+.route-result__body .muted {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.meta-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.highlight {
+  border-top: 1px solid #e3eaee;
+  padding-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.highlight strong {
+  display: block;
+  color: #164f6e;
+  margin-bottom: 3px;
+  font-size: 13px;
+}
+
+.mini-map {
+  position: relative;
+  background: linear-gradient(140deg, #edf5f7, #f7f4ed);
+  min-height: 210px;
+}
+
+.mini-map svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.result-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px;
+  border-left: 1px solid #e5ecef;
+}
+
+.result-actions .btn {
+  width: 100%;
+  padding: 12px 10px;
+  font-size: 13px;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+/* 搜索 3 列卡 */
+.route-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.route-card-proto {
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(16, 66, 94, 0.08);
+  border-radius: var(--r);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.route-card-proto > img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.route-card-proto__body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.route-card-proto h3 {
+  margin: 0;
+  font-size: 20px;
+  font-family: "Noto Serif SC", serif;
+}
+
+.route-card-proto .footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #e4eaed;
+  padding-top: 14px;
+  margin-top: auto;
+}
+
+.search-tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0 20px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.view-toggle {
+  display: flex;
+  padding: 4px;
+  border: 1px solid #dbe4e8;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.view-toggle button {
+  border: 0;
+  background: transparent;
+  padding: 8px 14px;
+  border-radius: 9px;
+  color: #6d818e;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.view-toggle button.active {
+  background: #edf4f6;
+  color: #0a5279;
+}
+
+.map-view {
+  display: none;
+  min-height: 360px;
+  border-radius: var(--r);
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(140deg, #edf5f7, #f7f4ed),
+    radial-gradient(circle at 30% 40%, rgba(127, 184, 188, 0.25), transparent 40%);
+  position: relative;
+  overflow: hidden;
+}
+
+.map-view.is-on {
+  display: grid;
+  place-items: center;
+}
+
+.map-view p {
+  color: var(--muted);
+  font-size: 14px;
+  z-index: 1;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 64px 24px;
+  background: #fff;
+  border: 1px solid rgba(16, 66, 94, 0.08);
+  border-radius: var(--r);
+  box-shadow: var(--shadow-sm);
+}
+
+.empty-state__icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: #edf4f6;
+  display: grid;
+  place-items: center;
+  color: var(--sea);
+  font-size: 28px;
+}
+
+.empty-state h2 {
+  margin: 0 0 8px;
+  font-family: "Noto Serif SC", serif;
+  font-size: 26px;
+}
+
+.empty-state p {
+  margin: 0 auto 20px;
+  max-width: 36ch;
+  color: var(--muted);
+}
+
+/* 登录注册 */
+.auth-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 72px);
+}
+
+.auth-copy {
+  padding: 56px max(40px, calc((100vw - var(--max-proto)) / 2));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #fbfaf7;
+}
+
+.auth-copy h1 {
+  font-family: "Noto Serif SC", serif;
+  font-size: clamp(36px, 4vw, 52px);
+  margin: 12px 0 8px;
+  color: var(--ink);
+}
+
+.auth-form {
+  padding: 28px;
+  max-width: 480px;
+  margin-top: 24px;
+  background: #fff;
+  border: 1px solid rgba(16, 66, 94, 0.08);
+  border-radius: var(--r);
+  box-shadow: var(--shadow-sm);
+}
+
+.auth-form h2 {
+  margin: 0 0 20px;
+  font-family: "Noto Serif SC", serif;
+  font-size: 22px;
+}
+
+.auth-visual {
+  position: relative;
+  background: center / cover no-repeat;
+  min-height: 480px;
+}
+
+.auth-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(251, 250, 247, 0.2), rgba(7, 52, 77, 0.08));
+}
+
+.auth-visual.login-bg {
+  background-image: url("../../../assets/prototype/images/lighthouse-coast.jpg");
+}
+
+.auth-visual.register-bg {
+  background-image: url("../../../assets/prototype/images/village-cliff.jpg");
+}
+
+.auth-benefits {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 8%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  z-index: 2;
+  color: #fff;
+}
+
+.benefit {
+  background: rgba(7, 52, 77, 0.52);
+  backdrop-filter: blur(8px);
+  padding: 14px;
+  border-radius: 14px;
+  font-size: 13px;
+}
+
+.benefit strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+/* 反馈 */
+.feedback-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  min-height: calc(100vh - 72px);
+}
+
+.feedback-main {
+  padding: 64px max(40px, calc((100vw - var(--max-proto)) / 2));
+}
+
+.feedback-main h1 {
+  font-family: "Noto Serif SC", serif;
+  font-size: clamp(36px, 4vw, 52px);
+  margin: 10px 0 8px;
+}
+
+.feedback-card {
+  padding: 24px;
+  margin-top: 28px;
+  max-width: 720px;
+  background: #fff;
+  border: 1px solid rgba(16, 66, 94, 0.08);
+  border-radius: var(--r);
+  box-shadow: var(--shadow-sm);
+}
+
+.feedback-card textarea {
+  width: 100%;
+  height: 220px;
+  resize: vertical;
+  border: 1px solid #d5e0e5;
+  border-radius: 16px;
+  padding: 16px;
+  outline: none;
+  background: #fff;
+  font: inherit;
+}
+
+.feedback-image {
+  background: url("../../../assets/prototype/images/ocean-rocks.jpg") center / cover no-repeat;
+  position: relative;
+  min-height: 420px;
+}
+
+.feedback-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #fbfaf7 0%, rgba(251, 250, 247, 0) 28%);
+}
+
+/* 筛选栏 */
+.filter-bar.card,
+.panel.filter-bar {
+  border-radius: var(--r);
+  border: 1px solid rgba(16, 66, 94, 0.08);
+  box-shadow: var(--shadow-sm);
+}
+
+.page-title.serif {
+  font-family: "Noto Serif SC", serif;
+  font-size: clamp(32px, 4vw, 46px);
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+
+@media (max-width: 1100px) {
+  .route-result {
+    grid-template-columns: 200px 1fr;
+  }
+  .mini-map,
+  .result-actions {
+    display: none;
+  }
+  .route-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .auth-page,
+  .feedback-layout {
+    grid-template-columns: 1fr;
+  }
+  .auth-benefits {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    padding: 20px;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .route-grid {
+    grid-template-columns: 1fr;
+  }
+  .highlights {
+    grid-template-columns: 1fr;
+  }
+  .app-nav {
+    padding: 10px 14px;
+    gap: 10px;
+  }
+  .app-nav__search {
+    display: none;
+  }
+}

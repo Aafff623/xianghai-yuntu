@@ -4,38 +4,51 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>登录 · 乡旅e模式</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/app.css" />
+  <link rel="stylesheet" href="css/shell.css" />
 </head>
-<body class="page-home">
+<body class="page-auth">
   <div id="flash" class="flash" role="status"></div>
   <header class="app-nav">
     <a class="app-nav__brand" href="index.html">
-      <img src="../../assets/landing/logo.jpg" alt="" width="30" height="30" />
+      <img src="../../assets/brand/logo.svg" alt="乡旅e模式" />
       <span>乡旅e模式</span>
     </a>
     <div class="app-nav__actions" id="authSlot"></div>
   </header>
 
-  <main>
-    <a class="back-link" href="index.html">← 返回首页</a>
-    <div class="auth-wrap panel">
-      <h1>用户登录</h1>
-      <form id="loginForm">
+  <div class="auth-page">
+    <section class="auth-copy">
+      <a class="back-link" href="index.html">← 返回首页</a>
+      <p class="eyebrow">Member Journey</p>
+      <h1>欢迎回来</h1>
+      <p class="muted" style="font-size:17px;color:var(--muted)">登录账号，继续你的专属旅程规划</p>
+      <form class="auth-form" id="loginForm">
+        <h2>账号登录</h2>
         <div class="field">
           <label for="username">用户名</label>
-          <input id="username" name="username" required placeholder="请输入用户名" autocomplete="username" />
+          <input class="input" id="username" name="username" required placeholder="请输入用户名" autocomplete="username" style="height:50px;border:1px solid #d8e2e7;border-radius:12px;padding:0 14px;width:100%" />
         </div>
-        <div class="field">
+        <div class="field" style="margin-top:14px">
           <label for="password">密码</label>
-          <input id="password" name="password" type="password" required placeholder="请输入密码" autocomplete="current-password" />
+          <input class="input" id="password" name="password" type="password" required placeholder="请输入密码" autocomplete="current-password" style="height:50px;border:1px solid #d8e2e7;border-radius:12px;padding:0 14px;width:100%" />
         </div>
-        <button class="btn btn--block" type="submit">登录</button>
+        <button class="btn" type="submit" style="width:100%;margin-top:18px">登录</button>
+        <p class="auth-note" style="text-align:center;margin-top:16px;font-size:14px;color:var(--muted)">
+          没有账号？ <a href="register.html" style="color:#0b6b96;font-weight:600">立即注册</a>
+        </p>
       </form>
-      <p class="auth-foot">没有账号？<a href="register.html">立即注册</a></p>
-    </div>
-  </main>
+    </section>
+    <aside class="auth-visual login-bg" aria-hidden="true">
+      <div class="auth-benefits">
+        <div class="benefit"><strong>个性化行程</strong><span>按天数 · 主题 · 风格匹配</span></div>
+        <div class="benefit"><strong>路线收藏</strong><span>本地演示可加入收藏</span></div>
+        <div class="benefit"><strong>全国场景</strong><span>多区域类型模板</span></div>
+      </div>
+    </aside>
+  </div>
 
-  <footer class="app-footer">中北大学软件学院 · 乡旅e模式</footer>
   <script src="js/auth.js"></script>
   <script src="js/app.js"></script>
   <script>

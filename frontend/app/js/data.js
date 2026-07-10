@@ -28,6 +28,8 @@ window.XLY_ROUTES = [
     popularity: 96,
     rating: 4.8,
     likes: 1280,
+    price_from: 680,
+    highlights: [{ title: "水巷古桥", desc: "晨雾 · 石板街" }, { title: "非遗工坊", desc: "剪纸 · 染布" }, { title: "老街市集", desc: "茶歇 · 手信" }],
     ai_summary:
       "一日文化体验线，适合第一次走水乡。核心三站：水巷—老街—手作，预算友好，不赶场。",
     daily_schedule: [
@@ -55,6 +57,8 @@ window.XLY_ROUTES = [
     popularity: 88,
     rating: 4.7,
     likes: 960,
+    price_from: 590,
+    highlights: [{ title: "观景台", desc: "梯田全景" }, { title: "村落漫步", desc: "民居 · 田埂" }, { title: "农家午餐", desc: "时令土菜" }],
     ai_summary: "自然观光一日慢行。观景与村落对半开，适合周末出片，强度不高。",
     daily_schedule: [
       { day: 1, time: "09:30-12:00", title: "梯田观景", desc: "沿观景步道慢行，注意防晒与补给。" },
@@ -81,6 +85,8 @@ window.XLY_ROUTES = [
     popularity: 92,
     rating: 4.6,
     likes: 1105,
+    price_from: 720,
+    highlights: [{ title: "河谷步道", desc: "亲子节奏" }, { title: "乡野夜宿", desc: "家庭房" }, { title: "轻量研学", desc: "自然观察" }],
     ai_summary: "亲子友好两日线。白天探索、晚上住乡野，适合带娃第一次短途过夜。",
     daily_schedule: [
       { day: 1, time: "10:00-17:00", title: "河谷步道", desc: "沿河道步道探索，适合亲子节奏。" },
@@ -107,6 +113,8 @@ window.XLY_ROUTES = [
     popularity: 85,
     rating: 4.9,
     likes: 870,
+    price_from: 860,
+    highlights: [{ title: "石板巷", desc: "马头墙" }, { title: "村内民宿", desc: "慢住" }, { title: "山径轻行", desc: "近村缓坡" }],
     ai_summary: "高评分乡村慢住。第一天沉浸村落，第二天山径轻行。",
     daily_schedule: [
       { day: 1, time: "11:00-16:00", title: "入村漫步", desc: "石板巷与民居外观导览。" },
@@ -133,6 +141,8 @@ window.XLY_ROUTES = [
     popularity: 90,
     rating: 4.7,
     likes: 1420,
+    price_from: 1280,
+    highlights: [{ title: "丹霞主景", desc: "观景拍照" }, { title: "乡村夜宿", desc: "补给点" }, { title: "收尾短访", desc: "返程缓冲" }],
     ai_summary: "三日自然线。第一天适应、第二天主景、第三天收尾。",
     daily_schedule: [
       { day: 1, time: "全天", title: "抵达与近村适应", desc: "入住、补给、傍晚轻徒步。" },
@@ -159,6 +169,8 @@ window.XLY_ROUTES = [
     popularity: 78,
     rating: 4.5,
     likes: 640,
+    price_from: 980,
+    highlights: [{ title: "墟市", desc: "市井烟火" }, { title: "宗祠", desc: "文化导览" }, { title: "早茶糖水", desc: "岭南味道" }],
     ai_summary: "偏享受的文化美食线。适合想吃得好住得好的两日假期。",
     daily_schedule: [
       { day: 1, time: "10:00-17:00", title: "墟市与宗祠", desc: "市井街区与宗祠参观。" },
@@ -185,6 +197,8 @@ window.XLY_ROUTES = [
     popularity: 74,
     rating: 4.4,
     likes: 520,
+    price_from: 760,
+    highlights: [{ title: "林区步道", desc: "秋色" }, { title: "乡镇夜宿", desc: "热餐" }, { title: "林缘村落", desc: "短访" }],
     ai_summary: "林乡秋色两日。步道 + 乡野夜宿，适合想看东北自然又不想高强度徒步的人。",
     daily_schedule: [
       { day: 1, time: "10:00-16:00", title: "林区步道", desc: "沿木栈道与缓坡步道观景。" },
@@ -211,6 +225,8 @@ window.XLY_ROUTES = [
     popularity: 83,
     rating: 4.5,
     likes: 790,
+    price_from: 640,
+    highlights: [{ title: "古镇街巷", desc: "烟火气" }, { title: "慢食", desc: "火锅小吃" }, { title: "江边茶馆", desc: "收尾" }],
     ai_summary: "烟火气古镇两日。街巷漫步 + 慢食，适合想轻松玩吃的人。",
     daily_schedule: [
       { day: 1, time: "11:00-17:00", title: "古镇街巷", desc: "主街与背巷对照漫步。" },
@@ -237,6 +253,8 @@ window.XLY_ROUTES = [
     popularity: 71,
     rating: 4.6,
     likes: 430,
+    price_from: 520,
+    highlights: [{ title: "黄金时段", desc: "光线机位" }, { title: "夜景", desc: "灯带倒影" }, { title: "河景住宿", desc: "过夜" }],
     ai_summary: "摄影向水乡线，重点在黄昏与夜景。建议过夜。",
     daily_schedule: [
       { day: 1, time: "15:00-17:30", title: "预踩点", desc: "找机位、看光线。" },
@@ -263,6 +281,8 @@ window.XLY_ROUTES = [
     popularity: 80,
     rating: 4.5,
     likes: 680,
+    price_from: 890,
+    highlights: [{ title: "观景短走", desc: "低强度" }, { title: "亲子民宿", desc: "院子" }, { title: "村落互动", desc: "返程" }],
     ai_summary: "亲子友好的梯田两日。强度低、观景多，适合带娃看山看田。",
     daily_schedule: [
       { day: 1, time: "11:00-16:00", title: "观景台短走", desc: "固定观景平台，少走野路。" },
@@ -289,6 +309,8 @@ window.XLY_ROUTES = [
     popularity: 69,
     rating: 4.7,
     likes: 390,
+    price_from: 480,
+    highlights: [{ title: "薄雾时段", desc: "早起" }, { title: "巷弄补拍", desc: "细节" }, { title: "村口面馆", desc: "午餐" }],
     ai_summary: "早起摄影线。薄雾 + 马头墙，适合有一定摄影基础的人。",
     daily_schedule: [
       { day: 1, time: "05:30-08:30", title: "薄雾时段", desc: "村口与高处机位。" },
@@ -315,6 +337,8 @@ window.XLY_ROUTES = [
     popularity: 76,
     rating: 4.3,
     likes: 510,
+    price_from: 420,
+    highlights: [{ title: "宗祠参观", desc: "故事化" }, { title: "糖水午餐", desc: "亲子友好" }, { title: "墟市闲逛", desc: "手信" }],
     ai_summary: "亲子文化半日。宗祠故事 + 糖水，轻松不赶。",
     daily_schedule: [
       { day: 1, time: "10:00-12:00", title: "宗祠参观", desc: "轻讲解，控制在 90 分钟内。" },

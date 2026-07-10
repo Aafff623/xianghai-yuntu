@@ -4,17 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>智能推荐 · 乡旅e模式</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/app.css" />
+  <link rel="stylesheet" href="css/shell.css" />
 </head>
 <body class="page-results">
   <div id="flash" class="flash" role="status"></div>
   <header class="app-nav">
     <a class="app-nav__brand" href="index.html">
-      <img src="../../assets/landing/logo.jpg" alt="" width="32" height="32" />
+      <img src="../../assets/brand/logo.svg" alt="乡旅e模式" />
       <span>乡旅e模式</span>
     </a>
     <form class="app-nav__search" id="headerSearch">
-      <input type="search" name="q" placeholder="搜索全国路线关键词…" />
+      <input type="search" name="q" placeholder="搜索目的地 / 玩法 / 攻略" />
       <button class="btn btn--sm" type="submit">搜索</button>
     </form>
     <div class="app-nav__actions" id="authSlot"></div>
@@ -23,8 +26,9 @@
   <main>
     <a class="back-link" href="index.html">← 返回首页</a>
     <header class="page-head">
-      <h1 class="page-title">智能路线推荐</h1>
-      <p class="page-sub" id="queryHint">按热度 · 评分 · 点赞综合排序</p>
+      <p class="eyebrow">Smart Recommendation</p>
+      <h1 class="page-title serif">智能推荐结果</h1>
+      <p class="page-sub" id="queryHint">基于你的偏好，为你精选更合适的旅程。</p>
     </header>
 
     <section class="panel" style="margin-bottom: 1.25rem">
@@ -67,16 +71,22 @@
           <div class="chip-row" id="hotChips"></div>
         </div>
         <div style="margin-top: 1rem">
-          <button class="btn" type="submit">重新推荐</button>
+          <button class="btn" type="submit">重新推荐 ↗</button>
         </div>
       </form>
     </section>
 
-    <h2 class="section-label">为您推荐的路线</h2>
-    <div id="results" class="route-list"></div>
+    <div class="section-head" style="display:flex;justify-content:space-between;align-items:end;margin-bottom:14px">
+      <div>
+        <p class="eyebrow">Best Matches</p>
+        <h2 class="serif" style="margin:4px 0 0;font-size:28px" id="matchTitle">已为你匹配路线</h2>
+      </div>
+      <p class="small muted" style="color:var(--muted);font-size:13px">综合排序 · 热度 / 评分 / 点赞</p>
+    </div>
+    <div id="results" class="result-list" style="display:grid;gap:16px"></div>
 
-    <h2 class="section-label" id="relatedTitle" hidden>其他同天数热门路线</h2>
-    <div id="related" class="route-list"></div>
+    <h2 class="section-label" id="relatedTitle" hidden style="margin-top:2rem">其他同天数热门路线</h2>
+    <div id="related" class="result-list" style="display:grid;gap:16px"></div>
   </main>
 
   <footer class="app-footer">中北大学软件学院 · 乡旅e模式</footer>
@@ -85,19 +95,48 @@
   <script src="js/auth.js"></script>
   <script src="js/app.js"></script>
   <script>
+    function mapSVG(r) {
+      const stops = (r.highlights || []).slice(0, 3);
+      const labels = stops.map((h, i) => {
+        const x = 40 + i * 100;
+        const y = 50 + i * 40;
+        return `<circle cx="${x}" cy="${y}" r="7"/><text x="${x + 12}" y="${y + 4}" font-size="12" fill="#315b73">${h.title}</text>`;
+      }).join("");
+      return `<svg viewBox="0 0 320 225" aria-hidden="true">
+        <path d="M28 50C105 26 140 102 191 80s58 5 92 68" fill="none" stroke="#0b628b" stroke-width="2" stroke-dasharray="5 5"/>
+        <g fill="#0b628b" stroke="#fff" stroke-width="4">${labels || '<circle cx="40" cy="60" r="7"/><circle cx="150" cy="100" r="7"/><circle cx="270" cy="150" r="7"/>'}</g>
+      </svg>`;
+    }
+
     function cardHTML(r, rank) {
-      return `<article class="route-card">
-        <div class="route-card__media">
-          <img src="${r.image}" alt="" />
-          <span class="route-card__rank">TOP ${rank}</span>
-        </div>
-        <div class="route-card__body">
-          ${XLYIcons.tagsHTML(r)}
+      const tags = [
+        `<span class="tag blue">${r.days}天</span>`,
+        `<span class="tag blue">${r.route_type}</span>`,
+        `<span class="tag sand">${r.budget_level}</span>`,
+        r.region_tag ? `<span class="tag blue">${r.region_tag}</span>` : "",
+        ...(r.hot_tags || []).slice(0, 2).map((t) => `<span class="tag sand">${t}</span>`),
+      ].join("");
+      const highs = (r.highlights || [])
+        .slice(0, 3)
+        .map((h) => `<div class="highlight"><strong>${h.title}</strong>${h.desc}</div>`)
+        .join("");
+      const price = r.price_from ? `¥ ${r.price_from}` : "—";
+      return `<article class="route-result">
+        <img class="route-result__cover" src="${r.image}" alt="" />
+        <div class="route-result__body">
+          <div class="meta-row"><span class="tag rank">TOP ${rank}</span>${tags}</div>
           <h3>${r.keyword}</h3>
-          <p class="meta">${r.region}</p>
-          ${XLYIcons.statsHTML(r)}
-          <p>${r.route_details}</p>
-          <a class="btn btn--ghost btn--sm" href="route-detail.html?id=${encodeURIComponent(r.id)}">查看详细行程</a>
+          <p class="muted">${r.route_details}</p>
+          <div class="highlights">${highs || ""}</div>
+          <div class="price-row">
+            <span class="small muted" style="font-size:13px;color:var(--muted)">${r.region}</span>
+            <span class="price">${price} <small>/人起</small></span>
+          </div>
+        </div>
+        <div class="mini-map">${mapSVG(r)}</div>
+        <div class="result-actions">
+          <a class="btn" href="route-detail.html?id=${encodeURIComponent(r.id)}">查看详细行程 →</a>
+          <button type="button" class="btn btn--ghost" data-fav="${r.id}">♡ 加入收藏</button>
         </div>
       </article>`;
     }
@@ -137,20 +176,36 @@
         query.hot_tag && `热门·${query.hot_tag}`,
       ].filter(Boolean);
       document.getElementById("queryHint").textContent =
-        (bits.join(" · ") || "全部条件") + " · 按 热度40% + 评分35% + 点赞25% 排序";
+        (bits.join(" · ") || "全部条件") + " · 按综合热度排序";
+      document.getElementById("matchTitle").textContent = list.length
+        ? `已为你匹配 ${list.length} 条路线`
+        : "暂无匹配路线";
 
       if (!list.length) {
-        box.innerHTML = `<div class="empty"><div class="empty__icon">🧭</div><p>未找到匹配的路线</p><p>请尝试调整条件或标签</p></div>`;
+        box.innerHTML = `<div class="empty-state">
+          <div class="empty-state__icon">🧭</div>
+          <h2>未找到匹配的路线</h2>
+          <p>试试放宽天数、主题，或切换全国区域 / 热门标签后再推荐。</p>
+          <a class="btn" href="index.html">返回重新筛选</a>
+        </div>`;
         relatedBox.innerHTML = "";
         relatedTitle.hidden = true;
         return;
       }
       box.innerHTML = list.map((r, i) => cardHTML(r, i + 1)).join("");
+      box.querySelectorAll("[data-fav]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          XLYUI.showFlash("success", "已加入收藏（本地演示）");
+        });
+      });
       const related = XLYData.related(list[0], 3);
       if (related.length) {
         relatedTitle.hidden = false;
         relatedTitle.textContent = `其他 ${list[0].day_range} 天热门路线`;
         relatedBox.innerHTML = related.map((r, i) => cardHTML(r, i + 1)).join("");
+        relatedBox.querySelectorAll("[data-fav]").forEach((btn) => {
+          btn.addEventListener("click", () => XLYUI.showFlash("success", "已加入收藏（本地演示）"));
+        });
       } else {
         relatedTitle.hidden = true;
         relatedBox.innerHTML = "";

@@ -341,4 +341,29 @@
     }
     if (text) text.value = "";
   });
+
+  /* ---------- Orbit slow rotate (GSAP) ---------- */
+  const rotor = document.getElementById("orbitRotor");
+  if (rotor && window.gsap && !reduceMotion) {
+    gsap.to(rotor, {
+      rotation: 360,
+      duration: 48,
+      ease: "none",
+      repeat: -1,
+      transformOrigin: "50% 50%",
+    });
+    // 内层按初始角反向 + 同步反转，文字始终正向
+    document.querySelectorAll(".orbit__item").forEach((item) => {
+      const spin = item.querySelector(".orbit__spin");
+      if (!spin) return;
+      const a = parseFloat(getComputedStyle(item).getPropertyValue("--a")) || 0;
+      gsap.set(spin, { rotation: -a, transformOrigin: "50% 50%" });
+      gsap.to(spin, {
+        rotation: -a - 360,
+        duration: 48,
+        ease: "none",
+        repeat: -1,
+      });
+    });
+  }
 })();

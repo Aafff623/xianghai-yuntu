@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>乡旅e模式 · 乡村旅游路线规划</title>
   <meta name="description" content="乡旅e模式：面向全国乡村旅游、短途旅行、亲子休闲与文化体验用户的轻量路线规划 Web 系统。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -52,11 +55,11 @@
     <section class="hero">
       <div class="hero__copy">
         <p class="kicker">乡旅e模式 · 创新创业实践项目</p>
-        <h1>把乡村短途，收成一条能走的路线。</h1>
+        <h1 class="hero__title">把乡村短途，收成一条能走的路线。</h1>
         <p class="hero__sub">面向全国乡村旅游场景。按计划天数、兴趣主题与规划风格筛选路线，展开每日安排，并给出餐饮、住宿与参考成本。</p>
         <div class="hero__cta">
           <a class="btn btn--primary btn--lg" href="../app/index.html">开始规划</a>
-          <a class="btn btn--text" href="#routes">看示例路线</a>
+          <a class="btn btn--outline btn--lg" href="#routes">看示例路线</a>
         </div>
         <ul class="hero__stats" aria-label="调研摘要">
           <li><strong>80%</strong><span>愿意使用 AI 定制行程</span></li>
@@ -129,7 +132,7 @@
         <p>自然观光、文化体验、亲子休闲，对应不同兴趣主题与天数组合。</p>
       </div>
 
-      <div class="orbit reveal" aria-label="体验类型环形展示">
+      <div class="orbit reveal" id="orbitStage" aria-label="体验类型环形展示">
         <div class="orbit__ring" aria-hidden="true"></div>
         <div class="orbit__ring orbit__ring--inner" aria-hidden="true"></div>
         <div class="orbit__center">
@@ -137,35 +140,43 @@
           <strong>类型环</strong>
         </div>
 
-        <figure class="orbit__item" style="--a: -90deg">
-          <div class="orbit__disc">
-            <img src="../../assets/landing/dest-nature.jpg" alt="自然观光示意" loading="lazy" />
-          </div>
-          <figcaption>
-            <strong>自然观光</strong>
-            <span>山水田园 · 周末放松</span>
-          </figcaption>
-        </figure>
+        <div class="orbit__rotor" id="orbitRotor">
+          <figure class="orbit__item" style="--a: -90deg">
+            <div class="orbit__spin">
+              <div class="orbit__disc">
+                <img src="../../assets/landing/dest-nature.jpg" alt="自然观光示意" loading="lazy" />
+              </div>
+              <figcaption>
+                <strong>自然观光</strong>
+                <span>山水田园 · 周末放松</span>
+              </figcaption>
+            </div>
+          </figure>
 
-        <figure class="orbit__item" style="--a: 30deg">
-          <div class="orbit__disc">
-            <img src="../../assets/landing/dest-culture.jpg" alt="文化体验示意" loading="lazy" />
-          </div>
-          <figcaption>
-            <strong>文化体验</strong>
-            <span>古镇非遗 · 历史漫游</span>
-          </figcaption>
-        </figure>
+          <figure class="orbit__item" style="--a: 30deg">
+            <div class="orbit__spin">
+              <div class="orbit__disc">
+                <img src="../../assets/landing/dest-culture.jpg" alt="文化体验示意" loading="lazy" />
+              </div>
+              <figcaption>
+                <strong>文化体验</strong>
+                <span>古镇非遗 · 历史漫游</span>
+              </figcaption>
+            </div>
+          </figure>
 
-        <figure class="orbit__item" style="--a: 150deg">
-          <div class="orbit__disc">
-            <img src="../../assets/landing/dest-family.jpg" alt="亲子休闲示意" loading="lazy" />
-          </div>
-          <figcaption>
-            <strong>亲子休闲</strong>
-            <span>研学短途 · 节奏可控</span>
-          </figcaption>
-        </figure>
+          <figure class="orbit__item" style="--a: 150deg">
+            <div class="orbit__spin">
+              <div class="orbit__disc">
+                <img src="../../assets/landing/dest-family.jpg" alt="亲子休闲示意" loading="lazy" />
+              </div>
+              <figcaption>
+                <strong>亲子休闲</strong>
+                <span>研学短途 · 节奏可控</span>
+              </figcaption>
+            </div>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -599,6 +610,7 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

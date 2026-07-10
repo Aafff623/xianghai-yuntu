@@ -8,7 +8,9 @@
 
   const onScroll = () => {
     if (!nav) return;
+    const wrap = nav.closest(".nav-wrap") || nav;
     nav.classList.toggle("is-scrolled", window.scrollY > 8);
+    wrap.classList.toggle("is-scrolled", window.scrollY > 8);
   };
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });

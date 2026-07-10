@@ -64,3 +64,12 @@ chore(init): project-init Phase A for coding-dev
   - 轮播 5s 自动，去掉左右箭头
 - **状态**: commit + push
 
+
+## app-demo + assets — 功能页演示与资产文档全国口径
+
+- **时间**: 2026-07-10
+- **改动**:
+  - 资产：CONTEXT / frontend CONTEXT / backend CONTEXT / mvp-product-spec / PRD
+  - 新增 frontend/app 七页功能演示（全国种子数据 + localStorage 鉴权）
+- **状态**: commit + push
+

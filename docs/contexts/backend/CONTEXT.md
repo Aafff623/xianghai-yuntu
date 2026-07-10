@@ -9,7 +9,9 @@
 
 ## 当前状态
 
-**未选定框架。** project-init 已完成；脚手架待第一个业务 PRD + 技术栈 ADR 后实施。
+技术栈已由 ADR-0002 裁定：Flask + SQLAlchemy + Bcrypt + SQLite。  
+PRD：`docs/output/reports/mvp-platform/prd.md`（approved）。  
+功能页演示可先跑 `frontend/app/` 本地种子数据；后端 API 并行补齐。
 
 ## 约束（草案）
 
@@ -26,7 +28,8 @@
 | TravelRoute | 路线主表 |
 | Feedback | 用户反馈，关联 User |
 
-智能推荐：按 `days` / `route_type` / `budget_level` 等维度筛选 `TravelRoute`。
+智能推荐：按 `day_range` / `route_type`（兴趣主题）/ `budget_level`（规划风格）筛选 `TravelRoute`。  
+种子数据：**全国**多区域类型，禁止单城 POI 库。
 
 ## API 清单（规划）
 

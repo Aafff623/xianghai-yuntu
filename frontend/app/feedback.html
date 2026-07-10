@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>提交反馈 · 乡旅e模式</title>
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+<body>
+  <div id="flash" class="flash" role="status"></div>
+  <header class="app-nav">
+    <a class="app-nav__brand" href="index.html">
+      <img src="../../assets/landing/logo.jpg" alt="" width="30" height="30" />
+      <span>乡旅e模式</span>
+    </a>
+    <div class="app-nav__actions" id="authSlot"></div>
+  </header>
+
+  <main>
+    <a class="back-link" href="index.html">← 返回首页</a>
+    <div class="auth-wrap panel" style="max-width:560px">
+      <h1>提交反馈</h1>
+      <form id="feedbackForm">
+        <div class="field">
+          <label for="content">您的意见或建议</label>
+          <textarea id="content" name="content" required placeholder="请输入您的意见或建议…" maxlength="800"></textarea>
+        </div>
+        <button class="btn btn--block" type="submit">提交反馈</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="app-footer">中北大学软件学院 · 乡旅e模式</footer>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.getElementById("feedbackForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const content = new FormData(e.currentTarget).get("content");
+      const list = JSON.parse(localStorage.getItem("xly_feedback_v1") || "[]");
+      list.push({
+        content: String(content),
+        user: XLYAuth.current()?.username || null,
+        at: new Date().toISOString(),
+      });
+      localStorage.setItem("xly_feedback_v1", JSON.stringify(list));
+      sessionStorage.setItem(
+        "xly_flash",
+        JSON.stringify({ type: "success", text: "反馈已提交！" })
+      );
+      location.href = "index.html";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>注册 · 乡旅e模式</title>
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+<body>
+  <div id="flash" class="flash" role="status"></div>
+  <header class="app-nav">
+    <a class="app-nav__brand" href="index.html">
+      <img src="../../assets/landing/logo.jpg" alt="" width="30" height="30" />
+      <span>乡旅e模式</span>
+    </a>
+    <div class="app-nav__actions" id="authSlot"></div>
+  </header>
+
+  <main>
+    <a class="back-link" href="index.html">← 返回首页</a>
+    <div class="auth-wrap panel">
+      <h1>注册新账号</h1>
+      <form id="registerForm">
+        <div class="field">
+          <label for="username">用户名</label>
+          <input id="username" name="username" required placeholder="请输入用户名" autocomplete="username" />
+        </div>
+        <div class="field">
+          <label for="password">密码</label>
+          <input id="password" name="password" type="password" required placeholder="请输入密码" autocomplete="new-password" />
+        </div>
+        <div class="field">
+          <label for="password2">确认密码</label>
+          <input id="password2" name="password2" type="password" required placeholder="请再次输入密码" autocomplete="new-password" />
+        </div>
+        <button class="btn btn--block" type="submit">注册</button>
+      </form>
+      <p class="auth-foot">已有账号？<a href="login.html">立即登录</a></p>
+    </div>
+  </main>
+
+  <footer class="app-footer">中北大学软件学院 · 乡旅e模式</footer>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.currentTarget);
+      if (fd.get("password") !== fd.get("password2")) {
+        XLYUI.showFlash("danger", "两次输入的密码不一致");
+        return;
+      }
+      const res = XLYAuth.register(fd.get("username"), fd.get("password"));
+      if (!res.ok) {
+        XLYUI.showFlash("danger", res.msg);
+        return;
+      }
+      sessionStorage.setItem("xly_flash", JSON.stringify({ type: "success", text: res.msg }));
+      location.href = "login.html";
+    });
+  </script>
+</body>
+</html>

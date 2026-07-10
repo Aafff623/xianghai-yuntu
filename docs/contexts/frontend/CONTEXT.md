@@ -4,69 +4,59 @@
 
 ## 范围
 
-- 路径：`frontend/`（待初始化）
-- 职责：用户可见的全部界面 — 注册登录、首页、搜索、智能推荐、路线详情、反馈等
+| 路径 | 职责 |
+|------|------|
+| `frontend/landing/` | 营销落地页（全国乡村旅游叙事） |
+| `frontend/app/` | **功能页演示** — 注册登录、首页推荐、搜索、详情、反馈 |
 
 ## 当前状态
 
-**未选定框架。** project-init 已完成；脚手架待第一个业务 PRD + 技术栈 ADR 后实施。
+- Landing：已交付，全国口径。
+- 功能页：`frontend/app/` Wave 1 演示（本地种子数据 + localStorage 鉴权，可后续接 Flask API）。
+- PRD：`docs/output/reports/mvp-platform/prd.md`（approved）。
 
-UI 审计与出图 brief 已完成：`docs/output/reports/ui-prototype/ui-prototype-brief.md`
+## 约束
 
-## 约束（重建裁定）
-
-1. 通过 HTTP API 与 `backend/` 通信，不直连数据库
-2. 品牌统一为「**乡海云途**」；视觉素材从 `assets/` 引用
-3. 主色 **海洋蓝** `#0077BE` / `#00B4D8`（不用 legacy 山地绿）
-4. 响应式布局，优先桌面 + 移动浏览器（是否做小程序另开 ADR）
-5. 鉴权方式与后端 ADR 一致（JWT / Session 等待定）
-6. legacy 模板仅作交互参考，**不**沿用错品牌、错配色、搜用户、缺搜索入口
+1. 功能页通过 API 或本地 `data.js` 取路线；正式版接 `backend/` REST。
+2. 品牌「**乡旅e模式**」；视觉素材从 `assets/` 引用。
+3. 主色海洋蓝 `#0077BE` / `#00B4D8`（不用 legacy 山地绿）。
+4. **全国**路线示意；搜索与推荐不锁单城。
+5. 响应式：桌面优先 + 移动可用。
 
 ## 页面清单（7 页 + 全局壳）
 
-| # | 页面 | 路由 | legacy | 需登录 |
-|---|------|------|--------|--------|
-| P1 | 首页 | `/` | index.html | 否 |
-| P2 | 登录 | `/login` | login.html | 否 |
-| P3 | 注册 | `/register` | register.html | 否 |
-| P4 | 智能推荐结果 | `/smart-search` | smart_search.html | **是** |
-| P5 | 关键词搜索 | `/search` | search.html | **是** |
-| P6 | 路线详情 | `/routes/:id` | route_detail.html | **是** |
-| P7 | 反馈 | `/feedback` | feedback.html | 否（legacy） |
+| # | 页面 | 文件 / 路由 | 需登录 |
+|---|------|-------------|--------|
+| P1 | 首页（推荐表单） | `app/index.html` | 否 |
+| P2 | 登录 | `app/login.html` | 否 |
+| P3 | 注册 | `app/register.html` | 否 |
+| P4 | 智能推荐结果 | `app/smart-search.html` | 演示可放宽；正式 **是** |
+| P5 | 关键词搜索 | `app/search.html` | 演示可放宽；正式 **是** |
+| P6 | 路线详情 | `app/route-detail.html` | 演示可放宽；正式 **是** |
+| P7 | 反馈 | `app/feedback.html` | 否 |
 
-**全局壳**：顶栏（Logo、用户态、**关键词搜索框**）、Flash  toast、页脚、「返回首页」/「返回推荐」
+**全局壳**：顶栏（Logo、搜索框、用户态）、Flash、页脚、返回导航。
 
-## 功能流程
-
-```
-注册 → 登录 → 首页
-首页 + 已登录 → 智能推荐 → 路线详情 ↔ 相关推荐
-顶栏搜索 → 关键词结果 → 路线详情
-首页 → 反馈 → 提交 → 首页
-未登录访问 P4/P5/P6 → 登录 + Flash
-任意页 → 注销 → 首页
-```
-
-详见 `ui-prototype-brief.md` §2.2 Mermaid 图。
-
-## 表单与枚举（须与 API 一致）
+## 表单与枚举（与任务书对齐）
 
 | 字段 | 选项 |
 |------|------|
-| 行程天数 | 1-2天 · 3-5天 · 6-7天 |
-| 路线类型 | 文化探索 · **海洋风光** · 自然景观 · 美食之旅 · 亲子休闲 · 历史遗迹 |
-| 预算级别 | 经济型 · 舒适型 · 豪华型 |
+| 计划天数 | 1-2天 · 3-5天 · 6-7天 |
+| 兴趣主题 | 文化体验 · 自然观光 · 亲子休闲 · 乡村旅游 |
+| 规划风格 | 经济型 · 舒适型 · 豪华型 |
+
+## 种子数据原则
+
+- 区域类型模板：江南水乡、西南梯田、华北河谷、徽州山地等。
+- `keyword` 支持全国主题词检索；**禁止**仅维护单一城市景点列表。
 
 ## 相关资产
 
 | 资产 | 路径 |
-|---|---|
-| 主 Logo | `assets/brand/logo-primary.jpg` |
-| Banner | `assets/banners/qingdao-sunset-banner.jpg` |
-| 背景插画 | `assets/banners/scenic-coastal-village.jpg` |
-| UI 出图 brief | `docs/output/reports/ui-prototype/ui-prototype-brief.md` |
-
-## 参考
-
-- 旧 Flask 模板：`../../coding-legacy/code/templates/`（仅 UI 与交互参考，不迁移代码）
-- 产品规格：`docs/knowledge/mvp-product-spec.md` §6
+|------|------|
+| Landing | `frontend/landing/index.html` |
+| 功能页 | `frontend/app/` |
+| 插图 | `assets/landing/` |
+| Logo | `assets/brand/logo-primary.jpg` |
+| PRD | `docs/output/reports/mvp-platform/prd.md` |
+| 产品规格 | `docs/knowledge/mvp-product-spec.md` |

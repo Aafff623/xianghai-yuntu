@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>首页 · 乡旅e模式</title>
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+<body>
+  <div id="flash" class="flash" role="status"></div>
+  <header class="app-nav">
+    <a class="app-nav__brand" href="index.html">
+      <img src="../../assets/landing/logo.jpg" alt="" width="30" height="30" />
+      <span>乡旅e模式</span>
+    </a>
+    <form class="app-nav__search" id="headerSearch">
+      <input type="search" name="q" placeholder="搜索全国路线关键词…" />
+      <button class="btn btn--sm" type="submit">搜索</button>
+    </form>
+    <div class="app-nav__actions" id="authSlot"></div>
+  </header>
+
+  <main>
+    <section class="home-hero">
+      <h1>乡旅e模式</h1>
+      <p>智能路线推荐 — 按计划天数、兴趣主题与规划风格，定制可执行行程。</p>
+    </section>
+
+    <section class="panel">
+      <form id="smartForm">
+        <div class="form-grid">
+          <div class="field">
+            <label for="day_range">计划天数</label>
+            <select id="day_range" name="day_range" required>
+              <option value="">选择天数</option>
+              <option value="1-2">1-2天</option>
+              <option value="3-5">3-5天</option>
+              <option value="6-7">6-7天</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="route_type">兴趣主题</label>
+            <select id="route_type" name="route_type" required>
+              <option value="">选择类型</option>
+              <option value="文化体验">文化体验</option>
+              <option value="自然观光">自然观光</option>
+              <option value="亲子休闲">亲子休闲</option>
+              <option value="乡村旅游">乡村旅游</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="budget_level">规划风格</label>
+            <select id="budget_level" name="budget_level" required>
+              <option value="">选择预算</option>
+              <option value="经济型">经济型</option>
+              <option value="舒适型">舒适型</option>
+              <option value="豪华型">豪华型</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn--block" type="submit">智能推荐</button>
+      </form>
+    </section>
+
+    <nav class="home-links" aria-label="快捷入口">
+      <a href="register.html">注册</a>
+      <a href="login.html">登录</a>
+      <a href="feedback.html">反馈</a>
+      <a href="../landing/index.html">营销页</a>
+    </nav>
+  </main>
+
+  <footer class="app-footer">
+    中北大学软件学院 · 乡旅e模式 · 功能演示
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.getElementById("smartForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.currentTarget);
+      const params = new URLSearchParams({
+        day_range: fd.get("day_range"),
+        route_type: fd.get("route_type"),
+        budget_level: fd.get("budget_level"),
+      });
+      const target = "smart-search.html?" + params.toString();
+      if (!XLYAuth.current()) {
+        XLYAuth.requireLogin(target);
+        return;
+      }
+      location.href = target;
+    });
+  </script>
+</body>
+</html>

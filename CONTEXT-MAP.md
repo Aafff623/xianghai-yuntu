@@ -14,5 +14,3 @@
 2. 改动落在某一端时，再读对应 context 的 `CONTEXT.md`。
 3. 跨端改动（如路线 API 字段贯通前后端）→ 读 product + 涉及的全部 context。
 4. 架构决策 → [`docs/adr/`](docs/adr/)；系统级 ADR 优先于单端约定。
-
-消费规则详见 [`docs/agents/domain.md`](docs/agents/domain.md)。

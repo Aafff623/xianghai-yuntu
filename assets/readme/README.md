@@ -33,7 +33,7 @@
 | 文件 | 说明 |
 |------|------|
 | `architecture.svg` / `workflow.svg` / `features.svg` | 早期矢量基线；README 已优先引用 PNG |
-| `_gen_diagrams.py` | 重生成 SVG 基线的脚本 |
+| `scripts/_gen_diagrams.py`（仓库根） | 重生成 SVG 基线的脚本 |
 | `banner.jpg` | 旧横幅副本（已由 `banner.png` 替代） |
 
 ---

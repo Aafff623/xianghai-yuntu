@@ -64,7 +64,12 @@
         return;
       }
       sessionStorage.setItem("xly_flash", JSON.stringify({ type: "success", text: res.msg }));
-      const next = new URLSearchParams(location.search).get("next") || "profile.html";
+      // next 仅允许本站相对路径（字母数字 . / _ - 且不以 // 开头），否则回默认页
+      const rawNext = new URLSearchParams(location.search).get("next") || "";
+      const next =
+        /^[A-Za-z0-9./_-]+$/.test(rawNext) && !rawNext.startsWith("//")
+          ? rawNext
+          : "profile.html";
       location.href = next;
     });
   </script>

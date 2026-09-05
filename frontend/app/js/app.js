@@ -1,6 +1,7 @@
 /** 全局壳：顶栏用户态、Flash、搜索跳转、受保护页检查 */
 (() => {
-  const AUTH_PAGES = ["smart-search.html", "search.html", "route-detail.html", "profile.html"];
+  /** 需登录页面：智能推荐 / 搜索 / 详情演示可免登录（见 docs/contexts/frontend/CONTEXT.md），仅个人资料强制 */
+  const AUTH_PAGES = ["profile.html"];
 
   function pageName() {
     const p = location.pathname.split("/").pop() || "index.html";
@@ -40,7 +41,7 @@
     return `<span class="avatar" style="width:${px}px;height:${px}px;border-radius:50%;background:linear-gradient(135deg,#e6c897,#0a5a82);display:grid;place-items:center;color:#fff;font-weight:700;font-size:${Math.max(12, Math.round(px * 0.38))}px">${initial}</span>`;
   }
 
-  window.XLYUI = { showFlash, avatarHtml };
+  window.XLYUI = { showFlash, avatarHtml, escapeHtml };
 
   function renderAuthSlot() {
     const slot = document.getElementById("authSlot");
@@ -115,10 +116,6 @@
     form?.addEventListener("submit", (e) => {
       e.preventDefault();
       const q = new FormData(form).get("q");
-      if (AUTH_PAGES.includes("search.html") && !XLYAuth.current()) {
-        XLYAuth.requireLogin(`search.html?q=${encodeURIComponent(String(q || ""))}`);
-        return;
-      }
       location.href = `search.html?q=${encodeURIComponent(String(q || ""))}`;
     });
   }

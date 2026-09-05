@@ -700,7 +700,7 @@ a {
   line-height: 1.45;
 }
 
-/* Orbit scenes — equal circular cards on a ring + GSAP spin */
+/* Orbit scenes — equal circular cards on a ring (static layout) */
 .scenes {
   max-width: var(--max);
   margin: 0 auto;

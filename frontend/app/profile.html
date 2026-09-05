@@ -447,10 +447,11 @@
       const fill = () => {
         const user = XLYAuth.current();
         const profile = XLYAuth.getProfile(user.username);
+        const esc = (s) => XLYUI.escapeHtml(s);
         const name = profile.displayName || user.username;
         const avatarEl = document.getElementById("profileAvatar");
         if (user.username === "admin") {
-          avatarEl.innerHTML = `<img src="../../assets/brand/avatar-admin.svg" alt="${name}" />`;
+          avatarEl.innerHTML = `<img src="../../assets/brand/avatar-admin.svg" alt="${esc(name)}" />`;
           avatarEl.style.background = "transparent";
         } else {
           avatarEl.textContent = name.slice(0, 1);
@@ -460,9 +461,9 @@
         document.getElementById("profileSub").textContent =
           profile.bio || "登录后管理偏好与演示信息";
         document.getElementById("profileMeta").innerHTML = [
-          `<span>@${user.username}</span>`,
-          profile.city ? `<span>${profile.city}</span>` : "",
-          profile.joinedAt ? `<span>加入 ${profile.joinedAt}</span>` : "",
+          `<span>@${esc(user.username)}</span>`,
+          profile.city ? `<span>${esc(profile.city)}</span>` : "",
+          profile.joinedAt ? `<span>加入 ${esc(profile.joinedAt)}</span>` : "",
         ]
           .filter(Boolean)
           .join("");

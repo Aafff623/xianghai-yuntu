@@ -125,12 +125,7 @@
         const v = fd.get(k);
         if (v) params.set(k, v);
       });
-      const target = "smart-search.html?" + params.toString();
-      if (!XLYAuth.current()) {
-        XLYAuth.requireLogin(target);
-        return;
-      }
-      location.href = target;
+      location.href = "smart-search.html?" + params.toString();
     });
   </script>
 </body>

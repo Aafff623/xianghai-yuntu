@@ -56,8 +56,9 @@
     const q = new URLSearchParams(location.search).get("q") || "";
     document.getElementById("qInput").value = q;
     const list = XLYData.keywordSearch(q);
-    document.getElementById("hint").innerHTML = q
-      ? `为你找到与「<strong style="color:#0b5b83">${q}</strong>」相关的 ${list.length} 条路线。`
+    const hint = document.getElementById("hint");
+    hint.textContent = q
+      ? `为你找到与「${q}」相关的 ${list.length} 条路线。`
       : "请输入关键词，如：水乡、梯田、徽州、亲子";
 
     const box = document.getElementById("results");

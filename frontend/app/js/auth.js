@@ -8,7 +8,7 @@ window.XLYAuth = (() => {
   const DEMO_USER = { username: "admin", password: "123456" };
 
   const hash = (pwd) => {
-    // 演示用简易哈希，非生产安全；正式版用 Bcrypt 在服务端
+    // 仅演示：自制简易哈希，非生产安全；正式版接 Flask+Bcrypt 在服务端
     let h = 0;
     const s = String(pwd);
     for (let i = 0; i < s.length; i++) h = (Math.imul(31, h) + s.charCodeAt(i)) | 0;
@@ -111,14 +111,6 @@ window.XLYAuth = (() => {
       ensureDemoUser();
       const name = String(username || "").trim();
       const pwd = String(password || "");
-      // 演示账号明文校验兜底（即使用户清过 localStorage 也能登）
-      if (name === DEMO_USER.username && pwd === DEMO_USER.password) {
-        sessionStorage.setItem(
-          SESSION_KEY,
-          JSON.stringify({ username: DEMO_USER.username, displayName: "演示管理员" })
-        );
-        return { ok: true, msg: "登录成功（演示账号）" };
-      }
       const users = readUsers();
       const user = users.find((u) => u.username === name && u.password === hash(pwd));
       if (!user) return { ok: false, msg: "用户名或密码错误" };

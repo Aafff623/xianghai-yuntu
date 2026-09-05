@@ -213,10 +213,11 @@
     }
 
     const params = new URLSearchParams(location.search);
+    // 未传条件时不套默认过滤，如实展示全量（用户主动选条件后按条件筛选）
     const query = {
-      day_range: params.get("day_range") || "1-2",
-      route_type: params.get("route_type") || "文化体验",
-      budget_level: params.get("budget_level") || "经济型",
+      day_range: params.get("day_range") || "",
+      route_type: params.get("route_type") || "",
+      budget_level: params.get("budget_level") || "",
       region_tag: params.get("region_tag") || "",
       hot_tag: params.get("hot_tag") || "",
     };

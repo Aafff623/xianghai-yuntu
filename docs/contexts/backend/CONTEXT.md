@@ -46,4 +46,4 @@ PRD：`docs/output/reports/mvp-platform/prd.md`（approved）。
 
 ## 参考
 
-- 旧 Flask 实现：`../coding-legacy/code/app.py`（业务逻辑与种子数据参考，不迁移代码）
+- 早期旧 Flask 单体实现（本仓之外的历史快照，已不可达）：其 User / TravelRoute / Feedback 模型语义与种子路线思路已内联进本 CONTEXT 与 `docs/knowledge/mvp-product-spec.md`，代码不迁移。

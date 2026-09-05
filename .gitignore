@@ -23,3 +23,14 @@ Thumbs.db
 *.db
 
 .scratch/
+
+# Agent / tooling local artifacts
+.codegraph/
+.gitnexus/
+temp/
+node_modules/
+dist/
+*.log
+
+# 竞赛原始材料：本地保留，不再入库（解除跟踪需主控执行 git rm -r --cached docs/source）
+docs/source/

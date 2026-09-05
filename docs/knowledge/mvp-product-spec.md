@@ -1,6 +1,6 @@
 # MVP 与产品规划 — 核对清单
 
-> 从 `docs/source/`、`backup/`、`coding-legacy/` 提炼的**可开发事实**。  
+> 从竞赛原始材料（`docs/source/`）与早期旧 Flask 实现快照（本仓之外，仅存业务语义参考）提炼的**可开发事实**。  
 > 竞赛文档中的商业/财务/远景架构单独标注，**不进入 Wave 1 MVP**。
 
 最后核对：2026-07-10
@@ -258,8 +258,8 @@
 | 最新项目书 | `docs/source/project-books/乡旅与海e模式项目书-25国创-最新.docx` |
 | Web 组企划 | `docs/source/process/Web组目标企划.docx` |
 | 商业修改分工 | `docs/source/process/商业项目书修改分工.docx` |
-| legacy 代码 | `../coding-legacy/code/app.py` |
-| 提取原文（审计） | `docs/output/reports/project-init/_extracted.txt` |
+
+> 旧 Flask 实现与原始提取文本均为仓库外 / 已清理的历史审计材料；其数据模型与页面清单语义已收录在本文 §4-§6，不再保留路径引用。
 
 ---
 
